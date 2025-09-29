@@ -4,6 +4,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -39,6 +40,9 @@ const config = {
     ...(isProduction
       ? [new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' })]
       : []),
+    new Dotenv({
+      path: `./.env.${process.env.NODE_ENV}`, // 환경별 .env 파일 경로
+    }),
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
   ],
