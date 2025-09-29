@@ -3,6 +3,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -34,7 +35,10 @@ const config = {
     new ForkTsCheckerWebpackPlugin({
       async: false, // 타입 체크가 완료된 후에 빌드 완료. 타입 오류가 있는 경우 빌드가 실패됨.
     }),
-
+    // 프로덕션 모드에서는 CSS를 별도 파일로 추출하여 브라우저가 캐싱할 수 있도록 함
+    ...(isProduction
+      ? [new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' })]
+      : []),
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
   ],
@@ -63,8 +67,15 @@ const config = {
       {
         test: /\.css$/,
         use: [
-          'style-loader', //  CSS를 <style> 태그로 주입
-          'css-loader', //  CSS를 JavaScript 모듈로 변환
+          /**
+           * 프로덕션 모드: MiniCssExtractPlugin.loader 사용하여 CSS를 별도 파일로 추출
+           * 개발 모드: style-loader 사용하여 CSS를 <style> 태그로 주입
+           */
+          isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
+          /**
+           * CSS 파일을 자바스크립트 모듈로 변환
+           */
+          'css-loader',
         ],
       },
       /**
