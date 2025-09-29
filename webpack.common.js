@@ -1,37 +1,15 @@
-// Generated using webpack-cli https://github.com/webpack/webpack-cli
-
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Dotenv = require('dotenv-webpack');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-const config = {
+module.exports = {
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     clean: true, // 기존 빌드 파일 제거
-  },
-  /**
-   * source-map 설정
-   * prod: hidden-source-map - 별도의 소스맵 파일 생성, 에러 스택트레이스에 소스맵 URL 포함하지 않음(보안상 유리)
-   * dev: eval-cheap-module-source-map - 빠른 빌드 속도, 원본 소스 코드와 매핑 정확도 높음
-   */
-  devtool: isProduction ? 'hidden-source-map' : 'eval-cheap-module-source-map',
-  devServer: {
-    static: {
-      directory: path.join(__dirname, 'dist'), // 빌드된 파일을 이 경로에서 서빙
-    },
-    port: 3000, // localhost:3000에서 실행
-    open: true, // 서버 실행 시 브라우저 자동 열기
-    hot: true, // HMR 사용
-    historyApiFallback: true, // SPA 라우팅 지원
-    client: {
-      overlay: true, // 에러 발생 시 브라우저에 오버레이로 표시
-    },
   },
   plugins: [
     // HTML 파일을 템플릿으로 등록해두면, 웹팩이 알아서 필요한 JavaScript와 CSS 파일을 자동으로 삽입
@@ -43,18 +21,10 @@ const config = {
     new ForkTsCheckerWebpackPlugin({
       async: false, // 타입 체크가 완료된 후에 빌드 완료. 타입 오류가 있는 경우 빌드가 실패됨.
     }),
-    // 프로덕션 모드에서는 CSS를 별도 파일로 추출하여 브라우저가 캐싱할 수 있도록 함
-    ...(isProduction
-      ? [new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' })]
-      : []),
-    // 개발 환경에서만 React Refresh 플러그인 적용
-    !isProduction && new ReactRefreshWebpackPlugin(),
     new Dotenv({
       path: `./.env.${process.env.NODE_ENV}`, // 환경별 .env 파일 경로
     }),
-    // Add your plugins here
-    // Learn more about plugins from https://webpack.js.org/configuration/plugins/
-  ].filter(Boolean),
+  ],
   module: {
     rules: [
       {
@@ -78,24 +48,6 @@ const config = {
         exclude: /node_modules/,
       },
       /**
-       * CSS 처리
-       * 배열의 마지막 loader부터 순서대로 적용됨
-       */
-      {
-        test: /\.css$/,
-        use: [
-          /**
-           * 프로덕션 모드: MiniCssExtractPlugin.loader 사용하여 CSS를 별도 파일로 추출
-           * 개발 모드: style-loader 사용하여 CSS를 <style> 태그로 주입
-           */
-          isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
-          /**
-           * CSS 파일을 자바스크립트 모듈로 변환
-           */
-          'css-loader',
-        ],
-      },
-      /**
        * 정적 리소스 (이미지, 폰트 등) 처리
        * asset/resource: 이미지를 독립적인 파일로 생성하여 파일 경로를 제공. 대형 이미지에 적합.
        * asset/inline: 이미지를 텍스트 형태(Base64)로 변환하여 JavaScript 파일에 직접 포함. 소형 이미지에 적합.
@@ -103,27 +55,15 @@ const config = {
        */
       {
         test: /\.(png|svg|jpg|jpeg|gif|webp)$/i, // 이미지 파일 확장자
-        type: 'asset',
+        type: 'asset/resource',
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i, // 폰트 파일 대상
         type: 'asset/resource', // 폰트는 이미지보다 훨씬 용량이 크고, 자주 바뀌지 않는 정적 자원. 브라우저가 캐싱하여 네트워크 비용을 줄일 수 있도록 항상 별도 파일로 제공
       },
-
-      // Add your rules for custom modules here
-      // Learn more about loaders from https://webpack.js.org/loaders/
     ],
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.jsx', '.js', '...'],
   },
-};
-
-module.exports = () => {
-  if (isProduction) {
-    config.mode = 'production';
-  } else {
-    config.mode = 'development';
-  }
-  return config;
 };

@@ -1,0 +1,27 @@
+const { merge } = require('webpack-merge');
+const common = require('./webpack.common.js');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+module.exports = merge(common, {
+  mode: 'production',
+  /**
+   * source-map 설정
+   * prod: hidden-source-map - 별도의 소스맵 파일 생성, 에러 스택트레이스에 소스맵 URL 포함하지 않음(보안상 유리)
+   */
+  devtool: 'hidden-source-map',
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        /**
+         * 프로덕션 모드: MiniCssExtractPlugin.loader 사용하여 CSS를 별도 파일로 추출
+         */
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+      },
+    ],
+  },
+  plugins: [
+    // 프로덕션 모드에서는 CSS를 별도 파일로 추출하여 브라우저가 캐싱할 수 있도록 함
+    new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
+  ],
+});

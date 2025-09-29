@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 const App = () => {
   const [count, setCount] = useState(0);
+  console.log('API_URL:', process.env.API_URL); // .env 파일의 API_URL 출력
   return (
     <div className="container">
       <h1>Hello, React with TypeScript and Webpack!</h1>
