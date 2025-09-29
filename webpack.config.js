@@ -26,7 +26,9 @@ const config = {
   plugins: [
     // HTML 파일을 템플릿으로 등록해두면, 웹팩이 알아서 필요한 JavaScript와 CSS 파일을 자동으로 삽입
     new HtmlWebpackPlugin({
-      template: './index.html',
+      template: './public/index.html', // 템플릿 파일 경로
+      filename: 'index.html', // 생성될 HTML 파일 이름
+      inject: 'body', // 스크립트를 body 태그 끝에 삽입
     }),
 
     // Add your plugins here
