@@ -15,6 +15,12 @@ const config = {
     path: path.resolve(__dirname, 'dist'),
     clean: true, // 기존 빌드 파일 제거
   },
+  /**
+   * source-map 설정
+   * prod: hidden-source-map - 별도의 소스맵 파일 생성, 에러 스택트레이스에 소스맵 URL 포함하지 않음(보안상 유리)
+   * dev: eval-cheap-module-source-map - 빠른 빌드 속도, 원본 소스 코드와 매핑 정확도 높음
+   */
+  devtool: isProduction ? 'hidden-source-map' : 'eval-cheap-module-source-map',
   devServer: {
     static: {
       directory: path.join(__dirname, 'dist'), // 빌드된 파일을 이 경로에서 서빙
