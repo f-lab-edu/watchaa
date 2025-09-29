@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Dotenv = require('dotenv-webpack');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -40,12 +41,14 @@ const config = {
     ...(isProduction
       ? [new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' })]
       : []),
+    // 개발 환경에서만 React Refresh 플러그인 적용
+    !isProduction && new ReactRefreshWebpackPlugin(),
     new Dotenv({
       path: `./.env.${process.env.NODE_ENV}`, // 환경별 .env 파일 경로
     }),
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
-  ],
+  ].filter(Boolean),
   module: {
     rules: [
       {
@@ -59,6 +62,10 @@ const config = {
                 ['@babel/preset-react', { runtime: 'automatic' }], // JSX를 순수 JS로 변환
                 '@babel/preset-typescript', // TS를 JS로 변환
               ],
+              plugins: [
+                // 개발 환경에서만 React Refresh 플러그인 적용
+                !isProduction && require.resolve('react-refresh/babel'),
+              ].filter(Boolean),
             },
           },
         ],
