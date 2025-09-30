@@ -46,5 +46,15 @@ module.exports = merge(common, {
   ],
   optimization: {
     minimizer: [new CssMinimizerPlugin()],
+    splitChunks: {
+      chunks: 'all', // 모든 청크에 대해 코드 분할을 수행합니다.
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/, // node_modules 폴더의 모듈을 대상으로 합니다.
+          name: 'vendors', // 분리된 청크의 이름을 지정합니다.
+          chunks: 'all',
+        },
+      },
+    },
   },
 });
