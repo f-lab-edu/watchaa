@@ -20,7 +20,7 @@ export default defineConfig([
   // 일반 JavaScript/TypeScript 파일들
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-    ignores: ['webpack.*.js'], // webpack 설정 파일 제외
+    ignores: ['webpack.*.js', 'node_modules', 'dist'],
     plugins: { js },
     extends: ['js/recommended'],
     languageOptions: {
