@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const tanstackRouter = require('@tanstack/router-plugin/webpack').tanstackRouter;
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -12,6 +13,11 @@ module.exports = {
     clean: true, // 기존 빌드 파일 제거
   },
   plugins: [
+    tanstackRouter({
+      routesDirectory: './src/routes',
+      generatedRouteTree: './src/routeTree.gen.ts',
+      autoCodeSplitting: true,
+    }),
     // HTML 파일을 템플릿으로 등록해두면, 웹팩이 알아서 필요한 JavaScript와 CSS 파일을 자동으로 삽입
     new HtmlWebpackPlugin({
       template: './public/index.html', // 템플릿 파일 경로
@@ -23,6 +29,10 @@ module.exports = {
     }),
     new Dotenv({
       path: `./.env.${process.env.NODE_ENV}`, // 환경별 .env 파일 경로
+    }),
+    tanstackRouter({
+      target: 'react',
+      autoCodeSplitting: true,
     }),
   ],
   module: {
