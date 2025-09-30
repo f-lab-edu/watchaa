@@ -1,5 +1,6 @@
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -17,7 +18,22 @@ module.exports = merge(common, {
         /**
          * 프로덕션 모드: MiniCssExtractPlugin.loader 사용하여 CSS를 별도 파일로 추출
          */
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'postcss-loader', // PostCSS 로더 추가
+            options: {
+              postcssOptions: {
+                plugins: [
+                  require('postcss-preset-env')({
+                    browsers: 'last 2 versions', // 지원할 브라우저 범위 설정
+                  }),
+                ],
+              },
+            },
+          },
+        ],
       },
     ],
   },
@@ -28,4 +44,7 @@ module.exports = merge(common, {
       analyzerMode: process.env.ANALYZE === 'true' ? 'server' : 'disabled',
     }),
   ],
+  optimization: {
+    minimizer: [new CssMinimizerPlugin()],
+  },
 });
