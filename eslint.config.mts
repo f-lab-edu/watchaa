@@ -4,6 +4,7 @@ import tseslint from 'typescript-eslint';
 import pluginReact from 'eslint-plugin-react';
 import { defineConfig } from 'eslint/config';
 import pluginJs from '@eslint/js';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 
 export default defineConfig([
   // webpack 설정 파일들에 대한 특별한 규칙 (가장 먼저 적용)
@@ -46,4 +47,5 @@ export default defineConfig([
   },
 
   pluginJs.configs.recommended,
+  eslintPluginPrettierRecommended,
 ]);
