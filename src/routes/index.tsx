@@ -12,7 +12,6 @@ function Index() {
       <h3>Welcome Home!</h3>
       <button onClick={() => setCount(count + 1)}>Increment</button>
       <p>Current count: {count}</p>
-      <div>asd123123</div>
     </div>
   );
 }

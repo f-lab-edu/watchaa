@@ -14,6 +14,7 @@ module.exports = {
   },
   plugins: [
     tanstackRouter({
+      target: 'react',
       routesDirectory: './src/routes',
       generatedRouteTree: './src/routeTree.gen.ts',
       autoCodeSplitting: true,
@@ -29,10 +30,6 @@ module.exports = {
     }),
     new Dotenv({
       path: `./.env.${process.env.NODE_ENV}`, // 환경별 .env 파일 경로
-    }),
-    tanstackRouter({
-      target: 'react',
-      autoCodeSplitting: true,
     }),
   ],
   module: {
@@ -74,6 +71,10 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.jsx', '.js', '...'],
+    extensions: ['.tsx', '.ts', '.jsx', '.js', '.css', '.scss', '...'],
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+      '@/styles': path.resolve(__dirname, 'src/styles.css'),
+    },
   },
 };
