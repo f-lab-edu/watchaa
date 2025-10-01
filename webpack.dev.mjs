@@ -1,8 +1,8 @@
-import path from 'path';
-import { fileURLToPath } from 'url';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { merge } from 'webpack-merge';
 import common from './webpack.common.mjs';
-import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

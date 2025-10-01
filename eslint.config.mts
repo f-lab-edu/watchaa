@@ -1,39 +1,43 @@
-import js from '@eslint/js';
-import globals from 'globals';
-import tseslint from 'typescript-eslint';
+import pluginJs from '@eslint/js';
+import pluginN from 'eslint-plugin-n';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import pluginReact from 'eslint-plugin-react';
 import { defineConfig } from 'eslint/config';
-import pluginJs from '@eslint/js';
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
 export default defineConfig([
   {
-    files: ['webpack*.mjs'],
+    files: ['**/*.{js,ts,jsx,tsx,mjs}'],
+    ignores: ['node_modules', 'dist'],
+    plugins: {
+      n: pluginN,
+    },
     languageOptions: {
       globals: {
+        ...globals.browser,
         ...globals.node,
       },
-    },
-  },
-  {
-    files: ['**/*.{js,ts,jsx,tsx}'],
-    plugins: { js },
-    extends: ['js/recommended'],
-    ignores: ['node_modules', 'dist'],
-    languageOptions: {
-      globals: globals.browser,
-      // ES2022 주요 기능: Private fields (#field), Static blocks, .at() method, Object.hasOwn()
       ecmaVersion: 2022,
       sourceType: 'module',
+    },
+    rules: {
+      'n/prefer-node-protocol': 'error', // 모든 파일에서 node: 접두사 강제
     },
   },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   {
     ...pluginReact.configs.flat.recommended,
+    settings: {
+      react: {
+        version: 'detect', // React 버전 자동 감지
+      },
+    },
     rules: {
       ...pluginReact.configs.flat.recommended.rules,
       'react/react-in-jsx-scope': 'off', // React 17+의 새로운 JSX Transform 사용
+      'no-duplicate-imports': 'error', // 중복 import 방지
     },
   },
   /**
