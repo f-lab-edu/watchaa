@@ -1,7 +1,6 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import Dotenv from 'dotenv-webpack';
 import { tanstackRouter } from '@tanstack/router-plugin/webpack';
 
@@ -26,9 +25,6 @@ export default {
       template: './public/index.html', // 템플릿 파일 경로
       filename: 'index.html', // 생성될 HTML 파일 이름
       inject: 'body', // 스크립트를 body 태그 끝에 삽입
-    }),
-    new ForkTsCheckerWebpackPlugin({
-      async: false, // 타입 체크가 완료된 후에 빌드 완료. 타입 오류가 있는 경우 빌드가 실패됨.
     }),
     new Dotenv({
       path: `./.env.${process.env.NODE_ENV}`, // 환경별 .env 파일 경로

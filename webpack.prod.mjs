@@ -3,6 +3,7 @@ import common from './webpack.common.mjs';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import postcssPresetEnv from 'postcss-preset-env';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 export default merge(common, {
@@ -35,6 +36,9 @@ export default merge(common, {
     ],
   },
   plugins: [
+    new ForkTsCheckerWebpackPlugin({
+      async: false, // 타입 체크가 완료된 후에 빌드 완료. 타입 오류가 있는 경우 빌드가 실패됨.
+    }),
     // 프로덕션 모드에서는 CSS를 별도 파일로 추출하여 브라우저가 캐싱할 수 있도록 함
     new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
     new BundleAnalyzerPlugin({
