@@ -1,11 +1,10 @@
-import { merge } from 'webpack-merge';
-import common from './webpack.common.mjs';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
-import postcssPresetEnv from 'postcss-preset-env';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import { merge } from 'webpack-merge';
+import common from './webpack.common.mjs';
 
 export default merge(common, {
   mode: 'production',
@@ -24,14 +23,7 @@ export default merge(common, {
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
-          {
-            loader: 'postcss-loader', // PostCSS 로더 추가
-            options: {
-              postcssOptions: {
-                plugins: [postcssPresetEnv()],
-              },
-            },
-          },
+          'postcss-loader', // PostCSS 로더 추가
         ],
       },
     ],
