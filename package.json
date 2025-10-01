@@ -2,19 +2,74 @@
   "version": "1.0.0",
   "description": "My webpack project",
   "name": "webpack-project",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0",
+    "npm": ">=10.9.3"
+  },
+  "packageManager": "npm@10.9.3",
   "scripts": {
-    "build": "webpack --mode=production --node-env=production",
-    "build:dev": "webpack --mode=development",
-    "serve": "webpack serve",
-    "watch": "webpack --watch"
+    "analyze": "ANALYZE=true npm run build",
+    "start": "cross-env NODE_ENV=development webpack serve --config webpack.dev.mjs",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.prod.mjs",
+    "build:preview": "npm run build && npx serve dist",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint",
+      "prettier --list-different"
+    ]
+  },
+  "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^7.9.3"
   },
   "devDependencies": {
-    "html-loader": "^5.1.0",
+    "@babel/core": "^7.28.4",
+    "@babel/preset-env": "^7.28.3",
+    "@babel/preset-react": "^7.27.1",
+    "@babel/preset-typescript": "^7.27.1",
+    "@eslint/js": "^9.36.0",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.6.1",
+    "@types/dotenv-webpack": "^7.0.8",
+    "@types/postcss-preset-env": "^7.7.0",
+    "@types/react": "^19.1.15",
+    "@types/react-dom": "^19.1.9",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/webpack-bundle-analyzer": "^4.7.0",
+    "babel-loader": "^10.0.0",
+    "cross-env": "^10.0.0",
+    "css-loader": "^7.1.2",
+    "css-minimizer-webpack-plugin": "^7.0.2",
+    "dotenv-webpack": "^8.1.1",
+    "eslint": "^9.36.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-n": "^17.23.1",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-react": "^7.37.5",
+    "fork-ts-checker-webpack-plugin": "^9.1.0",
+    "globals": "^16.4.0",
     "html-webpack-plugin": "^5.6.4",
-    "ts-loader": "^9.5.4",
+    "husky": "^8.0.0",
+    "jiti": "^2.6.0",
+    "lint-staged": "^16.2.3",
+    "mini-css-extract-plugin": "^2.9.4",
+    "postcss": "^8.5.6",
+    "postcss-loader": "^8.2.0",
+    "postcss-preset-env": "^10.4.0",
+    "prettier": "^3.6.2",
+    "react-refresh": "^0.17.0",
+    "style-loader": "^4.0.0",
+    "terser-webpack-plugin": "^5.3.14",
     "typescript": "^5.9.2",
+    "typescript-eslint": "^8.44.1",
     "webpack": "^5.101.3",
+    "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.2.2"
+    "webpack-dev-server": "^5.2.2",
+    "webpack-merge": "^6.0.1"
   }
 }
