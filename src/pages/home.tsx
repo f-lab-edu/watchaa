@@ -1,12 +1,8 @@
-import { createFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
 
-export const Route = createFileRoute('/')({
-  component: Index,
-});
-
-function Index() {
+function Home() {
   const [count, setCount] = useState(0);
+
   return (
     <div className="p-2">
       <h3>Welcome Home!</h3>
@@ -15,3 +11,5 @@ function Index() {
     </div>
   );
 }
+
+export default Home;

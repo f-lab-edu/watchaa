@@ -2,7 +2,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import Dotenv from 'dotenv-webpack';
-import { tanstackRouter } from '@tanstack/router-plugin/webpack';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,12 +13,6 @@ export default {
     clean: true, // 기존 빌드 파일 제거
   },
   plugins: [
-    tanstackRouter({
-      target: 'react',
-      routesDirectory: './src/routes',
-      generatedRouteTree: './src/routeTree.gen.ts',
-      autoCodeSplitting: true,
-    }),
     // HTML 파일을 템플릿으로 등록해두면, 웹팩이 알아서 필요한 JavaScript와 CSS 파일을 자동으로 삽입
     new HtmlWebpackPlugin({
       template: './public/index.html', // 템플릿 파일 경로
@@ -57,6 +50,9 @@ export default {
     extensions: ['.tsx', '.ts', '.jsx', '.js', '.css', '.scss', '...'],
     alias: {
       '@': path.resolve(__dirname, 'src'),
+      '@/assets': path.resolve(__dirname, 'src/assets'),
+      '@/components': path.resolve(__dirname, 'src/components'),
+      '@/pages': path.resolve(__dirname, 'src/pages'),
       '@/styles': path.resolve(__dirname, 'src/styles.css'),
     },
   },

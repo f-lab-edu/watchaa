@@ -9,10 +9,13 @@
     "esModuleInterop": true, // React를 ESM으로 import할 수 있게
     "moduleResolution": "bundler", // 타입스크립트에게 코드가 다른 툴에 의해 번들링될 거라고 알려주고, 이에 맞게 규칙을 완화
     "strictNullChecks": true, // null과 undefined에 대한 엄격한 검사 활성화
-    "baseUrl": "./src", // 상대 경로의 기준점 설정
+    "baseUrl": "./src", // src 폴더를 기준점으로 설정
     "paths": {
       "@/*": ["./*"],
-      "@/styles/*": ["./styles/*"]
+      "@/assets/*": ["./assets/*"],
+      "@/components/*": ["./components/*"],
+      "@/pages/*": ["./pages/*"],
+      "@/styles": ["./styles.css"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],
