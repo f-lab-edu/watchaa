@@ -10,8 +10,6 @@ const router = createRouter({ routeTree });
 
 // Register the router instance for type safety
 declare module '@tanstack/react-router' {
-  // TODO. no-unused-vars 에러 해결
-  // eslint-disable-next-line no-unused-vars
   interface Register {
     router: typeof router;
   }

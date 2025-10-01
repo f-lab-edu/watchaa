@@ -7,45 +7,35 @@ import pluginJs from '@eslint/js';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 
 export default defineConfig([
-  // webpack 설정 파일들에 대한 특별한 규칙 (가장 먼저 적용)
   {
-    files: ['webpack.*.js'],
+    files: ['webpack*.mjs'],
     languageOptions: {
-      globals: { ...globals.node },
-      ecmaVersion: 'latest',
-      sourceType: 'commonjs',
+      globals: {
+        ...globals.node,
+      },
     },
   },
-
-  // 일반 JavaScript/TypeScript 파일들
   {
-    files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-    ignores: ['webpack.*.js', 'node_modules', 'dist'],
+    files: ['**/*.{js,ts,jsx,tsx}'],
     plugins: { js },
     extends: ['js/recommended'],
-    languageOptions: {
-      globals: { ...globals.node, ...globals.browser },
-      ecmaVersion: 'latest',
-      sourceType: 'module',
-    },
+    ignores: ['node_modules', 'dist'],
+    languageOptions: { globals: globals.browser },
   },
-
-  // TypeScript 설정 (webpack 파일 제외)
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
   {
-    files: ['**/*.{ts,mts,cts,tsx}'],
-    ignores: ['webpack.*.js'],
-    ...tseslint.configs.recommended[0],
-  },
-
-  // React 설정
-  {
-    files: ['src/**/*.{js,jsx,ts,tsx}'],
     ...pluginReact.configs.flat.recommended,
     rules: {
-      'react/react-in-jsx-scope': 'off',
+      ...pluginReact.configs.flat.recommended.rules,
+      'react/react-in-jsx-scope': 'off', // React 17+의 새로운 JSX Transform 사용
     },
   },
-
-  pluginJs.configs.recommended,
+  /**
+   * eslintPluginPrettierRecommended는 eslint-plugin-prettier와 eslint-config-prettier의 권장 설정을 모두 포함
+   * 이 설정은 eslint-config-prettier를 자동으로 활성화하므로, eslint-config-prettier를 별도로 import하거나 설정할 필요가 없습니다.
+   * eslint-config-prettier: ESLint의 포매팅 관련 규칙을 비활성화하여 Prettier와 충돌하지 않도록 합니다.
+   * eslint-plugin-prettier: Prettier의 포매팅 규칙을 ESLint의 규칙으로 추가하여 ESLint가 포매팅 오류를 감지하도록 합니다.
+   */
   eslintPluginPrettierRecommended,
 ]);

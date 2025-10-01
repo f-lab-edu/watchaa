@@ -1,11 +1,11 @@
-const { merge } = require('webpack-merge');
-const common = require('./webpack.common.js');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const postcssPresetEnv = require('postcss-preset-env');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+import { merge } from 'webpack-merge';
+import common from './webpack.common.mjs';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import postcssPresetEnv from 'postcss-preset-env';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
-module.exports = merge(common, {
+export default merge(common, {
   mode: 'production',
   /**
    * source-map 설정

@@ -4,8 +4,8 @@
   "name": "webpack-project",
   "scripts": {
     "analyze": "ANALYZE=true npm run build",
-    "start": "cross-env NODE_ENV=development webpack serve --config webpack.dev.js",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.prod.js",
+    "start": "cross-env NODE_ENV=development webpack serve --config webpack.dev.mjs",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.prod.mjs",
     "build:preview": "npm run build && npx serve dist",
     "watch": "webpack --watch",
     "prepare": "husky install",

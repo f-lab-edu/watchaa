@@ -1,12 +1,16 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
-const tanstackRouter = require('@tanstack/router-plugin/webpack').tanstackRouter;
+import path from 'path';
+import { fileURLToPath } from 'url';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import Dotenv from 'dotenv-webpack';
+import { tanstackRouter } from '@tanstack/router-plugin/webpack';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-module.exports = {
+export default {
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -47,7 +51,7 @@ module.exports = {
               ],
               plugins: [
                 // 개발 환경에서만 React Refresh 플러그인 적용
-                !isProduction && require.resolve('react-refresh/babel'),
+                !isProduction && 'react-refresh/babel',
               ].filter(Boolean),
             },
           },
