@@ -8,8 +8,6 @@ import { tanstackRouter } from '@tanstack/router-plugin/webpack';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const isProduction = process.env.NODE_ENV === 'production';
-
 export default {
   entry: './src/index.tsx',
   output: {
@@ -40,22 +38,7 @@ export default {
     rules: [
       {
         test: /\.(ts|tsx)$/, // .ts와 .tsx 파일을 대상으로
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: [
-                '@babel/preset-env', // 최신 JS 문법을 변환
-                ['@babel/preset-react', { runtime: 'automatic' }], // JSX를 순수 JS로 변환
-                '@babel/preset-typescript', // TS를 JS로 변환
-              ],
-              plugins: [
-                // 개발 환경에서만 React Refresh 플러그인 적용
-                !isProduction && 'react-refresh/babel',
-              ].filter(Boolean),
-            },
-          },
-        ],
+        use: ['babel-loader'], // .babelrc 파일의 설정을 자동으로 사용
         exclude: /node_modules/,
       },
       /**
