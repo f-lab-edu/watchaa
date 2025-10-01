@@ -20,7 +20,12 @@ export default defineConfig([
     plugins: { js },
     extends: ['js/recommended'],
     ignores: ['node_modules', 'dist'],
-    languageOptions: { globals: globals.browser },
+    languageOptions: {
+      globals: globals.browser,
+      // ES2022 주요 기능: Private fields (#field), Static blocks, .at() method, Object.hasOwn()
+      ecmaVersion: 2022,
+      sourceType: 'module',
+    },
   },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
