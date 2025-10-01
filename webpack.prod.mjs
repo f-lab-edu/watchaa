@@ -4,6 +4,7 @@ import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import postcssPresetEnv from 'postcss-preset-env';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 export default merge(common, {
@@ -46,7 +47,17 @@ export default merge(common, {
     }),
   ],
   optimization: {
-    minimizer: [new CssMinimizerPlugin()],
+    minimize: true,
+    minimizer: [
+      new CssMinimizerPlugin(),
+      new TerserPlugin({
+        terserOptions: {
+          compress: true, // 공백, 주석 제거 등 코드 최소화
+          mangle: true, // 변수명, 함수명 난독화
+        },
+        extractComments: false, // 별도의 라이선스 파일 생성 방지
+      }),
+    ],
     splitChunks: {
       chunks: 'all', // 모든 청크에 대해 코드 분할을 수행합니다.
       cacheGroups: {
