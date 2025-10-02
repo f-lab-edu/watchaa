@@ -6,7 +6,7 @@ function Home() {
 
   return (
     <div className="p-2">
-      <h3 className="text-2xl font-bold">Welcome Home!</h3>
+      <h3 className="text-5xl lg:text-2xl font-bold">Welcome Home!</h3>
       <button onClick={() => setCount(count + 1)} className="bg-blue-500 text-white p-2 rounded">
         Increment
       </button>
