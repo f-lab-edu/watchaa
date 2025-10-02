@@ -1,10 +1,191 @@
 @import 'tailwindcss';
 
 @font-face {
-  font-family: 'Inter';
-  src: url('@/assets/fonts/Inter-Regular.woff2') format('woff2');
+  font-family: 'Pretendard';
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+  src:
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Thin.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Thin.woff') format('woff'),
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Thin.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+  src:
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-ExtraLight.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-ExtraLight.woff') format('woff'),
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-ExtraLight.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src:
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Light.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Light.woff') format('woff'),
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Light.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src:
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Regular.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Regular.woff') format('woff'),
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Regular.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src:
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Medium.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Medium.woff') format('woff'),
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Medium.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src:
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-SemiBold.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-SemiBold.woff') format('woff'),
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-SemiBold.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src:
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Bold.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Bold.woff') format('woff'),
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Bold.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+  src:
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-ExtraBold.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-ExtraBold.woff') format('woff'),
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-ExtraBold.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+  src:
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Black.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Black.woff') format('woff'),
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Black.otf') format('opentype');
+}
+
+:root {
+  --color-black: #000;
+  --color-white: #fff;
+  --color-dim: rgb(0, 0, 0, 0.8);
+  --color-player-dim: rgb(0, 0, 0, 0.6);
+  --color-black-opacity10: rgb(0, 0, 0, 0.1);
+  --color-black-opacity15: rgb(0, 0, 0, 0.15);
+  --color-black-opacity20: rgb(0, 0, 0, 0.2);
+  --color-black-opacity30: rgb(0, 0, 0, 0.3);
+  --color-black-opacity40: rgb(0, 0, 0, 0.4);
+  --color-black-opacity50: rgb(0, 0, 0, 0.5);
+  --color-black-opacity60: rgb(0, 0, 0, 0.6);
+  --color-black-opacity70: rgb(0, 0, 0, 0.7);
+  --color-black-opacity80: rgb(0, 0, 0, 0.8);
+  --color-black-opacity90: rgb(0, 0, 0, 0.9);
+  --color-white-opacity10: rgb(255, 255, 255, 0.1);
+  --color-white-opacity15: rgb(255, 255, 255, 0.15);
+  --color-white-opacity20: rgb(255, 255, 255, 0.2);
+  --color-white-opacity30: rgb(255, 255, 255, 0.3);
+  --color-white-opacity40: rgb(255, 255, 255, 0.4);
+  --color-white-opacity50: rgb(255, 255, 255, 0.5);
+  --color-white-opacity60: rgb(255, 255, 255, 0.6);
+  --color-white-opacity70: rgb(255, 255, 255, 0.7);
+  --color-white-opacity80: rgb(255, 255, 255, 0.8);
+  --color-white-opacity90: rgb(255, 255, 255, 0.9);
+  --color-disabled-component: rgb(255, 255, 255, 0.3);
+  --wp-gray10: #ededed;
+  --wp-gray20: #e0e0e0;
+  --wp-gray30: #d4d4d4;
+  --wp-gray40: #b9babe;
+  --wp-gray50: #acacb0;
+  --wp-gray60: #a1a1a1;
+  --wp-gray70: #a0a0a0;
+  --wp-gray80: #7e7e7e;
+  --wp-gray90: #5e5e64;
+  --wp-gray100: #141414;
+  --wp-primary-text: var(--wp-gray100);
+  --wp-secondary-text: var(--wp-gray90);
+  --wp-teriary-text: var(--wp-gray80);
+  --wp-disabled-text: var(--wp-gray70);
+  --wp-primary10: #ff2f6e;
+  --wp-primary20: #f7175a;
+  --wp-primary30: #f92162;
+  --wp-primary40: #ff417a;
+  --wp-primary50: #ffacbb;
+  --wp-primary60: #ffeaf1;
+  --wp-white: #fff;
+  --wp-background10: #f8f8f8;
+  --wp-background20: #f6f6f6;
+  --wp-background30: #f5f5f5;
+  --wp-background40: #f4f4f4;
+  --wp-background50: #f1f1f1;
+  --wp-background60: #e9e9e9;
+  --wp-background70: #e7e7e7;
+  --wp-background80: #e1e1e1;
+  --wp-background90: #c8c8c8;
+  --wp-background100: #737373;
+  --wp-yellow10: #f3b720;
+  --wp-red10: #d21e1e;
+  --wp-pink10: #cd144b;
+  --wp-green10: #14d2d2;
+  --wp-blue10: #00a0ff;
+  --wp-blue20: #1462d6;
+  --wp-purple10: #310223;
+  --font-weight-bold: 700;
+  --font-weight-medium: 500;
+  --font-weight-regular: 400;
+  --z-index-gnb: 500;
+  --z-index-side-nav: 501;
+  --z-index-banner: 502;
+  --page-side-margin: 40px;
+  --small-page-side-margin: 20px;
+  --scroll-bar-width: 15px;
+  --cell-image-ratio-banner: 0.5625;
+  --cell-image-ratio-extra-large: 1.7267;
+  --cell-image-ratio-jumbotron-small: 1.194;
+  --cell-image-ratio-landscape: 0.5633;
+  --cell-image-ratio-portrait: 1.473;
+  --cell-image-ratio-square: 1;
+  --cell-image-ratio-tag: 0.5627;
+  --portrait-aspect-ratio: 27 / 40;
+  --landscape-aspect-ratio: 16 / 9;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family:
+    'Pretendard',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Open Sans',
+    'Helvetica Neue',
+    sans-serif;
 }
