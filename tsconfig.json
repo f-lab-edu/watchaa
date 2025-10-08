@@ -15,7 +15,8 @@
       "@/assets/*": ["./assets/*"],
       "@/components/*": ["./components/*"],
       "@/pages/*": ["./pages/*"],
-      "@/styles": ["./styles.css"]
+      "@/styles/*": ["./styles/*"],
+      "@/utils/*": ["./utils/*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],
