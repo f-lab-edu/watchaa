@@ -1,7 +1,9 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from '@/components/layout';
-import Home from '@/pages/home';
 import About from '@/pages/about';
+import Home from '@/pages/home';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 const router = createBrowserRouter([
   {
@@ -19,11 +21,14 @@ const router = createBrowserRouter([
   },
 ]);
 
+const queryClient = new QueryClient();
+
 function App() {
   return (
-    <div className="app">
+    <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-    </div>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
 
