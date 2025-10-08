@@ -55,6 +55,7 @@ export default {
       '@/pages': path.resolve(__dirname, 'src/pages'),
       '@/styles': path.resolve(__dirname, 'src/styles'),
       '@/utils': path.resolve(__dirname, 'src/utils'),
+      '@/features': path.resolve(__dirname, 'src/features'),
     },
   },
 };
