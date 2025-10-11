@@ -241,7 +241,7 @@ const CarouselRoot = ({
 
     animationId = requestAnimationFrame(checkForSlideChange);
     return () => cancelAnimationFrame(animationId);
-  }, [mode, totalItemLength, autoInterval, activeSlideIndex, onSlideChange, goToNext]);
+  }, [mode, totalItemLength, autoInterval, onSlideChange, loop, activeSlideIndex]);
 
   return (
     <CarouselStateContext.Provider value={state}>
@@ -446,7 +446,7 @@ const CarouselProgressBar = ({ className, fillClassName }: CarouselProgressBarPr
     <div className={cn('absolute top-0 left-0 w-full h-[2px] bg-[var(--color-white-opacity20)] z-10', className)}>
       <div
         ref={progressRef}
-        className={cn('h-full bg-[var(--color-white-opacity60)]', fillClassName)}
+        className={cn('h-full bg-red-500', fillClassName)}
         style={{
           width: '100%',
           transformOrigin: 'left center',
