@@ -8,11 +8,6 @@ function Home() {
         <Suspense>
           <PopularMoviesCarousel />
         </Suspense>
-
-        {/* 테스트 캐러셀 - API 의존 없음
-        <div className="mt-16">
-          <TestCarousel />
-        </div> */}
       </div>
     </main>
   );
