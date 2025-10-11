@@ -18,11 +18,11 @@ type CarouselMode = 'auto' | 'manual';
 
 type ConfigurableCarouselProps = {
   /**
-   * 자동 슬라이드 전환 모드 여부 (default: 'auto')
+   * 자동 슬라이드 전환 모드 여부 (default: 'manual')
    */
   mode: CarouselMode;
   /**
-   * 무한 루프 여부 (default: true)
+   * 무한 루프 여부 (default: false)
    */
   loop: boolean;
   /**
@@ -116,8 +116,8 @@ const useCarouselActions = () => {
 };
 
 const CarouselRoot = ({
-  mode = 'auto',
-  loop = true,
+  mode = 'manual',
+  loop = false,
   autoInterval = 5000,
   initialIndex = 0,
   onSlideChange,
