@@ -273,7 +273,7 @@ const CarouselContent = ({ children, className, ...props }: CarouselContentProps
       <ul
         style={{
           display: 'flex',
-          transition: isTransitioning ? 'transform 0.3s ease' : 'none',
+          transition: isTransitioning ? 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none',
           transform: `translateX(-${currentSlideIndex * (100 / totalSlidesLength)}%)`,
           width: `${totalSlidesLength * 100}%`,
           overflow: 'hidden',
@@ -451,7 +451,8 @@ const CarouselProgressBar = ({ className, fillClassName }: CarouselProgressBarPr
           width: '100%',
           transformOrigin: 'left center',
           transform: 'scaleX(0)',
-          transition: mode === 'manual' && isTransitioning ? 'transform 0.3s ease' : 'none',
+          transition:
+            mode === 'manual' && isTransitioning ? 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none',
         }}
       />
     </div>
