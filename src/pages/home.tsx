@@ -1,13 +1,15 @@
-import PopularMovies from '@/features/movie/components/popular-movies';
+import PopularMoviesCarousel from '@/features/movie/components/popular-movies-carousel';
 import { Suspense } from 'react';
 
 function Home() {
   return (
-    <div className="p-2">
-      <Suspense>
-        <PopularMovies />
-      </Suspense>
-    </div>
+    <main className="bg-[var(--color-background)]">
+      <div className="max-w-[1680px] mx-auto px-5">
+        <Suspense>
+          <PopularMoviesCarousel />
+        </Suspense>
+      </div>
+    </main>
   );
 }
 
