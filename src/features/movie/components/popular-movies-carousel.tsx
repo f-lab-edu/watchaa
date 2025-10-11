@@ -69,8 +69,8 @@ const PopularMoviesCarousel = () => {
   }
 
   return (
-    <div className="aspect-[1750/752]">
-      <Carousel.Root>
+    <div>
+      <Carousel.Root mode="auto" loop>
         <Carousel.ProgressBar />
         <Carousel.Content>
           {movies.map((movie, index) => (
