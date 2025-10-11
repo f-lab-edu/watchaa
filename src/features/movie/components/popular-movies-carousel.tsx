@@ -69,21 +69,23 @@ const PopularMoviesCarousel = () => {
   }
 
   return (
-    <Carousel.Root>
-      <Carousel.ProgressBar />
-      <Carousel.Content>
-        {movies.map((movie, index) => (
-          <MovieSlide key={movie.id} movie={movie} index={index} />
-        ))}
-      </Carousel.Content>
-      <Carousel.PrevButton>
-        <ChevronPrevIcon className="w-[10px] h-10 fill-[var(--color-secondary-text)] hover:fill-[var(--color-primary-text)] transition-colors" />
-      </Carousel.PrevButton>
-      <Carousel.NextButton>
-        <ChevronNextIcon className="w-[10px] h-10 fill-[var(--color-secondary-text)] hover:fill-[var(--color-primary-text)] transition-colors" />
-      </Carousel.NextButton>
-      <Carousel.Pagination containerClassName="absolute bottom-0 right-[18px]" />
-    </Carousel.Root>
+    <div className="aspect-[1750/752]">
+      <Carousel.Root>
+        <Carousel.ProgressBar />
+        <Carousel.Content>
+          {movies.map((movie, index) => (
+            <MovieSlide key={movie.id} movie={movie} index={index} />
+          ))}
+        </Carousel.Content>
+        <Carousel.PrevButton>
+          <ChevronPrevIcon className="w-[10px] h-10 fill-[var(--color-secondary-text)] hover:fill-[var(--color-primary-text)] transition-colors" />
+        </Carousel.PrevButton>
+        <Carousel.NextButton>
+          <ChevronNextIcon className="w-[10px] h-10 fill-[var(--color-secondary-text)] hover:fill-[var(--color-primary-text)] transition-colors" />
+        </Carousel.NextButton>
+        <Carousel.Pagination containerClassName="absolute bottom-0 right-[18px]" />
+      </Carousel.Root>
+    </div>
   );
 };
 
