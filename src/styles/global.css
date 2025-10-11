@@ -244,8 +244,14 @@ body {
     'Open Sans',
     'Helvetica Neue',
     sans-serif;
+
+  background-color: var(--color-background);
 }
 
 button {
   cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
 }

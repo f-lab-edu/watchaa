@@ -14,7 +14,7 @@ const Header = () => {
           navigate('/search');
         }}
       >
-        <SearchIcon className="size-6 text-white" />
+        <SearchIcon className="size-6 fill-white" />
       </button>
     </div>
   );

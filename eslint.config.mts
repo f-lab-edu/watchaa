@@ -3,6 +3,7 @@ import pluginTanstackQuery from '@tanstack/eslint-plugin-query';
 import pluginN from 'eslint-plugin-n';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import pluginReact from 'eslint-plugin-react';
+import pluginReactHooks from 'eslint-plugin-react-hooks';
 import { defineConfig } from 'eslint/config';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
@@ -31,6 +32,10 @@ export default defineConfig([
   ...tseslint.configs.recommended,
   {
     ...pluginReact.configs.flat.recommended,
+    plugins: {
+      ...pluginReact.configs.flat.recommended.plugins,
+      'react-hooks': pluginReactHooks,
+    },
     settings: {
       react: {
         version: 'detect', // React 버전 자동 감지
@@ -40,6 +45,10 @@ export default defineConfig([
       ...pluginReact.configs.flat.recommended.rules,
       'react/react-in-jsx-scope': 'off', // React 17+의 새로운 JSX Transform 사용
       'no-duplicate-imports': 'error', // 중복 import 방지
+      'react-hooks/rules-of-hooks': 'error', // Hooks의 규칙을 확인
+      'react-hooks/exhaustive-deps': 'warn', // 의존성 배열을 확인
+      'react/self-closing-comp': 'error', // 빈 컴포넌트를 self-closing 형태로 강제
+      'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }], // 불필요한 중괄호 제거
     },
   },
   /**
