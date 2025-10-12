@@ -2,7 +2,7 @@ import { ChevronNextIcon } from '@/components/icons/chevron-next';
 import { ChevronPrevIcon } from '@/components/icons/chevron-prev';
 import Spinner from '@/components/spinner';
 import { TMDB_API_POSTER_BASE_URL } from '@/constants';
-import { usePopularMovies } from '@/features/movie/hooks/queries/use-popular-movies';
+import { useMovies } from '@/features/movie/hooks/queries/use-movies';
 import { Carousel, useCarouselState } from '@/lib/carousel';
 import { cn } from '@/utils/cn';
 import { useEffect, useMemo, useState } from 'react';
@@ -55,7 +55,7 @@ const MovieSlide = ({
 };
 
 const PopularMoviesCarousel = () => {
-  const { data } = usePopularMovies();
+  const { data } = useMovies('popular');
 
   // 첫 페이지의 처음 5개 영화만 사용
   const movies = useMemo(() => data?.pages[0]?.results.slice(0, 5) || [], [data]);

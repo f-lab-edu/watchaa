@@ -1,9 +1,11 @@
-export type PopularMoviesRequestParams = {
+export type MovieFetchType = 'now_playing' | 'popular' | 'top_rated' | 'upcoming';
+
+export type MoviesRequestParams = {
   page?: number;
   language?: 'ko' | 'en-US';
 };
 
-export type PopularMovie = {
+export type Movie = {
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
@@ -20,4 +22,4 @@ export type PopularMovie = {
   vote_count: number;
 };
 
-export type PopularMovies = Paging<PopularMovie>;
+export type Movies = Paging<Movie>;
