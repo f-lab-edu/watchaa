@@ -1,3 +1,5 @@
+import { ChevronNextIcon } from '@/components/icons/chevron-next';
+import { ChevronPrevIcon } from '@/components/icons/chevron-prev';
 import {
   Children,
   ComponentProps,
@@ -398,7 +400,7 @@ const MultiSlidesView = ({ children, className, ...props }: CarouselContentProps
 
   return (
     <div {...props} className={cn('overflow-hidden w-full h-full', className)} ref={containerRef}>
-      <div
+      <ul
         style={{
           display: 'flex',
           transition: isTransitioning ? 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none',
@@ -411,7 +413,7 @@ const MultiSlidesView = ({ children, className, ...props }: CarouselContentProps
         {extendedSlides.map((slide, index) => {
           const isLast = index === extendedSlides.length - 1;
           return (
-            <div
+            <li
               key={`slide-${index}`}
               style={{
                 width: `${slideWidthPercent}%`,
@@ -421,10 +423,10 @@ const MultiSlidesView = ({ children, className, ...props }: CarouselContentProps
               }}
             >
               {slide}
-            </div>
+            </li>
           );
         })}
-      </div>
+      </ul>
     </div>
   );
 };
@@ -499,9 +501,7 @@ const CarouselPrevButton = ({ children, className, disabled, ...props }: Compone
       {...props}
     >
       {children || (
-        <svg className="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-        </svg>
+        <ChevronPrevIcon className="w-[10px] h-10 fill-[var(--color-secondary-text)] hover:fill-[var(--color-primary-text)] transition-colors" />
       )}
     </button>
   );
@@ -527,9 +527,7 @@ const CarouselNextButton = ({ children, className, disabled, ...props }: Compone
       {...props}
     >
       {children || (
-        <svg className="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-        </svg>
+        <ChevronNextIcon className="w-[10px] h-10 fill-[var(--color-secondary-text)] hover:fill-[var(--color-primary-text)] transition-colors" />
       )}
     </button>
   );

@@ -1,11 +1,9 @@
-import { ChevronNextIcon } from '@/components/icons/chevron-next';
-import { ChevronPrevIcon } from '@/components/icons/chevron-prev';
 import Spinner from '@/components/spinner';
 import { TMDB_API_POSTER_BASE_URL } from '@/constants';
 import { useMovies } from '@/features/movie/hooks/queries/use-movies';
 import { Carousel, useCarouselState } from '@/lib/carousel';
 import { cn } from '@/utils/cn';
-import { useEffect, useMemo, useState } from 'react';
+import { memo, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const MovieSlide = ({
@@ -77,16 +75,12 @@ const PopularMoviesCarousel = () => {
             <MovieSlide key={movie.id} movie={movie} index={index} />
           ))}
         </Carousel.Content>
-        <Carousel.PrevButton>
-          <ChevronPrevIcon className="w-[10px] h-10 fill-[var(--color-secondary-text)] hover:fill-[var(--color-primary-text)] transition-colors" />
-        </Carousel.PrevButton>
-        <Carousel.NextButton>
-          <ChevronNextIcon className="w-[10px] h-10 fill-[var(--color-secondary-text)] hover:fill-[var(--color-primary-text)] transition-colors" />
-        </Carousel.NextButton>
+        <Carousel.PrevButton />
+        <Carousel.NextButton />
         <Carousel.Pagination containerClassName="absolute bottom-0 right-[18px]" />
       </Carousel.Root>
     </div>
   );
 };
 
-export default PopularMoviesCarousel;
+export default memo(PopularMoviesCarousel);
