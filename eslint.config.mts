@@ -26,6 +26,7 @@ export default defineConfig([
     },
     rules: {
       'n/prefer-node-protocol': 'error', // 모든 파일에서 node: 접두사 강제
+      'prettier/prettier': 'off', // prettier printWidth 룰과 충돌해서 off
     },
   },
   pluginJs.configs.recommended,

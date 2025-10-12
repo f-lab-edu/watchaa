@@ -11,12 +11,17 @@ type PosterCarouselProps = {
 };
 
 const PosterCarousel = ({ type, carouselTitle }: PosterCarouselProps) => {
-  const { data, isLoading, error } = useMovies(type);
-
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error loading {carouselTitle}</div>;
+  const { data } = useMovies(type);
 
   const movies = data?.pages[0]?.results || [];
+
+  if (!movies.length) {
+    return (
+      <div className="flex justify-center items-center h-10">
+        <p className="text-gray-500">No {carouselTitle} movies found.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="group">

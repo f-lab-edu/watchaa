@@ -1,4 +1,3 @@
-import Spinner from '@/components/spinner';
 import { TMDB_API_POSTER_BASE_URL } from '@/constants';
 import { useMovies } from '@/features/movie/hooks/queries/use-movies';
 import { Carousel, useCarouselState } from '@/lib/carousel';
@@ -61,7 +60,7 @@ const PopularMoviesCarousel = () => {
   if (!movies.length) {
     return (
       <div className="flex justify-center items-center h-64">
-        <Spinner />
+        <p className="text-gray-500">No popular movies found.</p>
       </div>
     );
   }
