@@ -1,19 +1,54 @@
-import { memo } from 'react';
+import { cn } from '@/utils/cn';
+import { ComponentProps } from 'react';
 
-const Profile = ({ name, role, imageUrl }: { name: string; role: string; imageUrl: string }) => {
+const Profile = ({ children, className, ...props }: ComponentProps<'div'>) => {
   return (
-    <div className="flex items-center gap-[14px]">
-      <img
-        src={imageUrl}
-        alt={`${name}의 프로필 사진`}
-        className="size-[62px] rounded-full object-cover"
-      />
-      <div>
-        <div className="text-white">{name}</div>
-        <div className="text-[var(--color-tertiary-text)] text-[13px]">{role}</div>
-      </div>
+    <div {...props} className={cn('flex items-center gap-[14px]', className)}>
+      {children}
     </div>
   );
 };
 
-export default memo(Profile);
+const ProfileImage = ({
+  name,
+  imageUrl,
+  className,
+  ...props
+}: ComponentProps<'img'> & {
+  name: string;
+  imageUrl: string;
+}) => {
+  return (
+    <img
+      {...props}
+      src={imageUrl}
+      alt={`${name}의 프로필 사진`}
+      className={cn(
+        'size-[62px] rounded-full object-cover bg-[var(--color-background30)]',
+        className,
+      )}
+    />
+  );
+};
+
+const ProfileName = ({ children, className, ...props }: ComponentProps<'div'>) => {
+  return (
+    <div {...props} className={cn('text-white', className)}>
+      {children}
+    </div>
+  );
+};
+
+const ProfileRole = ({ children, className, ...props }: ComponentProps<'div'>) => {
+  return (
+    <div {...props} className={cn('text-[var(--color-tertiary-text)] text-[13px]', className)}>
+      {children}
+    </div>
+  );
+};
+
+Profile.Image = ProfileImage;
+Profile.Name = ProfileName;
+Profile.Role = ProfileRole;
+
+export default Profile;

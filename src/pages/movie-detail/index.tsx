@@ -181,15 +181,20 @@ const MovieInfo = ({ id }: { id: number }) => {
           {data.credits?.cast.slice(0, MAX_CREDITS_DISPLAY_COUNT).map((cast) => (
             <li key={cast.id} className="py-2">
               <Link to={`/people/${cast.id}?name=${cast.name}`}>
-                <Profile
-                  name={cast.name}
-                  role={cast.character}
-                  imageUrl={
-                    cast.profile_path
-                      ? `${TMDB_API_POSTER_BASE_URL}/${cast.profile_path}`
-                      : FALLBACK_AVATAR_IMAGE_URL
-                  }
-                />
+                <Profile>
+                  <Profile.Image
+                    name={cast.name}
+                    imageUrl={
+                      cast.profile_path
+                        ? `${TMDB_API_POSTER_BASE_URL}/${cast.profile_path}`
+                        : FALLBACK_AVATAR_IMAGE_URL
+                    }
+                  />
+                  <div>
+                    <Profile.Name>{cast.name}</Profile.Name>
+                    <Profile.Role>{cast.character}</Profile.Role>
+                  </div>
+                </Profile>
               </Link>
             </li>
           ))}

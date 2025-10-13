@@ -4,6 +4,7 @@ import { useMovies } from '@/features/movie/hooks/queries/use-movies';
 import { MovieFetchType } from '@/features/movie/types';
 import { Carousel } from '@/lib/carousel';
 import { memo } from 'react';
+import { Link } from 'react-router-dom';
 
 type PosterCarouselProps = {
   type: MovieFetchType;
@@ -29,13 +30,13 @@ const PosterCarousel = ({ type, carouselTitle }: PosterCarouselProps) => {
       <Carousel.Root slidesPerView={8} spaceBetween={12} loop>
         <Carousel.Content>
           {movies.map((movie) => (
-            <PosterCard
-              key={movie.id}
-              title={movie.title}
-              imageUrl={`${TMDB_API_POSTER_BASE_URL}${movie.poster_path}`}
-              to={`/contents/${movie.id}`}
-              className="aspect-[2/3]"
-            />
+            <Link key={movie.id} to={`/contents/${movie.id}`}>
+              <PosterCard
+                title={movie.title}
+                imageUrl={`${TMDB_API_POSTER_BASE_URL}${movie.poster_path}`}
+                className="aspect-[2/3] hover:brightness-80"
+              />
+            </Link>
           ))}
         </Carousel.Content>
         <div className="group-hover:visible invisible">

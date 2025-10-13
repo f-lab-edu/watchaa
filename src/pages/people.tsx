@@ -4,7 +4,7 @@ import { TMDB_API_POSTER_BASE_URL } from '@/constants';
 import useMovieCredits from '@/features/people/hooks/queries/use-movie-credits';
 import { MovieCreditsResponse } from '@/features/people/types';
 import { useMemo } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 
 const extractCreditData = (data: MovieCreditsResponse, type: 'cast' | 'crew') =>
   data[type].map(({ id, title, poster_path }) => ({ id, title, poster_path }));
@@ -31,12 +31,13 @@ const CreditsContent = ({ personId }: { personId: number }) => {
     <ul className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
       {movieData.map(({ id, title, poster_path }) => (
         <li key={id}>
-          <PosterCard
-            title={title}
-            imageUrl={`${TMDB_API_POSTER_BASE_URL}/${poster_path}`}
-            to={`/contents/${id}`}
-            className="aspect-[2/3]"
-          />
+          <Link key={id} to={`/contents/${id}`}>
+            <PosterCard
+              title={title}
+              imageUrl={`${TMDB_API_POSTER_BASE_URL}/${poster_path}`}
+              className="aspect-[2/3] hover:brightness-80"
+            />
+          </Link>
         </li>
       ))}
     </ul>
