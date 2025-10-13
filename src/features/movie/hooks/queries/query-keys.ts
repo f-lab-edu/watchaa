@@ -2,7 +2,7 @@ import {
   MovieDetailRequestParams,
   MovieFetchType,
   MoviesRequestParams,
-} from '@/features/movie/types/movie';
+} from '@/features/movie/types';
 
 export const movieQueryKeys = {
   all: ['movies'] as const,

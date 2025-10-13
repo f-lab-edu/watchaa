@@ -74,17 +74,13 @@ const MovieInfo = ({ id }: { id: number }) => {
                   {data.genres.map((genre, idx) => {
                     const isLast = data.genres.length - 1 === idx;
                     return (
-                      <>
+                      <div key={genre.id}>
                         {/* TODO. tag 페이지 만들기 */}
-                        <Link
-                          key={genre.id}
-                          to={`/tag?domain=video&ids=${genre.id}`}
-                          className="hover:underline"
-                        >
+                        <Link to={`/tag?domain=video&ids=${genre.id}`} className="hover:underline">
                           {genre.name}
                         </Link>
                         {!isLast && <span className="mx-1">{'\u2022'}</span>}
-                      </>
+                      </div>
                     );
                   })}
                 </div>

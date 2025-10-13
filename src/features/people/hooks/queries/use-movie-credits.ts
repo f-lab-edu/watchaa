@@ -1,5 +1,5 @@
 import { peopleQueryKeys } from '@/features/people/hooks/queries/query-keys';
-import { MovieCreditsRequestParams, MovieCreditsResponse } from '@/features/people/types/people';
+import { MovieCreditsRequestParams, MovieCreditsResponse } from '@/features/people/types';
 import { api } from '@/utils/api';
 import { useSuspenseQuery } from '@tanstack/react-query';
 

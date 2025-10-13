@@ -1,7 +1,7 @@
 import PosterCard from '@/components/poster-card';
 import { TMDB_API_POSTER_BASE_URL } from '@/constants';
 import { useMovies } from '@/features/movie/hooks/queries/use-movies';
-import { MovieFetchType } from '@/features/movie/types/movie';
+import { MovieFetchType } from '@/features/movie/types';
 import { Carousel } from '@/lib/carousel';
 import { memo } from 'react';
 

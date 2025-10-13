@@ -1,4 +1,4 @@
-import { MovieFetchType, Movies, MoviesRequestParams } from '@/features/movie/types/movie';
+import { MovieFetchType, Movies, MoviesRequestParams } from '@/features/movie/types';
 import { api } from '@/utils/api';
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { movieQueryKeys } from './query-keys';

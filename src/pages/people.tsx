@@ -2,7 +2,7 @@ import AsyncBoundary from '@/components/async-boundary';
 import PosterCard from '@/components/poster-card';
 import { TMDB_API_POSTER_BASE_URL } from '@/constants';
 import useMovieCredits from '@/features/people/hooks/queries/use-movie-credits';
-import { MovieCreditsResponse } from '@/features/people/types/people';
+import { MovieCreditsResponse } from '@/features/people/types';
 import { useMemo } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 
