@@ -8,36 +8,38 @@ import PosterCarouselLoading from '@/features/movie/components/poster-carousel/l
 
 function Home() {
   return (
-    <main className="bg-[var(--color-background)]">
-      <div className="max-w-[1680px] mx-auto">
-        <AsyncBoundary
-          pendingFallback={<PopularMoviesCarouselLoading />}
-          rejectedFallback={<PopularMoviesCarouselError />}
-        >
-          <PopularMoviesCarousel />
-        </AsyncBoundary>
-        <div className="mt-8 space-y-8 px-10 pb-8">
+    <AsyncBoundary>
+      <main className="bg-[var(--color-background)]">
+        <div className="max-w-[1680px] mx-auto">
           <AsyncBoundary
-            pendingFallback={<PosterCarouselLoading />}
-            rejectedFallback={<PosterCarouselError />}
+            pendingFallback={<PopularMoviesCarouselLoading />}
+            rejectedFallback={<PopularMoviesCarouselError />}
           >
-            <PosterCarousel type="top_rated" carouselTitle="Top Rated" />
+            <PopularMoviesCarousel />
           </AsyncBoundary>
-          <AsyncBoundary
-            pendingFallback={<PosterCarouselLoading />}
-            rejectedFallback={<PosterCarouselError />}
-          >
-            <PosterCarousel type="now_playing" carouselTitle="Now Playing" />
-          </AsyncBoundary>
-          <AsyncBoundary
-            pendingFallback={<PosterCarouselLoading />}
-            rejectedFallback={<PosterCarouselError />}
-          >
-            <PosterCarousel type="upcoming" carouselTitle="Upcoming" />
-          </AsyncBoundary>
+          <div className="mt-8 space-y-8 px-10 pb-8">
+            <AsyncBoundary
+              pendingFallback={<PosterCarouselLoading />}
+              rejectedFallback={<PosterCarouselError />}
+            >
+              <PosterCarousel type="top_rated" carouselTitle="Top Rated" />
+            </AsyncBoundary>
+            <AsyncBoundary
+              pendingFallback={<PosterCarouselLoading />}
+              rejectedFallback={<PosterCarouselError />}
+            >
+              <PosterCarousel type="now_playing" carouselTitle="Now Playing" />
+            </AsyncBoundary>
+            <AsyncBoundary
+              pendingFallback={<PosterCarouselLoading />}
+              rejectedFallback={<PosterCarouselError />}
+            >
+              <PosterCarousel type="upcoming" carouselTitle="Upcoming" />
+            </AsyncBoundary>
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </AsyncBoundary>
   );
 }
 
