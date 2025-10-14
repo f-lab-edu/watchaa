@@ -127,7 +127,14 @@ const Contents = () => {
 
 const PopularSearchResults = () => {
   return (
-    <AsyncBoundary pendingFallback={<ResultLoading />} rejectedFallbackComponent={ResultError}>
+    <AsyncBoundary
+      pendingFallback={
+        <div className="px-10">
+          <ResultLoading />
+        </div>
+      }
+      rejectedFallbackComponent={ResultError}
+    >
       <Contents />
     </AsyncBoundary>
   );
