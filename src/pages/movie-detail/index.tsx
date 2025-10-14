@@ -183,12 +183,12 @@ const MovieInfo = ({ id }: { id: number }) => {
               <Link to={`/people/${cast.id}?name=${cast.name}`}>
                 <Profile>
                   <Profile.Image
-                    name={cast.name}
-                    imageUrl={
+                    src={
                       cast.profile_path
                         ? `${TMDB_API_POSTER_BASE_URL}/${cast.profile_path}`
                         : FALLBACK_AVATAR_IMAGE_URL
                     }
+                    alt={`${cast.name}의 프로필 사진`}
                   />
                   <div>
                     <Profile.Name>{cast.name}</Profile.Name>

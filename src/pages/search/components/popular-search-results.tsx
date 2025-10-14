@@ -1,14 +1,15 @@
 import posterFallbackImage from '@/assets/images/poster-fallback.svg';
 import AsyncBoundary from '@/components/async-boundary';
-import Button from '@/components/button';
 import PosterCard from '@/components/poster-card';
 import Profile from '@/components/profile';
 import { FALLBACK_AVATAR_IMAGE_URL, TMDB_API_POSTER_BASE_URL } from '@/constants';
 import { useMultiSearch } from '@/features/search/hooks/queries/use-multi-search';
+import ResultEmpty from '@/pages/search/components/result-empty';
+import ResultError from '@/pages/search/components/result-error';
+import ResultLoading from '@/pages/search/components/result-loading';
 import { useMemo } from 'react';
-import { FallbackProps } from 'react-error-boundary';
 import { InView } from 'react-intersection-observer';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 type SearchListItemProps = {
   title: string;
@@ -37,36 +38,9 @@ const SearchListItem = ({ title, date, posterPath, category }: SearchListItemPro
   );
 };
 
-const ListLoading = () => {
-  return (
-    <ul>
-      {[...Array(5)].map((_, index) => (
-        <li key={index} className="flex items-center gap-[14px] py-2 animate-pulse">
-          <div className="size-12 bg-[var(--color-background30)] rounded-md" />
-          <div className="flex flex-col gap-2">
-            <div className="w-[200px] h-5 bg-[var(--color-background30)] rounded-md" />
-            <div className="w-[100px] h-4 bg-[var(--color-background30)] rounded-md" />
-          </div>
-        </li>
-      ))}
-    </ul>
-  );
-};
-
-const ListError = ({ error, resetErrorBoundary }: FallbackProps) => {
-  return (
-    <div className="flex flex-col items-center justify-center gap-2 text-[var(--color-tertiary-text)]">
-      <p>검색 결과를 불러오는 중에 오류가 발생했습니다.</p>
-      {error.message && <p>Error Message: {error.message}</p>}
-      <Button priority="secondary" onClick={resetErrorBoundary} className="p-2">
-        다시 시도하기
-      </Button>
-    </div>
-  );
-};
-
-const SearchResults = ({ query }: { query: string }) => {
-  const location = useLocation();
+const Contents = () => {
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get('query') || '';
   const { data, hasNextPage, fetchNextPage, isFetchingNextPage } = useMultiSearch({
     query,
     language: 'ko',
@@ -76,11 +50,11 @@ const SearchResults = ({ query }: { query: string }) => {
   const results = useMemo(() => data?.pages?.flatMap((page) => page.results) || [], [data]);
 
   if (!results.length) {
-    return <div className="text-[var(--color-tertiary-text)]">검색 결과가 없습니다.</div>;
+    return <ResultEmpty />;
   }
 
   return (
-    <>
+    <ul className="pt-[22px] px-10">
       {results.map((result) => {
         if (result.media_type === 'movie') {
           return (
@@ -116,15 +90,15 @@ const SearchResults = ({ query }: { query: string }) => {
         if (result.media_type === 'person') {
           const peopleId = result.id;
           return (
-            <Link key={peopleId} to={`/people/${peopleId}`}>
+            <Link key={peopleId} to={`/people/${peopleId}?name=${result.name}`}>
               <Profile className="py-2">
                 <Profile.Image
-                  name={result.name}
-                  imageUrl={
+                  src={
                     result.profile_path
                       ? `${TMDB_API_POSTER_BASE_URL}/${result.profile_path}`
                       : FALLBACK_AVATAR_IMAGE_URL
                   }
+                  alt={`${result.name}의 프로필 사진`}
                   className="size-[42px]"
                 />
                 <div>
@@ -138,7 +112,7 @@ const SearchResults = ({ query }: { query: string }) => {
 
         return null;
       })}
-      {isFetchingNextPage && <ListLoading />}
+      {isFetchingNextPage && <ResultLoading />}
       <InView
         rootMargin="20px"
         onChange={(inView) => {
@@ -147,27 +121,16 @@ const SearchResults = ({ query }: { query: string }) => {
           }
         }}
       />
-    </>
+    </ul>
   );
 };
 
-const Search = () => {
-  const [searchParams] = useSearchParams();
-  const query = searchParams.get('query') || '';
-
-  if (!query) {
-    return null;
-  }
-
+const PopularSearchResults = () => {
   return (
-    <div className="p-2">
-      <ul className="pt-[22px] px-10">
-        <AsyncBoundary pendingFallback={<ListLoading />} rejectedFallbackComponent={ListError}>
-          <SearchResults query={query} />
-        </AsyncBoundary>
-      </ul>
-    </div>
+    <AsyncBoundary pendingFallback={<ResultLoading />} rejectedFallbackComponent={ResultError}>
+      <Contents />
+    </AsyncBoundary>
   );
 };
 
-export default Search;
+export default PopularSearchResults;

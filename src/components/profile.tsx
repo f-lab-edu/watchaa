@@ -10,19 +10,19 @@ const Profile = ({ children, className, ...props }: ComponentProps<'div'>) => {
 };
 
 const ProfileImage = ({
-  name,
-  imageUrl,
+  src,
+  alt,
   className,
   ...props
 }: ComponentProps<'img'> & {
-  name: string;
-  imageUrl: string;
+  src: string;
+  alt: string;
 }) => {
   return (
     <img
       {...props}
-      src={imageUrl}
-      alt={`${name}의 프로필 사진`}
+      src={src}
+      alt={alt}
       className={cn(
         'size-[62px] rounded-full object-cover bg-[var(--color-background30)]',
         className,
