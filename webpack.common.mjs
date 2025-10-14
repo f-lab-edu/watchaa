@@ -10,6 +10,7 @@ export default {
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/', // 모든 리소스를 절대 경로로 참조
     clean: true, // 기존 빌드 파일 제거
   },
   plugins: [

@@ -117,9 +117,58 @@
   --color-white-opacity80: rgb(255, 255, 255, 0.8);
   --color-white-opacity90: rgb(255, 255, 255, 0.9);
   --color-disabled-component: rgb(255, 255, 255, 0.3);
+  --color-background10: #030708;
+  --color-background20: #141517;
+  --color-background30: #191a1c;
+  --color-background40: #1f2023;
+  --color-background50: #222326;
+  --color-background60: #28292a;
+  --color-background70: #2e2f31;
+  --color-background80: #303133;
+  --color-background90: #333436;
+  --color-background100: #505155;
+  --color-blue10: #3da7ff;
+  --color-blue20: #1a6ce7;
+  --color-gray10: #1b1c1d;
+  --color-gray20: #38393d;
+  --color-gray30: #48484b;
+  --color-gray40: #4f5152;
+  --color-gray50: #6d6d6d;
+  --color-gray60: #84868d;
+  --color-gray70: #999ca1;
+  --color-gray80: #bdbdbd;
+  --color-gray90: #babac1;
+  --color-gray100: #d4d7db;
+  --color-green10: #0aca9e;
+  --color-opacity10: rgb(255, 255, 255, 0.1);
+  --color-opacity15: rgb(255, 255, 255, 0.15);
+  --color-opacity20: rgb(255, 255, 255, 0.2);
+  --color-opacity30: rgb(255, 255, 255, 0.3);
+  --color-opacity40: rgb(255, 255, 255, 0.4);
+  --color-opacity50: rgb(255, 255, 255, 0.5);
+  --color-opacity60: rgb(255, 255, 255, 0.6);
+  --color-opacity70: rgb(255, 255, 255, 0.7);
+  --color-opacity80: rgb(255, 255, 255, 0.8);
+  --color-opacity90: rgb(255, 255, 255, 0.9);
+  --color-pink10: #de2a60;
+  --color-primary10: #f82f62;
+  --color-primary20: #f82c60;
+  --color-primary30: #f6285c;
+  --color-primary40: #ff3d6e;
+  --color-primary50: #f6407a;
+  --color-primary60: #ffd6e3;
+  --color-purple10: #40032e;
+  --color-red10: #e73e3e;
+  --color-yellow10: #fbc02d;
+  --color-primary-text: var(--color-white);
+  --color-secondary-text: var(--color-gray90);
+  --color-tertiary-text: var(--color-gray60);
+  --color-disabled-text: var(--color-gray40);
   --color-background: var(--color-black);
   --color-background-elevated: var(--color-background30);
   --color-background-elevated-alt: var(--color-background60);
+  --color-divider: var(--color-gray10);
+  --color-divider-alt: var(--color-gray20);
   --wp-gray10: #ededed;
   --wp-gray20: #e0e0e0;
   --wp-gray30: #d4d4d4;
@@ -195,4 +244,8 @@ body {
     'Open Sans',
     'Helvetica Neue',
     sans-serif;
+}
+
+button {
+  cursor: pointer;
 }
