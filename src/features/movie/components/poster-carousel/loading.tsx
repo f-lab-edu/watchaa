@@ -1,11 +1,13 @@
-import Spinner from '@/components/spinner';
-
 const PosterCarouselLoading = () => {
   return (
-    <div>
-      <p className="text-red-500">Loading posters...</p>
-      <Spinner />
-    </div>
+    <ul className="flex gap-3">
+      {[...Array(8)].map((_, index) => (
+        <li
+          key={index}
+          className="size-full animate-pulse bg-[var(--color-background30)] aspect-2/3 rounded-md mb-2"
+        />
+      ))}
+    </ul>
   );
 };
 
