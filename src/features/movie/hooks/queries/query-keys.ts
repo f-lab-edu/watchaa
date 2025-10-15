@@ -1,7 +1,7 @@
-import { PopularMoviesRequestParams } from '@/features/movie/types/popular-movie';
+import { MovieFetchType, MoviesRequestParams } from '@/features/movie/types/movie';
 
 export const movieQueryKeys = {
   all: ['movies'] as const,
-  popular: ({ page, language }: PopularMoviesRequestParams) =>
-    [...movieQueryKeys.all, 'popular', { page, language }] as const,
+  list: (type: MovieFetchType, { page, language }: MoviesRequestParams) =>
+    [...movieQueryKeys.all, 'list', { type, page, language }] as const,
 };
