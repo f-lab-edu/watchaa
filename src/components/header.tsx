@@ -5,7 +5,7 @@ import { SearchIcon } from './icons/search';
 const Header = () => {
   const navigate = useNavigate();
   return (
-    <div className="px-5 py-3 h-[72px] flex justify-between items-center bg-[var(--color-background)]">
+    <div className="px-10 py-3 h-[72px] flex justify-between items-center bg-[var(--color-background)]">
       <button onClick={() => navigate('/')}>
         <LogoIcon className="w-[88px] h-[26px]" />
       </button>

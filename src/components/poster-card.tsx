@@ -10,7 +10,10 @@ type PosterCardProps = ComponentProps<'div'> & {
 
 const PosterCard = ({ title, imageUrl, to, className, ...props }: PosterCardProps) => {
   return (
-    <div {...props} className={cn('overflow-hidden cursor-pointer rounded hover:brightness-80', className)}>
+    <div
+      {...props}
+      className={cn('overflow-hidden cursor-pointer rounded hover:brightness-80', className)}
+    >
       <Link to={to}>
         <img src={imageUrl} alt={title} loading="lazy" className="h-full w-full object-cover" />
       </Link>
