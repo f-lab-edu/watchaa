@@ -1,6 +1,6 @@
 const ResultLoading = () => {
   return (
-    <ul className="pt-[22px] px-10">
+    <ul className="pt-[22px]">
       {[...Array(5)].map((_, index) => (
         <li key={index} className="flex items-center gap-[14px] py-2 animate-pulse">
           <div className="size-12 bg-[var(--color-background30)] rounded-md" />

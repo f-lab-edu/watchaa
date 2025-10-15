@@ -13,7 +13,7 @@ const PosterCard = ({ title, imageUrl, className, ...props }: PosterCardProps) =
         src={imageUrl}
         alt={title}
         loading="lazy"
-        className="h-full w-full object-cover bg-[var(--color-background30)]"
+        className="size-full object-cover bg-[var(--color-background30)]"
       />
     </div>
   );
