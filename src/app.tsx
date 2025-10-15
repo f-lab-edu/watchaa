@@ -6,8 +6,13 @@ import NotFound from '@/pages/not-found';
 import People from '@/pages/people';
 import Search from '@/pages/search';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+const TanstackDevtools =
+  process.env.NODE_ENV === 'development'
+    ? lazy(() => import('@/add-ons/tanstack-query-devtools'))
+    : () => null;
 
 const router = createBrowserRouter([
   {
@@ -47,7 +52,9 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-      <ReactQueryDevtools initialIsOpen={false} />
+      <Suspense>
+        <TanstackDevtools />
+      </Suspense>
     </QueryClientProvider>
   );
 }
