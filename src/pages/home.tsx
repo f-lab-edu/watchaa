@@ -22,13 +22,13 @@ function Home() {
               pendingFallback={<PosterCarouselLoading />}
               rejectedFallback={<PosterCarouselError />}
             >
-              <PosterCarousel type="top_rated" carouselTitle="Top Rated" />
+              <PosterCarousel type="topRated" carouselTitle="Top Rated" />
             </AsyncBoundary>
             <AsyncBoundary
               pendingFallback={<PosterCarouselLoading />}
               rejectedFallback={<PosterCarouselError />}
             >
-              <PosterCarousel type="now_playing" carouselTitle="Now Playing" />
+              <PosterCarousel type="nowPlaying" carouselTitle="Now Playing" />
             </AsyncBoundary>
             <AsyncBoundary
               pendingFallback={<PosterCarouselLoading />}

@@ -1,7 +1,7 @@
 import AsyncBoundary from '@/components/async-boundary';
 import Profile from '@/components/profile';
 import { FALLBACK_AVATAR_IMAGE_URL, TMDB_API_POSTER_BASE_URL } from '@/constants';
-import { useSearch } from '@/features/search/hooks/queries/use-search';
+import { useSearchInfiniteQuery } from '@/features/search/hooks/queries/use-search-infinite-query';
 import ResultEmpty from '@/pages/search/components/result-empty';
 import ResultError from '@/pages/search/components/result-error';
 import { useMemo } from 'react';
@@ -33,10 +33,13 @@ const ProfileLoading = () => {
 const Contents = () => {
   const [searchParams] = useSearchParams();
   const query = searchParams.get('query') || '';
-  const { data, hasNextPage, isFetchingNextPage, fetchNextPage } = useSearch('person', {
-    query,
-    language: 'ko',
-  });
+  const { data, hasNextPage, isFetchingNextPage, fetchNextPage } = useSearchInfiniteQuery(
+    'person',
+    {
+      query,
+      language: 'ko',
+    },
+  );
 
   const results = useMemo(() => data?.pages?.flatMap((page) => page.results) || [], [data]);
 
@@ -52,8 +55,8 @@ const Contents = () => {
               <Profile className="flex-col gap-[3px]">
                 <Profile.Image
                   src={
-                    result.profile_path
-                      ? `${TMDB_API_POSTER_BASE_URL}/${result.profile_path}`
+                    result.profilePath
+                      ? `${TMDB_API_POSTER_BASE_URL}/${result.profilePath}`
                       : FALLBACK_AVATAR_IMAGE_URL
                   }
                   alt={`${result.name}의 프로필 사진`}
@@ -63,10 +66,8 @@ const Contents = () => {
                   <Profile.Name className="text-white text-[15px] font-[var(--font-weight-medium)]">
                     {result.name}
                   </Profile.Name>
-                  {result.known_for_department && (
-                    <Profile.Role className="text-[14px]">
-                      {result.known_for_department}
-                    </Profile.Role>
+                  {result.knownForDepartment && (
+                    <Profile.Role className="text-[14px]">{result.knownForDepartment}</Profile.Role>
                   )}
                 </div>
               </Profile>

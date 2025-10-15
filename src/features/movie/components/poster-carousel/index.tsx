@@ -1,6 +1,6 @@
 import PosterCard from '@/components/poster-card';
 import { TMDB_API_POSTER_BASE_URL } from '@/constants';
-import { useMovies } from '@/features/movie/hooks/queries/use-movies';
+import { useMoviesInfiniteQuery } from '@/features/movie/hooks/queries/use-movies-infinite-query';
 import { MovieFetchType } from '@/features/movie/types';
 import { Carousel } from '@/lib/carousel';
 import { memo } from 'react';
@@ -12,7 +12,7 @@ type PosterCarouselProps = {
 };
 
 const PosterCarousel = ({ type, carouselTitle }: PosterCarouselProps) => {
-  const { data } = useMovies(type);
+  const { data } = useMoviesInfiniteQuery(type);
 
   const movies = data?.pages[0]?.results || [];
 
@@ -33,7 +33,7 @@ const PosterCarousel = ({ type, carouselTitle }: PosterCarouselProps) => {
             <Link key={movie.id} to={`/contents/${movie.id}`}>
               <PosterCard
                 title={movie.title}
-                imageUrl={`${TMDB_API_POSTER_BASE_URL}${movie.poster_path}`}
+                imageUrl={`${TMDB_API_POSTER_BASE_URL}${movie.posterPath}`}
                 className="aspect-[2/3] hover:brightness-80"
               />
             </Link>

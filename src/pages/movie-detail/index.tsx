@@ -9,7 +9,7 @@ import StarOutlinedIcon from '@/components/icons/start-outlined';
 import TvIcon from '@/components/icons/tv';
 import Profile from '@/components/profile';
 import { FALLBACK_AVATAR_IMAGE_URL, TMDB_API_POSTER_BASE_URL } from '@/constants';
-import useMovie from '@/features/movie/hooks/queries/use-movie';
+import useMovieQuery from '@/features/movie/hooks/queries/use-movie-query';
 import { memo, ReactNode } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
@@ -40,17 +40,17 @@ const StatItem = memo(
 StatItem.displayName = 'StatItem';
 
 const MovieInfo = ({ id }: { id: number }) => {
-  const { data } = useMovie({
+  const { data } = useMovieQuery({
     id,
     language: 'ko',
-    append_to_response: 'credits',
+    appendToResponse: 'credits',
   });
 
   return (
     <div className="w-full overflow-hidden">
       <div
         style={{
-          backgroundImage: `url(${TMDB_API_POSTER_BASE_URL}/${data.backdrop_path})`,
+          backgroundImage: `url(${TMDB_API_POSTER_BASE_URL}/${data.backdropPath})`,
         }}
         className="aspect-[1680/622] relative bg-cover pt-10 h-[622px]"
       >
@@ -63,7 +63,7 @@ const MovieInfo = ({ id }: { id: number }) => {
               <h1 className="text-white text-5xl h-[190px] items-end flex">{data.title}</h1>
               <div className="flex gap-[6px] items-center">
                 <AgeIndicator age={data.adult ? 19 : 15} />
-                <div className="text-white">{new Date(data.release_date).getFullYear()}</div>
+                <div className="text-white">{new Date(data.releaseDate).getFullYear()}</div>
                 <div className="text-white">{'\u2022'}</div>
                 <div className="text-white">
                   {Math.floor(data.runtime / 60) > 0 && `${Math.floor(data.runtime / 60)}시간 `}
@@ -93,10 +93,10 @@ const MovieInfo = ({ id }: { id: number }) => {
               <ul className="flex items-center gap-8">
                 <StatItem
                   icon={<StarIcon className="fill-white size-6 mr-1" />}
-                  value={data.vote_average.toFixed(1)}
+                  value={data.voteAverage.toFixed(1)}
                   label="평균 별점"
                 />
-                <StatItem value={data.vote_count.toLocaleString()} label="보고싶어요" />
+                <StatItem value={data.voteCount.toLocaleString()} label="보고싶어요" />
               </ul>
             </section>
             <section className="flex flex-col gap-6">
@@ -143,7 +143,7 @@ const MovieInfo = ({ id }: { id: number }) => {
           </section>
           <section className="self-end max-w-[968px] max-h-full">
             <img
-              src={`${TMDB_API_POSTER_BASE_URL}/${data.backdrop_path}`}
+              src={`${TMDB_API_POSTER_BASE_URL}/${data.backdropPath}`}
               alt={`${data.title} poster`}
               className="rounded-xl size-full object-cover"
             />
@@ -184,8 +184,8 @@ const MovieInfo = ({ id }: { id: number }) => {
                 <Profile>
                   <Profile.Image
                     src={
-                      cast.profile_path
-                        ? `${TMDB_API_POSTER_BASE_URL}/${cast.profile_path}`
+                      cast.profilePath
+                        ? `${TMDB_API_POSTER_BASE_URL}/${cast.profilePath}`
                         : FALLBACK_AVATAR_IMAGE_URL
                     }
                     alt={`${cast.name}의 프로필 사진`}

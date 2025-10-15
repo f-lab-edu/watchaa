@@ -1,17 +1,15 @@
 import AsyncBoundary from '@/components/async-boundary';
 import Profile from '@/components/profile';
 import { FALLBACK_AVATAR_IMAGE_URL, TMDB_API_POSTER_BASE_URL } from '@/constants';
-import useMovie from '@/features/movie/hooks/queries/use-movie';
+import useMovieQuery from '@/features/movie/hooks/queries/use-movie-query';
 import { Link, useParams } from 'react-router-dom';
 
 const CreditsContent = ({ id }: { id: number }) => {
-  const { data } = useMovie({
+  const { data } = useMovieQuery({
     id,
     language: 'ko',
-    append_to_response: 'credits',
+    appendToResponse: 'credits',
   });
-
-  console.log(data);
 
   const credits = data?.credits?.cast || [];
 
@@ -23,8 +21,8 @@ const CreditsContent = ({ id }: { id: number }) => {
             <Profile>
               <Profile.Image
                 src={
-                  cast.profile_path
-                    ? `${TMDB_API_POSTER_BASE_URL}/${cast.profile_path}`
+                  cast.profilePath
+                    ? `${TMDB_API_POSTER_BASE_URL}/${cast.profilePath}`
                     : FALLBACK_AVATAR_IMAGE_URL
                 }
                 alt={`${cast.name}의 프로필 사진`}

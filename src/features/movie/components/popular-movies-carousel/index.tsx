@@ -1,5 +1,5 @@
 import { TMDB_API_POSTER_BASE_URL } from '@/constants';
-import { useMovies } from '@/features/movie/hooks/queries/use-movies';
+import { useMoviesInfiniteQuery } from '@/features/movie/hooks/queries/use-movies-infinite-query';
 import { Carousel, useCarouselState } from '@/lib/carousel';
 import { cn } from '@/utils/cn';
 import { memo, useEffect, useMemo, useState } from 'react';
@@ -9,7 +9,13 @@ const MovieSlide = ({
   movie,
   index,
 }: {
-  movie: { id: number; title: string; overview: string; backdrop_path?: string; poster_path?: string };
+  movie: {
+    id: number;
+    title: string;
+    overview: string;
+    backdropPath?: string;
+    posterPath?: string;
+  };
   index: number;
 }) => {
   const { activeSlideIndex } = useCarouselState();
@@ -26,7 +32,7 @@ const MovieSlide = ({
     setShouldAnimate(false);
   }, [isActive]);
 
-  const imageUrl = movie.backdrop_path || movie.poster_path;
+  const imageUrl = movie.backdropPath || movie.posterPath;
 
   return (
     <div key={movie.id} className="relative w-full h-full">
@@ -52,7 +58,7 @@ const MovieSlide = ({
 };
 
 const PopularMoviesCarousel = () => {
-  const { data } = useMovies('popular');
+  const { data } = useMoviesInfiniteQuery('popular');
 
   // 첫 페이지의 처음 5개 영화만 사용
   const movies = useMemo(() => data?.pages[0]?.results.slice(0, 5) || [], [data]);

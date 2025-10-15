@@ -1,4 +1,11 @@
+import { convertKeysToCamelCase, convertKeysToSnakeCase } from '@/utils/string';
 import axios, { AxiosError } from 'axios';
+
+declare module 'axios' {
+  interface AxiosRequestConfig {
+    skipErrorHandler?: boolean;
+  }
+}
 
 export const api = axios.create({
   baseURL: 'https://api.themoviedb.org',
@@ -21,13 +28,26 @@ const showMessage = async (error: Error) => {
 };
 
 api.interceptors.request.use(
-  (req) => req,
+  (req) => {
+    if (req.params) {
+      req.params = convertKeysToSnakeCase(req.params);
+    }
+    return req;
+  },
   (error) => Promise.reject(error),
 );
 
 api.interceptors.response.use(
-  (res) => res,
+  (res) => {
+    if (res.data) {
+      res.data = convertKeysToCamelCase(res.data);
+    }
+    return res;
+  },
   (error) => {
+    if (error.config?.skipErrorHandler) {
+      return Promise.reject(error);
+    }
     showMessage(error);
     return Promise.reject(error);
   },
