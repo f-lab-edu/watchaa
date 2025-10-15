@@ -6,7 +6,7 @@ import { movieQueryKeys } from './query-keys';
 const fetchMovies = async (type: MovieFetchType, params: MoviesRequestParams): Promise<Movies> =>
   (await api.get(`/3/movie/${type}`, { params })).data;
 
-export const useMovies = (type: MovieFetchType, params?: MoviesRequestParams) => {
+export const useMoviesInfiniteQuery = (type: MovieFetchType, params?: MoviesRequestParams) => {
   const { page, language } = params || { page: 1, language: 'ko' };
 
   return useSuspenseInfiniteQuery({

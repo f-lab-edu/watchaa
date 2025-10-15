@@ -36,7 +36,7 @@ const transformCreditsData = (data: MovieDetailResponse) => {
   });
 };
 
-const useMovie = ({ id, language, append_to_response }: MovieDetailRequestParams) => {
+const useMovieQuery = ({ id, language, append_to_response }: MovieDetailRequestParams) => {
   return useSuspenseQuery({
     queryKey: movieQueryKeys.detail({ id, language, append_to_response }),
     queryFn: () => fetchMovie({ id, language, append_to_response }),
@@ -46,4 +46,4 @@ const useMovie = ({ id, language, append_to_response }: MovieDetailRequestParams
   });
 };
 
-export default useMovie;
+export default useMovieQuery;

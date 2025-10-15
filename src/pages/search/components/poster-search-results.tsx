@@ -1,7 +1,7 @@
 import AsyncBoundary from '@/components/async-boundary';
 import PosterCard from '@/components/poster-card';
 import { TMDB_API_POSTER_BASE_URL } from '@/constants';
-import { useSearch } from '@/features/search/hooks/queries/use-search';
+import { useSearchInfiniteQuery } from '@/features/search/hooks/queries/use-search-infinite-query';
 import { SearchResultMap } from '@/features/search/types';
 import ResultEmpty from '@/pages/search/components/result-empty';
 import { useMemo } from 'react';
@@ -13,7 +13,7 @@ type PosterSearchResultsProps = {
 };
 
 const Contents = ({ query }: PosterSearchResultsProps) => {
-  const { data, hasNextPage, isFetchingNextPage, fetchNextPage } = useSearch(query, {
+  const { data, hasNextPage, isFetchingNextPage, fetchNextPage } = useSearchInfiniteQuery(query, {
     query,
     language: 'ko',
   });

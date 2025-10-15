@@ -9,7 +9,7 @@ import StarOutlinedIcon from '@/components/icons/start-outlined';
 import TvIcon from '@/components/icons/tv';
 import Profile from '@/components/profile';
 import { FALLBACK_AVATAR_IMAGE_URL, TMDB_API_POSTER_BASE_URL } from '@/constants';
-import useMovie from '@/features/movie/hooks/queries/use-movie';
+import useMovieQuery from '@/features/movie/hooks/queries/use-movie-query';
 import { memo, ReactNode } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
@@ -40,7 +40,7 @@ const StatItem = memo(
 StatItem.displayName = 'StatItem';
 
 const MovieInfo = ({ id }: { id: number }) => {
-  const { data } = useMovie({
+  const { data } = useMovieQuery({
     id,
     language: 'ko',
     append_to_response: 'credits',

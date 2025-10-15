@@ -8,7 +8,10 @@ const search = async <T extends SearchType>(
   params: SearchRequestParams,
 ): Promise<SearchResponse<T>> => (await api.get(`/3/search/${type}`, { params })).data;
 
-export const useSearch = <T extends SearchType>(type: T, params: SearchRequestParams) => {
+export const useSearchInfiniteQuery = <T extends SearchType>(
+  type: T,
+  params: SearchRequestParams,
+) => {
   return useSuspenseInfiniteQuery({
     queryKey: searchQueryKeys.search(type, params),
     queryFn: ({ pageParam = 1 }) => search(type, { ...params, page: pageParam }),

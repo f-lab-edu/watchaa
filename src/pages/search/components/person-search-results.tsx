@@ -1,7 +1,7 @@
 import AsyncBoundary from '@/components/async-boundary';
 import Profile from '@/components/profile';
 import { FALLBACK_AVATAR_IMAGE_URL, TMDB_API_POSTER_BASE_URL } from '@/constants';
-import { useSearch } from '@/features/search/hooks/queries/use-search';
+import { useSearchInfiniteQuery } from '@/features/search/hooks/queries/use-search-infinite-query';
 import ResultEmpty from '@/pages/search/components/result-empty';
 import ResultError from '@/pages/search/components/result-error';
 import { useMemo } from 'react';
@@ -33,10 +33,13 @@ const ProfileLoading = () => {
 const Contents = () => {
   const [searchParams] = useSearchParams();
   const query = searchParams.get('query') || '';
-  const { data, hasNextPage, isFetchingNextPage, fetchNextPage } = useSearch('person', {
-    query,
-    language: 'ko',
-  });
+  const { data, hasNextPage, isFetchingNextPage, fetchNextPage } = useSearchInfiniteQuery(
+    'person',
+    {
+      query,
+      language: 'ko',
+    },
+  );
 
   const results = useMemo(() => data?.pages?.flatMap((page) => page.results) || [], [data]);
 

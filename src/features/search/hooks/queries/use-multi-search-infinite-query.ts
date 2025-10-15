@@ -6,7 +6,7 @@ import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 const multiSearch = async (params: SearchRequestParams): Promise<MultiSearchResponse> =>
   (await api.get('/3/search/multi', { params })).data;
 
-export const useMultiSearch = (params: SearchRequestParams) => {
+export const useMultiSearchInfiniteQuery = (params: SearchRequestParams) => {
   return useSuspenseInfiniteQuery({
     queryKey: searchQueryKeys.multiSearch(params),
     queryFn: ({ pageParam = 1 }) => multiSearch({ ...params, page: pageParam }),

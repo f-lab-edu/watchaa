@@ -10,7 +10,7 @@ const fetchMovieCredits = async ({
   return (await api.get(`/3/person/${person_id}/movie_credits`, { params: { language } })).data;
 };
 
-const useMovieCredits = ({ person_id, language }: MovieCreditsRequestParams) => {
+const useMovieCreditsQuery = ({ person_id, language }: MovieCreditsRequestParams) => {
   return useSuspenseQuery({
     queryKey: peopleQueryKeys.movieCredits({ person_id, language }),
     queryFn: () => fetchMovieCredits({ person_id, language }),
@@ -19,4 +19,4 @@ const useMovieCredits = ({ person_id, language }: MovieCreditsRequestParams) => 
   });
 };
 
-export default useMovieCredits;
+export default useMovieCreditsQuery;

@@ -1,6 +1,6 @@
 import PosterCard from '@/components/poster-card';
 import { TMDB_API_POSTER_BASE_URL } from '@/constants';
-import { useMovies } from '@/features/movie/hooks/queries/use-movies';
+import { useMoviesInfiniteQuery } from '@/features/movie/hooks/queries/use-movies-infinite-query';
 import { MovieFetchType } from '@/features/movie/types';
 import { Carousel } from '@/lib/carousel';
 import { memo } from 'react';
@@ -12,7 +12,7 @@ type PosterCarouselProps = {
 };
 
 const PosterCarousel = ({ type, carouselTitle }: PosterCarouselProps) => {
-  const { data } = useMovies(type);
+  const { data } = useMoviesInfiniteQuery(type);
 
   const movies = data?.pages[0]?.results || [];
 

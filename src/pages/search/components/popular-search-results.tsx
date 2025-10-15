@@ -3,7 +3,7 @@ import AsyncBoundary from '@/components/async-boundary';
 import PosterCard from '@/components/poster-card';
 import Profile from '@/components/profile';
 import { FALLBACK_AVATAR_IMAGE_URL, TMDB_API_POSTER_BASE_URL } from '@/constants';
-import { useMultiSearch } from '@/features/search/hooks/queries/use-multi-search';
+import { useMultiSearchInfiniteQuery } from '@/features/search/hooks/queries/use-multi-search-infinite-query';
 import ResultEmpty from '@/pages/search/components/result-empty';
 import ResultError from '@/pages/search/components/result-error';
 import ResultLoading from '@/pages/search/components/result-loading';
@@ -41,7 +41,7 @@ const SearchListItem = ({ title, date, posterPath, category }: SearchListItemPro
 const Contents = () => {
   const [searchParams] = useSearchParams();
   const query = searchParams.get('query') || '';
-  const { data, hasNextPage, fetchNextPage, isFetchingNextPage } = useMultiSearch({
+  const { data, hasNextPage, fetchNextPage, isFetchingNextPage } = useMultiSearchInfiniteQuery({
     query,
     language: 'ko',
     include_adult: true,

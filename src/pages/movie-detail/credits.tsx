@@ -1,11 +1,11 @@
 import AsyncBoundary from '@/components/async-boundary';
 import Profile from '@/components/profile';
 import { FALLBACK_AVATAR_IMAGE_URL, TMDB_API_POSTER_BASE_URL } from '@/constants';
-import useMovie from '@/features/movie/hooks/queries/use-movie';
+import useMovieQuery from '@/features/movie/hooks/queries/use-movie-query';
 import { Link, useParams } from 'react-router-dom';
 
 const CreditsContent = ({ id }: { id: number }) => {
-  const { data } = useMovie({
+  const { data } = useMovieQuery({
     id,
     language: 'ko',
     append_to_response: 'credits',
