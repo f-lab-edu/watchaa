@@ -202,7 +202,6 @@ const CarouselRoot = ({
 
       // next/prev button을 눌러 이동하는 경우
       const direction = target;
-      const step = direction === 'next' ? slidesPerView : -slidesPerView;
       const isSingleSlide = slidesPerView === 1;
 
       if (isSingleSlide) {
@@ -220,25 +219,47 @@ const CarouselRoot = ({
         return;
       }
 
-      // 멀티 슬라이드: 페이지 단위 이동
+      // 멀티 슬라이드: 기본적으로 slidesPerView 단위로 이동하지만, 남은 슬라이드 개수를 고려함
+      // e.g, totalSlide=10, slidesPerView=3, 남은 슬라이드 1개 -> 1개 슬라이드만큼만 이동
       if (loop) {
-        setCurrentSlideIndex((prev) => {
-          const newIndex = prev + step;
-          const newActiveIndex = (newIndex - slidesPerView + totalItemLength) % totalItemLength;
-          onSlideChange?.(getVisibleSlideIndices(newActiveIndex));
-          return newIndex;
-        });
-      } else {
-        const maxIndex = totalItemLength - slidesPerView;
-        const canMove = direction === 'next' ? currentSlideIndex < maxIndex : currentSlideIndex > 0;
+        if (direction === 'next') {
+          const remainingSlides = totalItemLength - (currentSlideIndex - slidesPerView);
+          const actualStep = Math.min(slidesPerView, remainingSlides);
+          const newIndex = currentSlideIndex + actualStep;
+          setCurrentSlideIndex(newIndex);
 
-        if (canMove) {
-          const nextIndex =
-            direction === 'next' ? Math.min(currentSlideIndex + step, maxIndex) : Math.max(currentSlideIndex + step, 0);
+          // 실제 활성 슬라이드 인덱스 계산 (복제된 영역 고려)
+          const realActiveIndex = (newIndex - slidesPerView) % totalItemLength;
+          onSlideChange?.(getVisibleSlideIndices(realActiveIndex));
+        }
+
+        if (direction === 'prev') {
+          const actualStep = slidesPerView;
+          const newIndex = currentSlideIndex - actualStep;
+          setCurrentSlideIndex(newIndex);
+
+          // 실제 활성 슬라이드 인덱스 계산 (복제된 영역 고려)
+          const realActiveIndex = (newIndex - slidesPerView + totalItemLength) % totalItemLength;
+          onSlideChange?.(getVisibleSlideIndices(realActiveIndex));
+        }
+      }
+
+      if (direction === 'next') {
+        const maxIndex = totalItemLength - slidesPerView;
+        if (currentSlideIndex < maxIndex) {
+          const remainingSlides = totalItemLength - currentSlideIndex;
+          const actualStep = Math.min(slidesPerView, remainingSlides - slidesPerView + 1);
+          const nextIndex = Math.min(currentSlideIndex + actualStep, maxIndex);
           setCurrentSlideIndex(nextIndex);
           onSlideChange?.(getVisibleSlideIndices(nextIndex));
-        } else {
-          setIsTransitioning(false);
+        }
+      }
+
+      if (direction === 'prev') {
+        if (currentSlideIndex > 0) {
+          const prevIndex = Math.max(currentSlideIndex - slidesPerView, 0);
+          setCurrentSlideIndex(prevIndex);
+          onSlideChange?.(getVisibleSlideIndices(prevIndex));
         }
       }
     },
@@ -485,7 +506,8 @@ const CarouselPrevButton = ({ children, className, disabled, ...props }: Compone
   const { activeSlideIndex, loop } = useCarouselState();
   const { goToPrev } = useCarouselActions();
 
-  // loop가 false이고 첫 번째 슬라이드라면 disabled
+  // loop가 false일 때 첫 번째에서 disabled
+  // loop가 true이거나 첫 번째가 아니면 활성화
   const isDisabled = disabled || (!loop && activeSlideIndex === 0);
 
   return (
@@ -508,11 +530,13 @@ const CarouselPrevButton = ({ children, className, disabled, ...props }: Compone
 };
 
 const CarouselNextButton = ({ children, className, disabled, ...props }: ComponentProps<'button'>) => {
-  const { activeSlideIndex, totalItemLength, loop } = useCarouselState();
+  const { activeSlideIndex, totalItemLength, loop, slidesPerView } = useCarouselState();
   const { goToNext } = useCarouselActions();
 
-  // loop가 false이고 마지막 슬라이드라면 disabled
-  const isDisabled = disabled || (!loop && activeSlideIndex >= totalItemLength - 1);
+  // loop가 false일 때 마지막에서 disabled
+  // multi-slide에서는 마지막 페이지를 고려해야 함
+  const maxIndex = slidesPerView > 1 ? totalItemLength - slidesPerView : totalItemLength - 1;
+  const isDisabled = disabled || (!loop && activeSlideIndex >= maxIndex);
 
   return (
     <button
