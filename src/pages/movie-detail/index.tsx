@@ -74,17 +74,13 @@ const MovieInfo = ({ id }: { id: number }) => {
                   {data.genres.map((genre, idx) => {
                     const isLast = data.genres.length - 1 === idx;
                     return (
-                      <>
+                      <div key={genre.id}>
                         {/* TODO. tag 페이지 만들기 */}
-                        <Link
-                          key={genre.id}
-                          to={`/tag?domain=video&ids=${genre.id}`}
-                          className="hover:underline"
-                        >
+                        <Link to={`/tag?domain=video&ids=${genre.id}`} className="hover:underline">
                           {genre.name}
                         </Link>
                         {!isLast && <span className="mx-1">{'\u2022'}</span>}
-                      </>
+                      </div>
                     );
                   })}
                 </div>
@@ -185,15 +181,20 @@ const MovieInfo = ({ id }: { id: number }) => {
           {data.credits?.cast.slice(0, MAX_CREDITS_DISPLAY_COUNT).map((cast) => (
             <li key={cast.id} className="py-2">
               <Link to={`/people/${cast.id}?name=${cast.name}`}>
-                <Profile
-                  name={cast.name}
-                  role={cast.character}
-                  imageUrl={
-                    cast.profile_path
-                      ? `${TMDB_API_POSTER_BASE_URL}/${cast.profile_path}`
-                      : FALLBACK_AVATAR_IMAGE_URL
-                  }
-                />
+                <Profile>
+                  <Profile.Image
+                    src={
+                      cast.profile_path
+                        ? `${TMDB_API_POSTER_BASE_URL}/${cast.profile_path}`
+                        : FALLBACK_AVATAR_IMAGE_URL
+                    }
+                    alt={`${cast.name}의 프로필 사진`}
+                  />
+                  <div>
+                    <Profile.Name>{cast.name}</Profile.Name>
+                    <Profile.Role>{cast.character}</Profile.Role>
+                  </div>
+                </Profile>
               </Link>
             </li>
           ))}

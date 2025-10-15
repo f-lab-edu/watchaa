@@ -1,0 +1,136 @@
+import posterFallbackImage from '@/assets/images/poster-fallback.svg';
+import AsyncBoundary from '@/components/async-boundary';
+import PosterCard from '@/components/poster-card';
+import Profile from '@/components/profile';
+import { FALLBACK_AVATAR_IMAGE_URL, TMDB_API_POSTER_BASE_URL } from '@/constants';
+import { useMultiSearch } from '@/features/search/hooks/queries/use-multi-search';
+import ResultEmpty from '@/pages/search/components/result-empty';
+import ResultError from '@/pages/search/components/result-error';
+import ResultLoading from '@/pages/search/components/result-loading';
+import { useMemo } from 'react';
+import { InView } from 'react-intersection-observer';
+import { Link, useSearchParams } from 'react-router-dom';
+
+type SearchListItemProps = {
+  title: string;
+  posterPath: string;
+  date: string;
+  category: '영화' | '시리즈';
+};
+
+const SearchListItem = ({ title, date, posterPath, category }: SearchListItemProps) => {
+  return (
+    <li className="flex items-center gap-[14px] py-2">
+      <PosterCard
+        imageUrl={posterPath ? `${TMDB_API_POSTER_BASE_URL}/${posterPath}` : posterFallbackImage}
+        title={title}
+        className="size-12"
+      />
+      <div className="flex flex-col">
+        <div className="text-white">{title}</div>
+        <div className="flex text-[var(--color-tertiary-text)] text-[13px] gap-1">
+          <div>{category}</div>
+          <div>{'\u00B7'}</div>
+          <div>{new Date(date).getFullYear()}</div>
+        </div>
+      </div>
+    </li>
+  );
+};
+
+const Contents = () => {
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get('query') || '';
+  const { data, hasNextPage, fetchNextPage, isFetchingNextPage } = useMultiSearch({
+    query,
+    language: 'ko',
+    include_adult: true,
+  });
+
+  const results = useMemo(() => data?.pages?.flatMap((page) => page.results) || [], [data]);
+
+  if (!results.length) {
+    return <ResultEmpty />;
+  }
+
+  return (
+    <ul className="pt-[22px] px-10">
+      {results.map((result) => {
+        if (result.media_type === 'movie') {
+          return (
+            <Link key={result.id} to={`/contents/${result.id}`}>
+              <SearchListItem
+                title={result.title}
+                date={result.release_date}
+                posterPath={result.poster_path || result.backdrop_path || ''}
+                category="영화"
+              />
+            </Link>
+          );
+        }
+
+        if (result.media_type === 'tv') {
+          return (
+            // TODO. 시리즈 상세 페이지 구현 후 링크 수정
+            <Link
+              key={result.id}
+              to={location.pathname + location.search}
+              onClick={() => alert('준비중입니다.')}
+            >
+              <SearchListItem
+                title={result.name}
+                date={result.first_air_date}
+                posterPath={result.poster_path || result.backdrop_path || ''}
+                category="시리즈"
+              />
+            </Link>
+          );
+        }
+
+        if (result.media_type === 'person') {
+          const peopleId = result.id;
+          return (
+            <Link key={peopleId} to={`/people/${peopleId}?name=${result.name}`}>
+              <Profile className="py-2">
+                <Profile.Image
+                  src={
+                    result.profile_path
+                      ? `${TMDB_API_POSTER_BASE_URL}/${result.profile_path}`
+                      : FALLBACK_AVATAR_IMAGE_URL
+                  }
+                  alt={`${result.name}의 프로필 사진`}
+                  className="size-[42px]"
+                />
+                <div>
+                  <Profile.Name>{result.name}</Profile.Name>
+                  <Profile.Role>{result.known_for_department}</Profile.Role>
+                </div>
+              </Profile>
+            </Link>
+          );
+        }
+
+        return null;
+      })}
+      {isFetchingNextPage && <ResultLoading />}
+      <InView
+        rootMargin="20px"
+        onChange={(inView) => {
+          if (inView && hasNextPage && !isFetchingNextPage) {
+            fetchNextPage();
+          }
+        }}
+      />
+    </ul>
+  );
+};
+
+const PopularSearchResults = () => {
+  return (
+    <AsyncBoundary pendingFallback={<ResultLoading />} rejectedFallbackComponent={ResultError}>
+      <Contents />
+    </AsyncBoundary>
+  );
+};
+
+export default PopularSearchResults;
