@@ -1,24 +1,40 @@
+import AsyncBoundary from '@/components/async-boundary';
 import PopularMoviesCarousel from '@/features/movie/components/popular-movies-carousel';
+import PopularMoviesCarouselError from '@/features/movie/components/popular-movies-carousel/error';
+import PopularMoviesCarouselLoading from '@/features/movie/components/popular-movies-carousel/loading';
 import PosterCarousel from '@/features/movie/components/poster-carousel';
-import { Suspense } from 'react';
+import PosterCarouselError from '@/features/movie/components/poster-carousel/error';
+import PosterCarouselLoading from '@/features/movie/components/poster-carousel/loading';
 
 function Home() {
   return (
     <main className="bg-[var(--color-background)]">
       <div className="max-w-[1680px] mx-auto">
-        <Suspense>
+        <AsyncBoundary
+          pendingFallback={<PopularMoviesCarouselLoading />}
+          rejectedFallback={<PopularMoviesCarouselError />}
+        >
           <PopularMoviesCarousel />
-        </Suspense>
+        </AsyncBoundary>
         <div className="mt-8 space-y-8 px-10 pb-8">
-          <Suspense>
+          <AsyncBoundary
+            pendingFallback={<PosterCarouselLoading />}
+            rejectedFallback={<PosterCarouselError />}
+          >
             <PosterCarousel type="top_rated" carouselTitle="Top Rated" />
-          </Suspense>
-          <Suspense>
+          </AsyncBoundary>
+          <AsyncBoundary
+            pendingFallback={<PosterCarouselLoading />}
+            rejectedFallback={<PosterCarouselError />}
+          >
             <PosterCarousel type="now_playing" carouselTitle="Now Playing" />
-          </Suspense>
-          <Suspense>
+          </AsyncBoundary>
+          <AsyncBoundary
+            pendingFallback={<PosterCarouselLoading />}
+            rejectedFallback={<PosterCarouselError />}
+          >
             <PosterCarousel type="upcoming" carouselTitle="Upcoming" />
-          </Suspense>
+          </AsyncBoundary>
         </div>
       </div>
     </main>
