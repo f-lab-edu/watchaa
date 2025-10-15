@@ -19,7 +19,7 @@ const Contents = ({ query }: PosterSearchResultsProps) => {
   });
 
   const results = useMemo(
-    () => data?.pages?.flatMap((page) => page.results).filter((result) => result.poster_path) || [],
+    () => data?.pages?.flatMap((page) => page.results).filter((result) => result.posterPath) || [],
     [data],
   );
 
@@ -53,7 +53,7 @@ const Contents = ({ query }: PosterSearchResultsProps) => {
               <Link to={to}>
                 <PosterCard
                   title={title}
-                  imageUrl={`${TMDB_API_POSTER_BASE_URL}/${result.poster_path}`}
+                  imageUrl={`${TMDB_API_POSTER_BASE_URL}/${result.posterPath}`}
                   className="aspect-[2/3] hover:brightness-80"
                 />
               </Link>

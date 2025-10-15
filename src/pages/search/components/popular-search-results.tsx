@@ -44,7 +44,7 @@ const Contents = () => {
   const { data, hasNextPage, fetchNextPage, isFetchingNextPage } = useMultiSearchInfiniteQuery({
     query,
     language: 'ko',
-    include_adult: true,
+    includeAdult: true,
   });
 
   const results = useMemo(() => data?.pages?.flatMap((page) => page.results) || [], [data]);
@@ -56,20 +56,20 @@ const Contents = () => {
   return (
     <ul className="pt-[22px] px-10">
       {results.map((result) => {
-        if (result.media_type === 'movie') {
+        if (result.mediaType === 'movie') {
           return (
             <Link key={result.id} to={`/contents/${result.id}`}>
               <SearchListItem
                 title={result.title}
-                date={result.release_date}
-                posterPath={result.poster_path || result.backdrop_path || ''}
+                date={result.releaseDate}
+                posterPath={result.posterPath || result.backdropPath || ''}
                 category="영화"
               />
             </Link>
           );
         }
 
-        if (result.media_type === 'tv') {
+        if (result.mediaType === 'tv') {
           return (
             // TODO. 시리즈 상세 페이지 구현 후 링크 수정
             <Link
@@ -79,23 +79,23 @@ const Contents = () => {
             >
               <SearchListItem
                 title={result.name}
-                date={result.first_air_date}
-                posterPath={result.poster_path || result.backdrop_path || ''}
+                date={result.firstAirDate}
+                posterPath={result.posterPath || result.backdropPath || ''}
                 category="시리즈"
               />
             </Link>
           );
         }
 
-        if (result.media_type === 'person') {
+        if (result.mediaType === 'person') {
           const peopleId = result.id;
           return (
             <Link key={peopleId} to={`/people/${peopleId}?name=${result.name}`}>
               <Profile className="py-2">
                 <Profile.Image
                   src={
-                    result.profile_path
-                      ? `${TMDB_API_POSTER_BASE_URL}/${result.profile_path}`
+                    result.profilePath
+                      ? `${TMDB_API_POSTER_BASE_URL}/${result.profilePath}`
                       : FALLBACK_AVATAR_IMAGE_URL
                   }
                   alt={`${result.name}의 프로필 사진`}
@@ -103,7 +103,7 @@ const Contents = () => {
                 />
                 <div>
                   <Profile.Name>{result.name}</Profile.Name>
-                  <Profile.Role>{result.known_for_department}</Profile.Role>
+                  <Profile.Role>{result.knownForDepartment}</Profile.Role>
                 </div>
               </Profile>
             </Link>

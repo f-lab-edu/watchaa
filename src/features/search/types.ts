@@ -4,7 +4,7 @@ import { Tv } from '@/features/tv/types';
 
 export type SearchRequestParams = {
   query: string;
-  include_adult?: boolean;
+  includeAdult?: boolean;
   page?: number;
   language?: string;
 };
@@ -20,15 +20,13 @@ export type SearchType = keyof SearchResultMap;
 export type SearchResponse<T extends SearchType> = Paging<SearchResultMap[T]>;
 
 export type MovieWithMediaType = Movie & {
-  media_type: 'movie';
+  mediaType: 'movie';
 };
 export type TvWithMediaType = Tv & {
-  media_type: 'tv';
+  mediaType: 'tv';
 };
 export type PersonWithMediaType = Person & {
-  media_type: 'person';
+  mediaType: 'person';
 };
 
 export type MultiSearchResult = MovieWithMediaType | TvWithMediaType | PersonWithMediaType;
-
-export type MultiSearchResponse = Paging<MultiSearchResult>;

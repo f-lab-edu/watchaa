@@ -1,10 +1,12 @@
 import { searchQueryKeys } from '@/features/search/hooks/queries/query-keys';
-import { MultiSearchResponse, SearchRequestParams } from '@/features/search/types';
+import { MultiSearchResult, SearchRequestParams } from '@/features/search/types';
 import { api } from '@/utils/api';
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 
-const multiSearch = async (params: SearchRequestParams): Promise<MultiSearchResponse> =>
-  (await api.get('/3/search/multi', { params })).data;
+type MultiSearchFetcher = (params: SearchRequestParams) => Promise<Paging<MultiSearchResult>>;
+
+const multiSearch: MultiSearchFetcher = async (params) =>
+  api.get('/3/search/multi', { params }).then((res) => res.data);
 
 export const useMultiSearchInfiniteQuery = (params: SearchRequestParams) => {
   return useSuspenseInfiniteQuery({

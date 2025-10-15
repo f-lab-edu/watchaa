@@ -1,10 +1,13 @@
-import { MovieFetchType, Movies, MoviesRequestParams } from '@/features/movie/types';
+import { Movie, MovieFetchType, MoviesRequestParams } from '@/features/movie/types';
 import { api } from '@/utils/api';
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
+import { snake } from 'radash';
 import { movieQueryKeys } from './query-keys';
 
-const fetchMovies = async (type: MovieFetchType, params: MoviesRequestParams): Promise<Movies> =>
-  (await api.get(`/3/movie/${type}`, { params })).data;
+type MoviesFetcher = (type: MovieFetchType, params: MoviesRequestParams) => Promise<Paging<Movie>>;
+
+const fetchMovies: MoviesFetcher = (type, params) =>
+  api.get(`/3/movie/${snake(type)}`, { params }).then((res) => res.data);
 
 export const useMoviesInfiniteQuery = (type: MovieFetchType, params?: MoviesRequestParams) => {
   const { page, language } = params || { page: 1, language: 'ko' };

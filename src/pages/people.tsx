@@ -7,12 +7,12 @@ import { useMemo } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 
 const extractCreditData = (data: MovieCreditsResponse, type: 'cast' | 'crew') =>
-  data[type].map(({ id, title, poster_path }) => ({ id, title, poster_path }));
+  data[type].map(({ id, title, posterPath }) => ({ id, title, posterPath }));
 
 const getMovies = (data: MovieCreditsResponse) => {
   const casts = extractCreditData(data, 'cast');
   const crews = extractCreditData(data, 'crew');
-  const allMovies = casts.concat(crews).filter((movie) => !!movie.poster_path);
+  const allMovies = casts.concat(crews).filter((movie) => !!movie.posterPath);
 
   // 중복 id 제거
   const movieData = allMovies.filter(
@@ -23,18 +23,18 @@ const getMovies = (data: MovieCreditsResponse) => {
 };
 
 const CreditsContent = ({ personId }: { personId: number }) => {
-  const { data } = useMovieCreditsQuery({ person_id: personId, language: 'ko' });
+  const { data } = useMovieCreditsQuery({ personId, language: 'ko' });
 
   const movieData = useMemo(() => getMovies(data), [data]);
 
   return (
     <ul className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
-      {movieData.map(({ id, title, poster_path }) => (
+      {movieData.map(({ id, title, posterPath }) => (
         <li key={id}>
           <Link key={id} to={`/contents/${id}`}>
             <PosterCard
               title={title}
-              imageUrl={`${TMDB_API_POSTER_BASE_URL}/${poster_path}`}
+              imageUrl={`${TMDB_API_POSTER_BASE_URL}/${posterPath}`}
               className="aspect-[2/3] hover:brightness-80"
             />
           </Link>

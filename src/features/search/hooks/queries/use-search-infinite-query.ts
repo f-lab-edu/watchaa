@@ -3,10 +3,10 @@ import { SearchRequestParams, SearchResponse, SearchType } from '@/features/sear
 import { api } from '@/utils/api';
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 
-const search = async <T extends SearchType>(
+const search = <T extends SearchType>(
   type: T,
   params: SearchRequestParams,
-): Promise<SearchResponse<T>> => (await api.get(`/3/search/${type}`, { params })).data;
+): Promise<SearchResponse<T>> => api.get(`/3/search/${type}`, { params }).then((res) => res.data);
 
 export const useSearchInfiniteQuery = <T extends SearchType>(
   type: T,

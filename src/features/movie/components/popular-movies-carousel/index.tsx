@@ -13,8 +13,8 @@ const MovieSlide = ({
     id: number;
     title: string;
     overview: string;
-    backdrop_path?: string;
-    poster_path?: string;
+    backdropPath?: string;
+    posterPath?: string;
   };
   index: number;
 }) => {
@@ -32,7 +32,7 @@ const MovieSlide = ({
     setShouldAnimate(false);
   }, [isActive]);
 
-  const imageUrl = movie.backdrop_path || movie.poster_path;
+  const imageUrl = movie.backdropPath || movie.posterPath;
 
   return (
     <div key={movie.id} className="relative w-full h-full">

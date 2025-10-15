@@ -33,7 +33,7 @@ const PosterCarousel = ({ type, carouselTitle }: PosterCarouselProps) => {
             <Link key={movie.id} to={`/contents/${movie.id}`}>
               <PosterCard
                 title={movie.title}
-                imageUrl={`${TMDB_API_POSTER_BASE_URL}${movie.poster_path}`}
+                imageUrl={`${TMDB_API_POSTER_BASE_URL}${movie.posterPath}`}
                 className="aspect-[2/3] hover:brightness-80"
               />
             </Link>

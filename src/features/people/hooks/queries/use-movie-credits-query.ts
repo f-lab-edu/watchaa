@@ -3,17 +3,15 @@ import { MovieCreditsRequestParams, MovieCreditsResponse } from '@/features/peop
 import { api } from '@/utils/api';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-const fetchMovieCredits = async ({
-  person_id,
-  language,
-}: MovieCreditsRequestParams): Promise<MovieCreditsResponse> => {
-  return (await api.get(`/3/person/${person_id}/movie_credits`, { params: { language } })).data;
-};
+type MovieCreditsFetcher = (params: MovieCreditsRequestParams) => Promise<MovieCreditsResponse>;
 
-const useMovieCreditsQuery = ({ person_id, language }: MovieCreditsRequestParams) => {
+const fetchMovieCredits: MovieCreditsFetcher = ({ personId, language }) =>
+  api.get(`/3/person/${personId}/movie_credits`, { params: { language } }).then((res) => res.data);
+
+const useMovieCreditsQuery = ({ personId, language }: MovieCreditsRequestParams) => {
   return useSuspenseQuery({
-    queryKey: peopleQueryKeys.movieCredits({ person_id, language }),
-    queryFn: () => fetchMovieCredits({ person_id, language }),
+    queryKey: peopleQueryKeys.movieCredits({ personId, language }),
+    queryFn: () => fetchMovieCredits({ personId, language }),
     staleTime: Infinity,
     gcTime: Infinity,
   });

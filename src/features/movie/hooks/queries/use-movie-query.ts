@@ -4,13 +4,10 @@ import { api } from '@/utils/api';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { produce } from 'immer';
 
-const fetchMovie = async ({
-  id,
-  language,
-  append_to_response,
-}: MovieDetailRequestParams): Promise<MovieDetailResponse> => {
-  return (await api.get(`/3/movie/${id}`, { params: { language, append_to_response } })).data;
-};
+type MovieDetailFetcher = (params: MovieDetailRequestParams) => Promise<MovieDetailResponse>;
+
+const fetchMovie: MovieDetailFetcher = ({ id, language, appendToResponse }) =>
+  api.get(`/3/movie/${id}`, { params: { language, appendToResponse } }).then((res) => res.data);
 
 // 감독을 cast 맨 앞에 추가하고 crew 배열은 빈 배열로 변환
 const transformCreditsData = (data: MovieDetailResponse) => {
@@ -25,7 +22,7 @@ const transformCreditsData = (data: MovieDetailResponse) => {
       const director = directors[0];
       const directorAsCast = {
         ...director,
-        cast_id: -1,
+        castId: -1,
         character: director.job,
         order: -1,
       };
@@ -36,10 +33,10 @@ const transformCreditsData = (data: MovieDetailResponse) => {
   });
 };
 
-const useMovieQuery = ({ id, language, append_to_response }: MovieDetailRequestParams) => {
+const useMovieQuery = ({ id, language, appendToResponse }: MovieDetailRequestParams) => {
   return useSuspenseQuery({
-    queryKey: movieQueryKeys.detail({ id, language, append_to_response }),
-    queryFn: () => fetchMovie({ id, language, append_to_response }),
+    queryKey: movieQueryKeys.detail({ id, language, appendToResponse }),
+    queryFn: () => fetchMovie({ id, language, appendToResponse }),
     select: transformCreditsData,
     staleTime: Infinity,
     gcTime: Infinity,

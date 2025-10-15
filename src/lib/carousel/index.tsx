@@ -364,7 +364,15 @@ const CarouselRoot = ({
 
     animationId = requestAnimationFrame(checkForSlideChange);
     return () => cancelAnimationFrame(animationId);
-  }, [mode, totalItemLength, autoInterval, onSlideChange, loop, activeSlideIndex, getVisibleSlideIndices]);
+  }, [
+    mode,
+    totalItemLength,
+    autoInterval,
+    onSlideChange,
+    loop,
+    activeSlideIndex,
+    getVisibleSlideIndices,
+  ]);
 
   return (
     <CarouselStateContext.Provider value={state}>
@@ -378,7 +386,8 @@ const CarouselRoot = ({
 };
 
 const MultiSlidesView = ({ children, className, ...props }: CarouselContentProps) => {
-  const { currentSlideIndex, loop, isTransitioning, slidesPerView, spaceBetween } = useCarouselState();
+  const { currentSlideIndex, loop, isTransitioning, slidesPerView, spaceBetween } =
+    useCarouselState();
   const { handleTransitionEnd } = useCarouselActions();
   const totalItemLength = Children.count(children);
   const childrenArray = Children.toArray(children);
@@ -424,7 +433,9 @@ const MultiSlidesView = ({ children, className, ...props }: CarouselContentProps
       <ul
         style={{
           display: 'flex',
-          transition: isTransitioning ? 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none',
+          transition: isTransitioning
+            ? 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+            : 'none',
           transform: `translateX(-${translateX}%)`,
           width: '100%',
           height: '100%',
@@ -471,7 +482,9 @@ const SingleSlideView = ({ children, className, ...props }: CarouselContentProps
       <ul
         style={{
           display: 'flex',
-          transition: isTransitioning ? 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none',
+          transition: isTransitioning
+            ? 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+            : 'none',
           transform: `translateX(-${translateX}%)`,
           width: `${totalSlidesLength * 100}%`,
           overflow: 'hidden',
@@ -502,7 +515,12 @@ const CarouselContent = ({ children, ...props }: CarouselContentProps) => {
   return <View {...props}>{children}</View>;
 };
 
-const CarouselPrevButton = ({ children, className, disabled, ...props }: ComponentProps<'button'>) => {
+const CarouselPrevButton = ({
+  children,
+  className,
+  disabled,
+  ...props
+}: ComponentProps<'button'>) => {
   const { activeSlideIndex, loop } = useCarouselState();
   const { goToPrev } = useCarouselActions();
 
@@ -529,7 +547,12 @@ const CarouselPrevButton = ({ children, className, disabled, ...props }: Compone
   );
 };
 
-const CarouselNextButton = ({ children, className, disabled, ...props }: ComponentProps<'button'>) => {
+const CarouselNextButton = ({
+  children,
+  className,
+  disabled,
+  ...props
+}: ComponentProps<'button'>) => {
   const { activeSlideIndex, totalItemLength, loop, slidesPerView } = useCarouselState();
   const { goToNext } = useCarouselActions();
 
@@ -585,7 +608,12 @@ const CarouselPagination = ({
 
         if (renderDot) {
           return (
-            <button key={index} type="button" onClick={() => goToSlide(index)} aria-label={ariaLabel}>
+            <button
+              key={index}
+              type="button"
+              onClick={() => goToSlide(index)}
+              aria-label={ariaLabel}
+            >
               {renderDot(index, isActive)}
             </button>
           );
@@ -616,7 +644,8 @@ type CarouselProgressBarProps = {
 };
 
 const CarouselProgressBar = ({ className, fillClassName }: CarouselProgressBarProps) => {
-  const { mode, isTransitioning, autoInterval, totalItemLength, activeSlideIndex, slidesPerView } = useCarouselState();
+  const { mode, isTransitioning, autoInterval, totalItemLength, activeSlideIndex, slidesPerView } =
+    useCarouselState();
 
   if (slidesPerView > 1) {
     throw new Error('ProgressBar cannot be used when slidesPerView > 1');
@@ -655,7 +684,12 @@ const CarouselProgressBar = ({ className, fillClassName }: CarouselProgressBarPr
   }, [mode, totalItemLength, activeSlideIndex]);
 
   return (
-    <div className={cn('absolute top-0 left-0 w-full h-[2px] bg-[var(--color-white-opacity20)] z-10', className)}>
+    <div
+      className={cn(
+        'absolute top-0 left-0 w-full h-[2px] bg-[var(--color-white-opacity20)] z-10',
+        className,
+      )}
+    >
       <div
         ref={progressRef}
         className={cn('h-full bg-red-500', fillClassName)}
@@ -664,7 +698,9 @@ const CarouselProgressBar = ({ className, fillClassName }: CarouselProgressBarPr
           transformOrigin: 'left center',
           transform: 'scaleX(0)',
           transition:
-            mode === 'manual' && isTransitioning ? 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none',
+            mode === 'manual' && isTransitioning
+              ? 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+              : 'none',
         }}
       />
     </div>

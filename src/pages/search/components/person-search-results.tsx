@@ -55,8 +55,8 @@ const Contents = () => {
               <Profile className="flex-col gap-[3px]">
                 <Profile.Image
                   src={
-                    result.profile_path
-                      ? `${TMDB_API_POSTER_BASE_URL}/${result.profile_path}`
+                    result.profilePath
+                      ? `${TMDB_API_POSTER_BASE_URL}/${result.profilePath}`
                       : FALLBACK_AVATAR_IMAGE_URL
                   }
                   alt={`${result.name}의 프로필 사진`}
@@ -66,10 +66,8 @@ const Contents = () => {
                   <Profile.Name className="text-white text-[15px] font-[var(--font-weight-medium)]">
                     {result.name}
                   </Profile.Name>
-                  {result.known_for_department && (
-                    <Profile.Role className="text-[14px]">
-                      {result.known_for_department}
-                    </Profile.Role>
+                  {result.knownForDepartment && (
+                    <Profile.Role className="text-[14px]">{result.knownForDepartment}</Profile.Role>
                   )}
                 </div>
               </Profile>
