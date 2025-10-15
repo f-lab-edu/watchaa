@@ -1,6 +1,12 @@
 import { convertKeysToCamelCase, convertKeysToSnakeCase } from '@/utils/string';
 import axios, { AxiosError } from 'axios';
 
+declare module 'axios' {
+  interface AxiosRequestConfig {
+    skipErrorHandler?: boolean;
+  }
+}
+
 export const api = axios.create({
   baseURL: 'https://api.themoviedb.org',
   headers: {
@@ -39,6 +45,9 @@ api.interceptors.response.use(
     return res;
   },
   (error) => {
+    if (error.config?.skipErrorHandler) {
+      return Promise.reject(error);
+    }
     showMessage(error);
     return Promise.reject(error);
   },
