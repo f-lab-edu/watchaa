@@ -1,6 +1,6 @@
-import { Movie } from '@/features/movie/types';
-import { Person } from '@/features/people/types';
-import { Tv } from '@/features/tv/types';
+import { Movie, MovieWithMediaType } from '@/features/movie/types';
+import { Person, PersonWithMediaType } from '@/features/people/types';
+import { Tv, TvWithMediaType } from '@/features/tv/types';
 
 export type SearchRequestParams = {
   query: string;
@@ -18,15 +18,5 @@ export type SearchResultMap = {
 export type SearchType = keyof SearchResultMap;
 
 export type SearchResponse<T extends SearchType> = Paging<SearchResultMap[T]>;
-
-export type MovieWithMediaType = Movie & {
-  mediaType: 'movie';
-};
-export type TvWithMediaType = Tv & {
-  mediaType: 'tv';
-};
-export type PersonWithMediaType = Person & {
-  mediaType: 'person';
-};
 
 export type MultiSearchResult = MovieWithMediaType | TvWithMediaType | PersonWithMediaType;

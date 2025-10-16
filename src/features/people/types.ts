@@ -1,5 +1,5 @@
-import { Movie } from '@/features/movie/types';
-import { MovieWithMediaType, TvWithMediaType } from '@/features/search/types';
+import { Movie, MovieWithMediaType } from '@/features/movie/types';
+import { TvWithMediaType } from '@/features/tv/types';
 
 export type MovieCreditsRequestParams = {
   personId: number;
@@ -21,4 +21,8 @@ export type Person = {
   knownForDepartment: string;
   profilePath: string | null;
   knownFor: (MovieWithMediaType | TvWithMediaType)[];
+};
+
+export type PersonWithMediaType = Person & {
+  mediaType: 'person';
 };

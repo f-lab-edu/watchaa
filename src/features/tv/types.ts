@@ -14,3 +14,7 @@ export type Tv = {
   voteCount: number;
   originCountry: string[];
 };
+
+export type TvWithMediaType = Tv & {
+  mediaType: 'tv';
+};

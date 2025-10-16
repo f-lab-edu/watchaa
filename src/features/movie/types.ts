@@ -22,6 +22,10 @@ export type Movie = {
   voteCount: number;
 };
 
+export type MovieWithMediaType = Movie & {
+  mediaType: 'movie';
+};
+
 type Genre = {
   id: number;
   name: string;

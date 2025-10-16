@@ -3,7 +3,7 @@ import PosterCard from '@/components/poster-card';
 import { TMDB_API_POSTER_BASE_URL } from '@/constants';
 import { useSearchInfiniteQuery } from '@/features/search/hooks/queries/use-search-infinite-query';
 import { SearchResultMap } from '@/features/search/types';
-import ResultEmpty from '@/pages/search/components/result-empty';
+import ResultEmpty from '@/pages/search/components/search-results/result-empty';
 import { useMemo } from 'react';
 import { InView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
