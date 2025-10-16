@@ -14,7 +14,10 @@
     "start": "cross-env NODE_ENV=development webpack serve --config webpack.dev.mjs",
     "build": "cross-env NODE_ENV=production webpack --config webpack.prod.mjs",
     "build:preview": "npm run build && npx serve dist",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
+    "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix"
   },
   "lint-staged": {
     "*.{ts,tsx}": [

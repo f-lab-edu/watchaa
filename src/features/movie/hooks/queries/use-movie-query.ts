@@ -11,7 +11,9 @@ const fetchMovie: MovieDetailFetcher = ({ id, language, appendToResponse }) =>
 
 // 감독을 cast 맨 앞에 추가하고 crew 배열은 빈 배열로 변환
 const transformCreditsData = (data: MovieDetailResponse) => {
-  if (!data?.credits) return data;
+  if (!data?.credits) {
+    return data;
+  }
 
   return produce(data, (draft) => {
     const directors = draft.credits!.crew.filter(
