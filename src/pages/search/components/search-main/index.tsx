@@ -1,12 +1,14 @@
+import GenreSection from '@/pages/search/components/search-main/genre-section';
 import PopularSearchKeywordsSection from '@/pages/search/components/search-main/popular-search-keywords-section';
 
 const SearchMain = () => {
   return (
-    <>
-      <div className="px-10 pb-8 max-w-[1680px] mx-auto">
+    <div className="max-w-[1680px] mx-auto">
+      <div className="px-10 pb-8">
         <PopularSearchKeywordsSection />
       </div>
-    </>
+      <GenreSection />
+    </div>
   );
 };
 
