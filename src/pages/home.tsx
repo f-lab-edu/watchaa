@@ -17,7 +17,7 @@ function Home() {
           >
             <PopularMoviesCarousel />
           </AsyncBoundary>
-          <div className="mt-8 space-y-8 px-10 pb-8">
+          <div className="mt-8 space-y-8 pb-8">
             <AsyncBoundary
               pendingFallback={<PosterCarouselLoading />}
               rejectedFallback={<PosterCarouselError />}

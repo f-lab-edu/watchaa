@@ -1,3 +1,5 @@
+import { Genre } from '@/features/genre/types';
+
 export type MovieFetchType = 'nowPlaying' | 'popular' | 'topRated' | 'upcoming';
 
 export type MoviesRequestParams = {
@@ -22,9 +24,8 @@ export type Movie = {
   voteCount: number;
 };
 
-type Genre = {
-  id: number;
-  name: string;
+export type MovieWithMediaType = Movie & {
+  mediaType: 'movie';
 };
 
 type ProductionCompany = {

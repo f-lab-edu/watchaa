@@ -25,7 +25,7 @@ const PosterCarousel = ({ type, carouselTitle }: PosterCarouselProps) => {
   }
 
   return (
-    <div className="group">
+    <div className="group px-10">
       <h2 className="text-[var(--color-primary-text)] text-xl mb-[5px]">{carouselTitle}</h2>
       <Carousel.Root slidesPerView={8} spaceBetween={12} loop>
         <Carousel.Content>
@@ -40,8 +40,8 @@ const PosterCarousel = ({ type, carouselTitle }: PosterCarouselProps) => {
           ))}
         </Carousel.Content>
         <div className="group-hover:visible invisible">
-          <Carousel.PrevButton className="-left-10" />
-          <Carousel.NextButton className="-right-10" />
+          <Carousel.PrevButton className="-left-10 h-full" />
+          <Carousel.NextButton className="-right-10 h-full" />
         </div>
       </Carousel.Root>
     </div>

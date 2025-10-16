@@ -1,7 +1,8 @@
 import Button from '@/components/button';
-import PersonSearchResults from '@/pages/search/components/person-search-results';
-import PopularSearchResults from '@/pages/search/components/popular-search-results';
-import PosterSearchResults from '@/pages/search/components/poster-search-results';
+import SearchMain from '@/pages/search/components/search-main';
+import PersonSearchResults from '@/pages/search/components/search-results/person-search-results';
+import PopularSearchResults from '@/pages/search/components/search-results/popular-search-results';
+import PosterSearchResults from '@/pages/search/components/search-results/poster-search-results';
 import { cn } from '@/utils/cn';
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
@@ -61,27 +62,27 @@ const InvalidAccess = () => {
   );
 };
 
+const searchResults = {
+  all: <PopularSearchResults />,
+  movie: <PosterSearchResults query="movie" />,
+  tv: <PosterSearchResults query="tv" />,
+  person: <PersonSearchResults />,
+};
+
 const Search = () => {
   const [searchParams] = useSearchParams();
   const query = searchParams.get('query') || '';
   const domain = searchParams.get('domain') || 'all';
 
   if (!query) {
-    return null;
+    return <SearchMain />;
   }
-
-  const results = {
-    all: <PopularSearchResults />,
-    movie: <PosterSearchResults query="movie" />,
-    tv: <PosterSearchResults query="tv" />,
-    person: <PersonSearchResults />,
-  };
 
   return (
     <div className="p-2 max-w-[1680px] mx-auto">
       <Tabs />
       <hr className="h-[2px] bg-[var(--color-divider)]" />
-      {results[domain as keyof typeof results] || <InvalidAccess />}
+      {searchResults[domain as keyof typeof searchResults] || <InvalidAccess />}
     </div>
   );
 };
