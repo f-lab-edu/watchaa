@@ -10,27 +10,15 @@ import tseslint from 'typescript-eslint';
 
 export default defineConfig([
   ...pluginTanstackQuery.configs['flat/recommended'],
-  {
-    files: ['**/*.{js,ts,jsx,tsx,mjs}'],
-    ignores: ['node_modules', 'dist'],
-    plugins: {
-      n: pluginN,
-    },
-    languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
-      ecmaVersion: 2022,
-      sourceType: 'module',
-    },
-    rules: {
-      'n/prefer-node-protocol': 'error', // 모든 파일에서 node: 접두사 강제
-      'prettier/prettier': 'off', // prettier printWidth 룰과 충돌해서 off
-    },
-  },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
+  /**
+   * eslintPluginPrettierRecommended는 eslint-plugin-prettier와 eslint-config-prettier의 권장 설정을 모두 포함
+   * 이 설정은 eslint-config-prettier를 자동으로 활성화하므로, eslint-config-prettier를 별도로 import하거나 설정할 필요가 없습니다.
+   * eslint-config-prettier: ESLint의 포매팅 관련 규칙을 비활성화하여 Prettier와 충돌하지 않도록 합니다.
+   * eslint-plugin-prettier: Prettier의 포매팅 규칙을 ESLint의 규칙으로 추가하여 ESLint가 포매팅 오류를 감지하도록 합니다.
+   */
+  eslintPluginPrettierRecommended,
   {
     ...pluginReact.configs.flat.recommended,
     plugins: {
@@ -52,11 +40,24 @@ export default defineConfig([
       'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }], // 불필요한 중괄호 제거
     },
   },
-  /**
-   * eslintPluginPrettierRecommended는 eslint-plugin-prettier와 eslint-config-prettier의 권장 설정을 모두 포함
-   * 이 설정은 eslint-config-prettier를 자동으로 활성화하므로, eslint-config-prettier를 별도로 import하거나 설정할 필요가 없습니다.
-   * eslint-config-prettier: ESLint의 포매팅 관련 규칙을 비활성화하여 Prettier와 충돌하지 않도록 합니다.
-   * eslint-plugin-prettier: Prettier의 포매팅 규칙을 ESLint의 규칙으로 추가하여 ESLint가 포매팅 오류를 감지하도록 합니다.
-   */
-  eslintPluginPrettierRecommended,
+  {
+    files: ['**/*.{js,ts,jsx,tsx,mjs}'],
+    ignores: ['node_modules', 'dist'],
+    plugins: {
+      n: pluginN,
+    },
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
+      ecmaVersion: 2022,
+      sourceType: 'module',
+    },
+    rules: {
+      'n/prefer-node-protocol': 'error', // 모든 파일에서 node: 접두사 강제
+      'prettier/prettier': 'off', // prettier printWidth 룰과 충돌해서 off
+      curly: 'warn', // if (foo) foo++ 와 같은 구문 사용 시 warning. curly braces 필수.
+    },
+  },
 ]);

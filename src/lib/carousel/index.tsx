@@ -183,7 +183,9 @@ const CarouselRoot = ({
   // 슬라이드 이동을 위한 통합 함수
   const navigateSlides = useCallback(
     (target: number | 'next' | 'prev') => {
-      if (isTransitioning) return;
+      if (isTransitioning) {
+        return;
+      }
 
       setIsTransitioning(true);
 
@@ -340,7 +342,9 @@ const CarouselRoot = ({
 
   // auto mode일 때 자동 슬라이드 전환
   useEffect(() => {
-    if (mode !== 'auto' || totalItemLength <= 1) return;
+    if (mode !== 'auto' || totalItemLength <= 1) {
+      return;
+    }
 
     let startTime = Date.now();
     let animationId: number;
@@ -654,7 +658,9 @@ const CarouselProgressBar = ({ className, fillClassName }: CarouselProgressBarPr
 
   // auto mode에서 progress 계산
   useEffect(() => {
-    if (mode !== 'auto' || totalItemLength <= 1 || !progressRef.current) return;
+    if (mode !== 'auto' || totalItemLength <= 1 || !progressRef.current) {
+      return;
+    }
 
     const startTime = Date.now();
     let animationId: number;
