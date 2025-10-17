@@ -222,11 +222,18 @@ const CarouselRoot = ({
       }
 
       // 멀티 슬라이드: 기본적으로 slidesPerView 단위로 이동하지만, 남은 슬라이드 개수를 고려함
-      // e.g, totalSlide=10, slidesPerView=3, 남은 슬라이드 1개 -> 1개 슬라이드만큼만 이동
+      // e.g, totalSlide=10, slidesPerView=3, 남은 슬라이드 1개에서 next -> 1개 슬라이드만큼만 이동
       if (loop) {
         if (direction === 'next') {
-          const remainingSlides = totalItemLength - (currentSlideIndex - slidesPerView);
-          const actualStep = Math.min(slidesPerView, remainingSlides);
+          // 남은 슬라이드: 전체 - (현재 - 복제영역) - 한 페이지
+          const remainingSlidesLength =
+            totalItemLength -
+            ((currentSlideIndex - slidesPerView) % totalItemLength) -
+            slidesPerView;
+          const actualStep =
+            remainingSlidesLength > 0
+              ? Math.min(slidesPerView, remainingSlidesLength)
+              : slidesPerView;
           const newIndex = currentSlideIndex + actualStep;
           setCurrentSlideIndex(newIndex);
 
@@ -236,7 +243,12 @@ const CarouselRoot = ({
         }
 
         if (direction === 'prev') {
-          const actualStep = slidesPerView;
+          const remainingSlidesLength =
+            (currentSlideIndex - slidesPerView * 2 + totalItemLength) % totalItemLength;
+          const actualStep =
+            remainingSlidesLength > 0
+              ? Math.min(slidesPerView, remainingSlidesLength)
+              : slidesPerView;
           const newIndex = currentSlideIndex - actualStep;
           setCurrentSlideIndex(newIndex);
 
@@ -244,13 +256,14 @@ const CarouselRoot = ({
           const realActiveIndex = (newIndex - slidesPerView + totalItemLength) % totalItemLength;
           onSlideChange?.(getVisibleSlideIndices(realActiveIndex));
         }
+        return;
       }
 
       if (direction === 'next') {
         const maxIndex = totalItemLength - slidesPerView;
         if (currentSlideIndex < maxIndex) {
-          const remainingSlides = totalItemLength - currentSlideIndex;
-          const actualStep = Math.min(slidesPerView, remainingSlides - slidesPerView + 1);
+          const remainingSlidesLength = totalItemLength - currentSlideIndex;
+          const actualStep = Math.min(slidesPerView, remainingSlidesLength - slidesPerView + 1);
           const nextIndex = Math.min(currentSlideIndex + actualStep, maxIndex);
           setCurrentSlideIndex(nextIndex);
           onSlideChange?.(getVisibleSlideIndices(nextIndex));
@@ -285,7 +298,6 @@ const CarouselRoot = ({
   const handleTransitionEnd = useCallback(() => {
     if (loop && totalItemLength > 1) {
       if (slidesPerView > 1) {
-        // slidesPerView > 1일 때
         if (currentSlideIndex >= totalItemLength + slidesPerView) {
           // 끝 복제 영역에 도달하면 처음으로 점프
           setCurrentSlideIndex(slidesPerView);
@@ -294,7 +306,6 @@ const CarouselRoot = ({
           setCurrentSlideIndex(totalItemLength);
         }
       } else {
-        // slidesPerView === 1일 때
         if (currentSlideIndex >= totalItemLength + 1) {
           setCurrentSlideIndex(1);
         } else if (currentSlideIndex <= 0) {
