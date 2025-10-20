@@ -22,6 +22,7 @@ export default {
     }),
     new Dotenv({
       path: `./.env.${process.env.NODE_ENV}`, // 환경별 .env 파일 경로
+      systemvars: true, // GitHub Secrets 같은 시스템 환경 변수도 함께 로드
     }),
   ],
   module: {
