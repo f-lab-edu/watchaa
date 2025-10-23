@@ -213,7 +213,7 @@ const MovieDetail = () => {
 
   return (
     <div className="max-w-[1680px] mx-auto">
-      <AsyncBoundary>
+      <AsyncBoundary fallback={<div className="text-white">Error</div>}>
         <MovieInfo id={Number(id)} />
       </AsyncBoundary>
     </div>

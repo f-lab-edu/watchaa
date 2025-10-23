@@ -241,7 +241,7 @@ const PopularSearchKeywordsSection = () => {
         <Tabs mediaType={mediaType} setMediaType={setMediaType} />
         <AsyncBoundary
           pendingFallback={<PopularSearchKeywordsLoading />}
-          rejectedFallbackComponent={PopularSearchKeywordsError}
+          FallbackComponent={PopularSearchKeywordsError}
         >
           <PopularSearchKeywords mediaType={mediaType} />
         </AsyncBoundary>

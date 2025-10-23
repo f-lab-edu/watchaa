@@ -133,7 +133,7 @@ const PopularSearchResults = () => {
           <ResultLoading />
         </div>
       }
-      rejectedFallbackComponent={ResultError}
+      FallbackComponent={ResultError}
     >
       <Contents />
     </AsyncBoundary>

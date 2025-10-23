@@ -19,7 +19,7 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <AsyncBoundary rejectedFallbackComponent={RejectedFallback}>
+      <AsyncBoundary FallbackComponent={RejectedFallback}>
         <Outlet />
       </AsyncBoundary>
     </>
