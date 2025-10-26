@@ -1,7 +1,7 @@
 import DeleteIcon from '@/components/icons/delete';
 import { SearchIcon } from '@/components/icons/search';
 import { debounce } from 'radash';
-import { memo, useCallback, useMemo, useRef } from 'react';
+import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { LogoIcon } from './icons/logo';
@@ -10,12 +10,11 @@ type SearchFormData = {
   query: string;
 };
 
-const SearchBarButton = memo(() => {
+const SearchBarButton = () => {
   const navigate = useNavigate();
-  const handleSearchButtonClick = useCallback(() => {
+  const handleSearchButtonClick = () => {
     navigate('/search');
-  }, [navigate]);
-
+  };
   return (
     <button
       onClick={handleSearchButtonClick}
@@ -27,10 +26,9 @@ const SearchBarButton = memo(() => {
       </span>
     </button>
   );
-});
-SearchBarButton.displayName = 'SearchBarButton';
+};
 
-const SearchBarInput = memo(() => {
+const SearchBarInput = () => {
   const navigate = useNavigate();
   const deleteButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -40,38 +38,26 @@ const SearchBarInput = memo(() => {
     },
   });
 
-  const onSubmit = useCallback(
-    (data: SearchFormData) => {
-      const value = data.query.trim();
-      if (value) {
-        navigate(`/search?query=${encodeURIComponent(value)}`);
-      } else {
-        navigate('/search');
-      }
-    },
-    [navigate],
-  );
+  const onSubmit = (data: SearchFormData) => {
+    const value = data.query.trim();
+    if (value) {
+      navigate(`/search?query=${encodeURIComponent(value)}`);
+    } else {
+      navigate('/search');
+    }
+  };
 
-  const debouncedNavigate = useMemo(
-    () =>
-      debounce({ delay: 1000 }, (value: string) => {
-        onSubmit({ query: value });
-      }),
-    [onSubmit],
-  );
+  const debouncedNavigate = debounce({ delay: 1000 }, (value: string) => {
+    onSubmit({ query: value });
+  });
 
-  const handleInputChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value;
-
-      if (deleteButtonRef.current) {
-        deleteButtonRef.current.style.visibility = value.length > 0 ? 'visible' : 'hidden';
-      }
-
-      debouncedNavigate(value);
-    },
-    [debouncedNavigate],
-  );
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (deleteButtonRef.current) {
+      deleteButtonRef.current.style.visibility = value.length > 0 ? 'visible' : 'hidden';
+    }
+    debouncedNavigate(value);
+  };
 
   const inputFocusRef = useRef<HTMLInputElement>(null);
 
@@ -79,26 +65,21 @@ const SearchBarInput = memo(() => {
     onChange: handleInputChange,
   });
 
-  const combinedInputRef = useCallback(
-    (node: HTMLInputElement | null) => {
-      registerRef(node);
-      inputFocusRef.current = node;
-      if (node) {
-        node.focus();
-      }
-    },
-    [registerRef],
-  );
+  const combinedInputRef = (node: HTMLInputElement | null) => {
+    registerRef(node);
+    inputFocusRef.current = node;
+    if (node) {
+      node.focus();
+    }
+  };
 
-  const handleClearQuery = useCallback(() => {
+  const handleClearQuery = () => {
     setValue('query', '');
-
     if (deleteButtonRef.current) {
       deleteButtonRef.current.style.visibility = 'hidden';
     }
-
     debouncedNavigate('');
-  }, [setValue, debouncedNavigate]);
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-[286px]">
@@ -123,8 +104,7 @@ const SearchBarInput = memo(() => {
       </label>
     </form>
   );
-});
-SearchBarInput.displayName = 'SearchBarInput';
+};
 
 const Header = () => {
   const navigate = useNavigate();
@@ -140,4 +120,4 @@ const Header = () => {
   );
 };
 
-export default memo(Header);
+export default Header;
