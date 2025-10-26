@@ -88,14 +88,14 @@ const GenreSection = () => {
       <GenreCarouselTitle>영화 장르</GenreCarouselTitle>
       <AsyncBoundary
         pendingFallback={<GenreCarouselLoading />}
-        rejectedFallbackComponent={GenreCarouselError}
+        FallbackComponent={GenreCarouselError}
       >
         <GenreCarousel genre="movie" />
       </AsyncBoundary>
       <GenreCarouselTitle>시리즈 장르</GenreCarouselTitle>
       <AsyncBoundary
         pendingFallback={<GenreCarouselLoading />}
-        rejectedFallbackComponent={GenreCarouselError}
+        FallbackComponent={GenreCarouselError}
       >
         <GenreCarousel genre="tv" />
       </AsyncBoundary>

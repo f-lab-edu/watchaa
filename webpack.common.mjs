@@ -30,7 +30,11 @@ export default {
       {
         test: /\.(ts|tsx)$/, // .ts와 .tsx 파일을 대상으로
         use: ['babel-loader'], // .babelrc 파일의 설정을 자동으로 사용
-        exclude: /node_modules/,
+        include: [
+          path.resolve(__dirname, 'src'),
+          path.resolve(__dirname, 'node_modules/@tanstack/react-query'),
+          path.resolve(__dirname, 'node_modules/@tanstack/query-core'),
+        ],
       },
       /**
        * 정적 리소스 (이미지, 폰트 등) 처리

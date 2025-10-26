@@ -4,27 +4,17 @@ import { AsyncBoundaryProps } from '@/components/async-boundary/types';
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { ErrorBoundary } from 'react-error-boundary';
 
+/**
+ * @see https://www.npmjs.com/package/react-error-boundary
+ */
 const AsyncBoundary = ({
   children,
   pendingFallback = <></>,
-  rejectedFallback = <></>,
-  rejectedFallbackComponent,
-  rejectedFallbackRender,
   ...errorBoundaryProps
 }: AsyncBoundaryProps) => {
   const { reset } = useQueryErrorResetBoundary();
-
-  /**
-   * @see https://www.npmjs.com/package/react-error-boundary
-   */
-  const errorBoundaryFallbackProps = rejectedFallbackRender
-    ? { fallbackRender: rejectedFallbackRender }
-    : rejectedFallbackComponent
-      ? { FallbackComponent: rejectedFallbackComponent }
-      : { fallback: rejectedFallback };
-
   return (
-    <ErrorBoundary onReset={reset} {...errorBoundaryProps} {...errorBoundaryFallbackProps}>
+    <ErrorBoundary onReset={reset} {...errorBoundaryProps}>
       <Suspense fallback={pendingFallback}>{children}</Suspense>
     </ErrorBoundary>
   );

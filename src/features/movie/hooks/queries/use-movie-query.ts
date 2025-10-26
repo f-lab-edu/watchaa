@@ -2,7 +2,6 @@ import { movieQueryKeys } from '@/features/movie/hooks/queries/query-keys';
 import { MovieDetailRequestParams, MovieDetailResponse } from '@/features/movie/types';
 import { api } from '@/utils/api';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { produce } from 'immer';
 
 type MovieDetailFetcher = (params: MovieDetailRequestParams) => Promise<MovieDetailResponse>;
 
@@ -15,24 +14,29 @@ const transformCreditsData = (data: MovieDetailResponse) => {
     return data;
   }
 
-  return produce(data, (draft) => {
-    const directors = draft.credits!.crew.filter(
-      (member: { job: string }) => member.job === 'Director',
-    );
+  const credits = { ...data.credits };
+  const directors = credits.crew.filter((member) => member.job === 'Director');
 
-    if (directors.length > 0) {
-      const director = directors[0];
-      const directorAsCast = {
-        ...director,
-        castId: -1,
-        character: director.job,
-        order: -1,
-      };
-      draft.credits!.cast = [directorAsCast, ...draft.credits!.cast];
-    }
+  let cast = credits.cast ? [...credits.cast] : [];
+  if (directors.length > 0) {
+    const director = directors[0];
+    const directorAsCast = {
+      ...director,
+      castId: -1,
+      character: director.job,
+      order: -1,
+    };
+    cast = [directorAsCast, ...cast];
+  }
 
-    draft.credits!.crew = [];
-  });
+  return {
+    ...data,
+    credits: {
+      ...credits,
+      cast,
+      crew: [],
+    },
+  };
 };
 
 const useMovieQuery = ({ id, language, appendToResponse }: MovieDetailRequestParams) => {

@@ -95,7 +95,7 @@ const PersonSearchResults = () => {
           <ProfileLoading />
         </ListContainer>
       }
-      rejectedFallbackComponent={ResultError}
+      FallbackComponent={ResultError}
     >
       <Contents />
     </AsyncBoundary>

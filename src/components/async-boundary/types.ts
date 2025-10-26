@@ -1,14 +1,8 @@
-import { ComponentProps, ReactNode, Suspense } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
+import { ComponentProps, PropsWithChildren, Suspense } from 'react';
+import { ErrorBoundaryProps } from 'react-error-boundary';
 
-export type ErrorBoundaryProps = ComponentProps<typeof ErrorBoundary>;
-
-export type AsyncBoundaryProps = Readonly<
-  Omit<ErrorBoundaryProps, 'fallback' | 'FallbackComponent' | 'fallbackRender'> & {
-    children: ReactNode;
+export type AsyncBoundaryProps = PropsWithChildren<
+  ErrorBoundaryProps & {
     pendingFallback?: ComponentProps<typeof Suspense>['fallback'];
-    rejectedFallback?: ReactNode;
-    rejectedFallbackComponent?: ErrorBoundaryProps['FallbackComponent'];
-    rejectedFallbackRender?: ErrorBoundaryProps['fallbackRender'];
   }
 >;

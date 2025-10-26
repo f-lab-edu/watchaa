@@ -52,7 +52,7 @@ const Credits = () => {
         감독/출연
       </h1>
       <hr className="h-[1px] bg-[var(--color-divider)] mb-[18px]" />
-      <AsyncBoundary>
+      <AsyncBoundary fallback={<div className="text-white">Error</div>}>
         <CreditsContent id={Number(id)} />
       </AsyncBoundary>
     </div>

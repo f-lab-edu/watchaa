@@ -60,7 +60,7 @@ const People = () => {
         </h1>
       </section>
       <section className="px-[var(--page-side-margin)] mt-8">
-        <AsyncBoundary>
+        <AsyncBoundary fallback={<div className="text-white">Error</div>}>
           <CreditsContent personId={Number(params.id)} />
         </AsyncBoundary>
       </section>

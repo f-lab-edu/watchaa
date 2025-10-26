@@ -74,7 +74,7 @@ const Contents = ({ query }: PosterSearchResultsProps) => {
 
 const PosterSearchResults = ({ query }: PosterSearchResultsProps) => {
   return (
-    <AsyncBoundary>
+    <AsyncBoundary fallback={<div className="text-white">Error</div>}>
       <Contents query={query} />
     </AsyncBoundary>
   );
