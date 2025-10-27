@@ -22,6 +22,7 @@
     ],
     "@babel/preset-typescript"
   ],
+  "plugins": ["babel-plugin-react-compiler"],
   "env": {
     "development": {
       "plugins": ["react-refresh/babel"]
