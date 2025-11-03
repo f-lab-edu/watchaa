@@ -204,25 +204,13 @@ importers:
       '@watchaa/icons':
         specifier: workspace:*
         version: link:../icons
-      clsx:
-        specifier: ^2.1.1
-        version: 2.1.1
       react:
         specifier: ^19.1.1
         version: 19.2.0
-      react-dom:
-        specifier: ^19.1.1
-        version: 19.2.0(react@19.2.0)
-      tailwind-merge:
-        specifier: ^3.3.1
-        version: 3.3.1
     devDependencies:
       '@types/react':
         specifier: ^19.1.15
         version: 19.2.2
-      '@types/react-dom':
-        specifier: ^19.1.9
-        version: 19.2.2(@types/react@19.2.2)
 
   packages/icons:
     dependencies:
