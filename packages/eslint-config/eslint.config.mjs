@@ -1,5 +1,4 @@
 import pluginJs from '@eslint/js';
-import pluginTanstackQuery from '@tanstack/eslint-plugin-query';
 import pluginN from 'eslint-plugin-n';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import pluginReact from 'eslint-plugin-react';
@@ -9,7 +8,6 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export default defineConfig([
-  ...pluginTanstackQuery.configs['flat/recommended'],
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   /**
