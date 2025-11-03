@@ -8,6 +8,8 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      DIST_PATH: apps/watchaa/dist
     defaults:
       run:
         shell: bash
@@ -20,13 +22,18 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 22
-          cache: 'npm'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10.20.0
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Build Project
-        run: npm run build
+        run: pnpm build
         env:
           TMDB_API_ACCESS_TOKEN: ${{ secrets.TMDB_API_ACCESS_TOKEN }}
 
@@ -40,12 +47,12 @@ jobs:
       - name: Sync to S3
         run: |
           echo "📄 Uploading index.html (no-cache)"
-          aws s3 cp dist/index.html s3://${{ secrets.AWS_S3_PROJECT_BUCKET_NAME }}/index.html \
+          aws s3 cp ${{ env.DIST_PATH }}/index.html s3://${{ secrets.AWS_S3_PROJECT_BUCKET_NAME }}/index.html \
             --cache-control "no-cache, no-store, must-revalidate" \
             --content-type "text/html; charset=utf-8"
 
           echo "🎨 Uploading CSS files (1 year caching)"
-          aws s3 sync dist/ s3://${{ secrets.AWS_S3_PROJECT_BUCKET_NAME }} \
+          aws s3 sync ${{ env.DIST_PATH }}/ s3://${{ secrets.AWS_S3_PROJECT_BUCKET_NAME }} \
             --exclude "*" \
             --include "*.css" \
             --cache-control "public, max-age=31536000" \
@@ -54,7 +61,7 @@ jobs:
             --exact-timestamps
 
           echo "🗂️ Uploading JS files (1 year caching)"
-          aws s3 sync dist/ s3://${{ secrets.AWS_S3_PROJECT_BUCKET_NAME }} \
+          aws s3 sync ${{ env.DIST_PATH }}/ s3://${{ secrets.AWS_S3_PROJECT_BUCKET_NAME }} \
             --exclude "*" \
             --include "*.js" \
             --cache-control "public, max-age=31536000" \
@@ -63,7 +70,7 @@ jobs:
             --exact-timestamps
 
           echo "🔤 Uploading other static assets (1 year caching)"
-          aws s3 sync dist/ s3://${{ secrets.AWS_S3_PROJECT_BUCKET_NAME }} \
+          aws s3 sync ${{ env.DIST_PATH }}/ s3://${{ secrets.AWS_S3_PROJECT_BUCKET_NAME }} \
             --exclude "*.html" \
             --exclude "*.css" \
             --exclude "*.js" \
