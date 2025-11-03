@@ -7,9 +7,7 @@ import { FallbackProps } from 'react-error-boundary';
 import { Link } from 'react-router-dom';
 
 const GenreCarouselTitle = ({ children }: ComponentProps<'h2'>) => {
-  return (
-    <h2 className="text-white font-[var(--font-weight-bold)] text-xl px-10 mb-[5px]">{children}</h2>
-  );
+  return <h2 className="text-white font-bold text-xl px-10 mb-[5px]">{children}</h2>;
 };
 
 const GenreCarousel = ({ genre }: { genre: Genres }) => {
@@ -27,10 +25,10 @@ const GenreCarousel = ({ genre }: { genre: Genres }) => {
             >
               {/* 상단 gradient overlay */}
               <div className="absolute top-0 left-0 w-full h-1/2 pointer-events-none z-10">
-                <div className="size-full bg-gradient-to-b from-black/60 to-transparent" />
+                <div className="size-full bg-linear-to-b from-black/60 to-transparent" />
               </div>
               {/* 텍스트 + 그림자 */}
-              <div className="absolute top-2 left-2 px-2 py-1 rounded text-white font-[var(--font-weight-bold)] drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)] z-20">
+              <div className="absolute top-2 left-2 px-2 py-1 rounded text-white font-bold drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)] z-20">
                 {name}
               </div>
               <img
@@ -38,7 +36,7 @@ const GenreCarousel = ({ genre }: { genre: Genres }) => {
                 src={`https://picsum.photos/seed/${id}/400/300`}
                 alt={name}
                 loading="lazy"
-                className="size-full rounded bg-[var(--color-background70)] object-cover"
+                className="size-full rounded bg-(--color-background70) object-cover"
               />
             </Link>
           ))}
@@ -58,7 +56,7 @@ const GenreCarouselLoading = () => (
       {Array.from({ length: 4 }).map((_, idx) => (
         <div
           key={idx}
-          className="rounded overflow-hidden relative w-[400px] h-[300px] bg-[var(--color-background70)] animate-pulse"
+          className="rounded overflow-hidden relative w-[400px] h-[300px] bg-(--color-background70) animate-pulse"
         >
           <div className="absolute top-2 left-2 px-2 py-1 rounded bg-black/30 w-24 h-6" />
         </div>
@@ -69,12 +67,12 @@ const GenreCarouselLoading = () => (
 
 const GenreCarouselError = ({ error, resetErrorBoundary }: FallbackProps) => (
   <div className="flex flex-col items-center justify-center py-10">
-    <div className="text-[var(--color-error)] font-bold mb-2">
+    <div className="text-(--color-error) font-bold mb-2">
       장르 데이터를 불러오는 중 오류가 발생했습니다.
     </div>
-    <div className="text-xs text-[var(--color-tertiary-text)] mb-4">{error.message}</div>
+    <div className="text-xs text-(--color-tertiary-text) mb-4">{error.message}</div>
     <button
-      className="px-4 py-2 rounded bg-[var(--color-primary10)] text-white font-semibold"
+      className="px-4 py-2 rounded bg-(--color-primary10) text-white font-semibold"
       onClick={resetErrorBoundary}
     >
       다시 시도

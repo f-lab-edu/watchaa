@@ -21,13 +21,8 @@
     "format": "prettier --write .",
     "prepare": "husky install"
   },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "pnpm exec eslint",
-      "pnpm exec prettier --list-different"
-    ]
-  },
   "devDependencies": {
+    "eslint": "^9.36.0",
     "husky": "^9.0.0",
     "lint-staged": "^16.2.3",
     "prettier": "^3.6.2",

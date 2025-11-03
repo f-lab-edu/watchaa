@@ -28,15 +28,15 @@ const Tabs = () => {
           <li
             key={tab.domain}
             className={cn(
-              'py-[14px] px-5 border-b-2 border-b-transparent',
-              isActive && 'border-b-[var(--color-primary-text)]',
+              'py-3.5 px-5 border-b-2 border-b-transparent',
+              isActive && 'border-b-(--color-primary-text)',
             )}
           >
             <Link to={`${location.pathname}?${newSearchParams.toString()}`}>
               <span
                 className={cn(
-                  'text-[var(--color-disabled-text)]',
-                  isActive && 'text-[var(--color-primary-text)] text-[15px] leading-5',
+                  'text-(--color-disabled-text)',
+                  isActive && 'text-(--color-primary-text) text-[15px] leading-5',
                 )}
               >
                 {tab.name}
@@ -60,7 +60,7 @@ const InvalidAccess = () => {
   const navigate = useNavigate();
   return (
     <div className="flex flex-col items-center justify-center h-96 gap-2">
-      <p className="text-[var(--color-gray50)]">잘못된 접근입니다.</p>
+      <p className="text-(--color-gray50)">잘못된 접근입니다.</p>
       <Button priority="secondary" className="p-2" onClick={() => navigate(-1)}>
         뒤로 가기
       </Button>

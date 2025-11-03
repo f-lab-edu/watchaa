@@ -20,9 +20,9 @@ const Button = ({
       className={cn(
         'text-white rounded text-[15px]',
         {
-          'bg-[var(--color-primary10)] hover:bg-[var(--color-primary40)]': priority === 'primary',
-          'bg-[var(--color-opacity15)] hover:bg-[var(--color-opacity30)]': priority === 'secondary',
-          'bg-[var(--color-black-opacity30)] hover:bg-[var(--color-black-opacity10)]':
+          'bg-(--color-primary10) hover:bg-(--color-primary40)': priority === 'primary',
+          'bg-(--color-opacity15) hover:bg-(--color-opacity30)': priority === 'secondary',
+          'bg-(--color-black-opacity30) hover:bg-(--color-black-opacity10)':
             priority === 'tertiary',
         },
         className,

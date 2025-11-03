@@ -26,7 +26,7 @@ const PosterCarousel = ({ type, carouselTitle }: PosterCarouselProps) => {
 
   return (
     <div className="group px-10">
-      <h2 className="text-[var(--color-primary-text)] text-xl mb-[5px]">{carouselTitle}</h2>
+      <h2 className="text-(--color-primary-text) text-xl mb-[5px]">{carouselTitle}</h2>
       <Carousel.Root slidesPerView={8} spaceBetween={12} loop>
         <Carousel.Content>
           {movies.map((movie) => (
@@ -34,7 +34,7 @@ const PosterCarousel = ({ type, carouselTitle }: PosterCarouselProps) => {
               <PosterCard
                 title={movie.title}
                 imageUrl={`${TMDB_API_POSTER_BASE_URL}${movie.posterPath}`}
-                className="aspect-[2/3] hover:brightness-80"
+                className="aspect-2/3 hover:brightness-80"
               />
             </Link>
           ))}

@@ -35,7 +35,7 @@ const CreditsContent = ({ personId }: { personId: number }) => {
             <PosterCard
               title={title}
               imageUrl={`${TMDB_API_POSTER_BASE_URL}/${posterPath}`}
-              className="aspect-[2/3] hover:brightness-80"
+              className="aspect-2/3 hover:brightness-80"
             />
           </Link>
         </li>
@@ -54,12 +54,10 @@ const People = () => {
 
   return (
     <>
-      <section className="px-[var(--page-side-margin)] pt-[54px]">
-        <h1 className="text-white font-[var(--font-weight-bold)] text-[28px]">
-          {searchParams.get('name')}
-        </h1>
+      <section className="px-(--page-side-margin) pt-[54px]">
+        <h1 className="text-white font-bold text-[28px]">{searchParams.get('name')}</h1>
       </section>
-      <section className="px-[var(--page-side-margin)] mt-8">
+      <section className="px-(--page-side-margin) mt-8">
         <AsyncBoundary fallback={<div className="text-white">Error</div>}>
           <CreditsContent personId={Number(params.id)} />
         </AsyncBoundary>
