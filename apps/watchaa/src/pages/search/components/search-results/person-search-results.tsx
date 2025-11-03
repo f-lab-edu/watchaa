@@ -21,9 +21,9 @@ const ProfileLoading = () => {
     <>
       {[...Array(8)].map((_, index) => (
         <li key={index} className="max-size-[12.5%] size-full animate-pulse">
-          <div className="shrink-0 aspect-square bg-[var(--color-background30)] rounded-full" />
-          <div className="mt-2 h-4 bg-[var(--color-background30)] rounded-md" />
-          <div className="mt-1 h-3 bg-[var(--color-background30)] rounded-md w-3/4 mx-auto" />
+          <div className="shrink-0 aspect-square bg-(--color-background30) rounded-full" />
+          <div className="mt-2 h-4 bg-(--color-background30) rounded-md" />
+          <div className="mt-1 h-3 bg-(--color-background30) rounded-md w-3/4 mx-auto" />
         </li>
       ))}
     </>
@@ -63,7 +63,7 @@ const Contents = () => {
                   className="shrink-0 size-full aspect-square"
                 />
                 <div className="text-center">
-                  <Profile.Name className="text-white text-[15px] font-[var(--font-weight-medium)]">
+                  <Profile.Name className="text-white text-[15px] font-(--font-weight-medium)">
                     {result.name}
                   </Profile.Name>
                   {result.knownForDepartment && (

@@ -30,9 +30,9 @@ const StatItem = memo(
       <li className="flex flex-col">
         <div className="flex items-center h-11">
           {icon}
-          <span className="text-white text-4xl font-[var(--font-weight-bold)]">{value}</span>
+          <span className="text-white text-4xl font-bold">{value}</span>
         </div>
-        <div className="text-[var(--color-opacity70)] text-sm">{label}</div>
+        <div className="text-(--color-opacity70) text-sm">{label}</div>
       </li>
     );
   },
@@ -52,16 +52,16 @@ const MovieInfo = ({ id }: { id: number }) => {
         style={{
           backgroundImage: `url(${TMDB_API_POSTER_BASE_URL}/${data.backdropPath})`,
         }}
-        className="aspect-[1680/622] relative bg-cover pt-10 h-[622px]"
+        className="aspect-1680/622 relative bg-cover pt-10 h-[622px]"
       >
         {/* background image blur */}
         <div className="absolute inset-0 backdrop-blur-3xl brightness-50 size-full" />
         {/* hero area contents */}
         <div className="absolute gap-8 px-10 flex justify-between w-full h-[calc(100%-2.5rem)]">
           <section className="flex-1 flex flex-col gap-6">
-            <section className="flex flex-col gap-[10px]">
+            <section className="flex flex-col gap-2.5">
               <h1 className="text-white text-5xl h-[190px] items-end flex">{data.title}</h1>
-              <div className="flex gap-[6px] items-center">
+              <div className="flex gap-1.5 items-center">
                 <AgeIndicator age={data.adult ? 19 : 15} />
                 <div className="text-white">{new Date(data.releaseDate).getFullYear()}</div>
                 <div className="text-white">{'\u2022'}</div>
@@ -100,17 +100,17 @@ const MovieInfo = ({ id }: { id: number }) => {
               </ul>
             </section>
             <section className="flex flex-col gap-6">
-              <div className="flex items-center gap-[10px]">
+              <div className="flex items-center gap-2.5">
                 <Button className="px-4 h-10">감상하기</Button>
-                <Button priority="secondary" className="px-4 h-10 flex items-center gap-[6px]">
+                <Button priority="secondary" className="px-4 h-10 flex items-center gap-1.5">
                   <TvIcon className="fill-white size-4" />
-                  <span className="mb-[2px]">구매하기</span>
+                  <span className="mb-0.5">구매하기</span>
                 </Button>
                 <Button priority="secondary" className="px-4 h-10">
                   <GiftIcon className="fill-white size-4" />
                 </Button>
               </div>
-              <div className="flex gap-[10px] items-center">
+              <div className="flex gap-2.5 items-center">
                 {[
                   {
                     icon: <PlusIcon className="fill-white size-5" />,
@@ -132,7 +132,7 @@ const MovieInfo = ({ id }: { id: number }) => {
                   <Button
                     key={label}
                     priority="tertiary"
-                    className="py-[14px] h-[78px] flex justify-center items-center flex-col gap-2 flex-1 rounded-[6px] text-xs"
+                    className="py-3.5 h-[78px] flex justify-center items-center flex-col gap-2 flex-1 rounded-md text-xs"
                   >
                     {icon}
                     {label}
@@ -149,11 +149,11 @@ const MovieInfo = ({ id }: { id: number }) => {
             />
           </section>
           {/* 하단부 그라데이션 */}
-          <div className="absolute left-0 right-0 bottom-0 w-full h-[8%] bg-gradient-to-t from-black/90 to-transparent pointer-events-none" />
+          <div className="absolute left-0 right-0 bottom-0 w-full h-[8%] bg-linear-to-t from-black/90 to-transparent pointer-events-none" />
         </div>
       </div>
-      <section className="my-8 pl-[var(--page-side-margin)]">
-        <div className="flex items-start gap-[6px]">
+      <section className="my-8 pl-(--page-side-margin)">
+        <div className="flex items-start gap-1.5">
           <img
             src="https://an2-mars.amz.wtchn.net/assets/icon/message-b82841d4d764ea370bd5588d0c16bc52ab2138de010b7267c64fb307f8d68c71.png"
             alt="message"
@@ -165,13 +165,13 @@ const MovieInfo = ({ id }: { id: number }) => {
           </div>
         </div>
       </section>
-      <section className="px-[var(--page-side-margin)] mb-8">
+      <section className="px-(--page-side-margin) mb-8">
         <div className="mb-[5px] flex justify-between">
-          <div className="text-white text-xl font-[var(--font-weight-bold)]">감독/출연</div>
+          <div className="text-white text-xl font-bold">감독/출연</div>
           {data.credits?.cast.length && data.credits.cast.length > MAX_CREDITS_DISPLAY_COUNT && (
             <Link
               to={`/contents/${id}/credits`}
-              className="text-[var(--color-tertiary-text)] text-[15px]"
+              className="text-(--color-tertiary-text) text-[15px]"
             >
               더보기
             </Link>

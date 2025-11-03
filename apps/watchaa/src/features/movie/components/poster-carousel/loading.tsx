@@ -4,7 +4,7 @@ const PosterCarouselLoading = () => {
       {[...Array(8)].map((_, index) => (
         <li
           key={index}
-          className="size-full animate-pulse bg-[var(--color-background30)] aspect-2/3 rounded-md mb-2"
+          className="size-full animate-pulse bg-(--color-background30) aspect-2/3 rounded-md mb-2"
         />
       ))}
     </ul>

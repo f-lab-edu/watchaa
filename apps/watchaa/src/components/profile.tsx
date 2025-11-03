@@ -3,7 +3,7 @@ import { ComponentProps } from 'react';
 
 const Profile = ({ children, className, ...props }: ComponentProps<'div'>) => {
   return (
-    <div {...props} className={cn('flex items-center gap-[14px]', className)}>
+    <div {...props} className={cn('flex items-center gap-3.5', className)}>
       {children}
     </div>
   );
@@ -23,10 +23,7 @@ const ProfileImage = ({
       {...props}
       src={src}
       alt={alt}
-      className={cn(
-        'size-[62px] rounded-full object-cover bg-[var(--color-background30)]',
-        className,
-      )}
+      className={cn('size-[62px] rounded-full object-cover bg-(--color-background30)', className)}
     />
   );
 };
@@ -41,7 +38,7 @@ const ProfileName = ({ children, className, ...props }: ComponentProps<'div'>) =
 
 const ProfileRole = ({ children, className, ...props }: ComponentProps<'div'>) => {
   return (
-    <div {...props} className={cn('text-[var(--color-tertiary-text)] text-[13px]', className)}>
+    <div {...props} className={cn('text-(--color-tertiary-text) text-[13px]', className)}>
       {children}
     </div>
   );

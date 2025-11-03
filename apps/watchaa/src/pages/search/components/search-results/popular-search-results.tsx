@@ -20,7 +20,7 @@ type SearchListItemProps = {
 
 const SearchListItem = ({ title, date, posterPath, category }: SearchListItemProps) => {
   return (
-    <li className="flex items-center gap-[14px] py-2">
+    <li className="flex items-center gap-3.5 py-2">
       <PosterCard
         imageUrl={posterPath ? `${TMDB_API_POSTER_BASE_URL}/${posterPath}` : posterFallbackImage}
         title={title}
@@ -28,7 +28,7 @@ const SearchListItem = ({ title, date, posterPath, category }: SearchListItemPro
       />
       <div className="flex flex-col">
         <div className="text-white">{title}</div>
-        <div className="flex text-[var(--color-tertiary-text)] text-[13px] gap-1">
+        <div className="flex text-(--color-tertiary-text) text-[13px] gap-1">
           <div>{category}</div>
           <div>{'\u00B7'}</div>
           <div>{new Date(date).getFullYear()}</div>

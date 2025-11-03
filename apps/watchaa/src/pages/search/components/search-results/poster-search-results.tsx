@@ -54,7 +54,7 @@ const Contents = ({ query }: PosterSearchResultsProps) => {
                 <PosterCard
                   title={title}
                   imageUrl={`${TMDB_API_POSTER_BASE_URL}/${result.posterPath}`}
-                  className="aspect-[2/3] hover:brightness-80"
+                  className="aspect-2/3 hover:brightness-80"
                 />
               </Link>
             </li>

@@ -18,10 +18,10 @@ const SearchBarButton = () => {
   return (
     <button
       onClick={handleSearchButtonClick}
-      className="w-[286px] bg-[var(--color-background50)] flex items-center gap-2 py-2 px-3 rounded-lg"
+      className="w-[286px] bg-(--color-background50) flex items-center gap-2 py-2 px-3 rounded-lg"
     >
-      <SearchIcon className="fill-[var(--color-tertiary-text)] size-5" />
-      <span className="text-[var(--color-gray50)] text-[15px] text-left flex-1">
+      <SearchIcon className="fill-(--color-tertiary-text) size-5" />
+      <span className="text-(--color-gray50) text-[15px] text-left flex-1">
         콘텐츠, 태그, 인물, 리스트 검색
       </span>
     </button>
@@ -83,12 +83,12 @@ const SearchBarInput = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-[286px]">
-      <label className="bg-[var(--color-background50)] flex items-center gap-2 py-2 px-3 rounded-lg">
-        <SearchIcon className="fill-[var(--color-tertiary-text)] size-5 shrink-0" />
+      <label className="bg-(--color-background50) flex items-center gap-2 py-2 px-3 rounded-lg">
+        <SearchIcon className="fill-(--color-tertiary-text) size-5 shrink-0" />
         <input
           {...queryRegister}
           ref={combinedInputRef}
-          className="text-[var(--color-primary-text)] placeholder:text-[var(--color-gray50)] text-[15px] w-full outline-none bg-transparent caret-[var(--color-primary10)] "
+          className="text-(--color-primary-text) placeholder:text-(--color-gray50) text-[15px] w-full outline-none bg-transparent caret-(--color-primary10) "
           placeholder="콘텐츠, 태그, 인물, 리스트 검색"
           type="search"
           autoComplete="off"
@@ -99,7 +99,7 @@ const SearchBarInput = () => {
           onClick={handleClearQuery}
           className="invisible"
         >
-          <DeleteIcon className="fill-[var(--color-tertiary-text)] size-5" />
+          <DeleteIcon className="fill-(--color-tertiary-text) size-5" />
         </button>
       </label>
     </form>
@@ -111,7 +111,7 @@ const Header = () => {
   const location = useLocation();
 
   return (
-    <div className="px-10 py-3 h-[72px] flex justify-between items-center bg-[var(--color-background)]">
+    <div className="px-10 py-3 h-[72px] flex justify-between items-center bg-(--color-background)">
       <button onClick={() => navigate('/')}>
         <LogoIcon className="w-[88px] h-[26px]" />
       </button>
