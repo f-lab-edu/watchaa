@@ -44,6 +44,7 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/webpack-bundle-analyzer": "^4.7.0",
     "@watchaa/eslint-config": "workspace:*",
+    "@watchaa/typescript-config": "workspace:*",
     "babel-loader": "^10.0.0",
     "babel-plugin-react-compiler": "^1.0.0",
     "cross-env": "^10.0.0",

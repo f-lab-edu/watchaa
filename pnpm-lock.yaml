@@ -8,9 +8,6 @@ importers:
 
   .:
     devDependencies:
-      eslint:
-        specifier: ^9.36.0
-        version: 9.39.0(jiti@2.6.1)
       husky:
         specifier: ^9.0.0
         version: 9.1.7
@@ -111,6 +108,9 @@ importers:
       '@watchaa/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
+      '@watchaa/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
       babel-loader:
         specifier: ^10.0.0
         version: 10.0.0(@babel/core@7.28.5)(webpack@5.102.1)
@@ -193,6 +193,9 @@ importers:
       '@watchaa/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
+      '@watchaa/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
 
   packages/eslint-config:
     dependencies:
@@ -236,6 +239,11 @@ importers:
       '@watchaa/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
+      '@watchaa/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+
+  packages/typescript-config: {}
 
 packages:
 

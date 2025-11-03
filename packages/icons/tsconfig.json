@@ -1,8 +1,7 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "@watchaa/typescript-config",
   "compilerOptions": {
-    "target": "ES2015",
-    "lib": ["ES2015", "DOM"]
+    "composite": true
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["node_modules"]
