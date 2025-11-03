@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "module": "esnext",
+    "target": "es5",
+    "lib": ["ES2015", "DOM"],
+    "allowJs": true,
+    "jsx": "react-jsx", // JSX를 React 문법으로 변환
+    "esModuleInterop": true, // React를 ESM으로 import할 수 있게
+    "moduleResolution": "bundler", // 타입스크립트에게 코드가 다른 툴에 의해 번들링될 거라고 알려주고, 이에 맞게 규칙을 완화
+    "strictNullChecks": true, // null과 undefined에 대한 엄격한 검사 활성화
+    "skipLibCheck": true, // 라이브러리 파일의 타입 검사 건너뛰기
+    "forceConsistentCasingInFileNames": true, // 파일 이름의 대소문자 일관성 강제
+    "baseUrl": ".",
+    "paths": {
+      "@watchaa/web/*": ["apps/watchaa/src/*"]
+    }
+  }
+}
