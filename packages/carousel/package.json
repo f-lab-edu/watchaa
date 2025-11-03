@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@types/react": "^19.1.15",
-    "@watchaa/eslint-config": "workspace:*"
+    "@watchaa/eslint-config": "workspace:*",
+    "@watchaa/typescript-config": "workspace:*"
   }
 }
