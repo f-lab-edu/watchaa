@@ -4,6 +4,19 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'apps/watchaa/**'
+
+      # watchaa가 의존하는 공유 패키지들
+      - 'packages/**'
+
+      # 루트 설정 파일들 (모든 앱에 영향)
+      - 'babel.config.js'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+
+      # 현재 스크립트 자체 변경 시
+      - '.github/workflows/deploy-prod.yml'
 
 jobs:
   build-and-deploy:
