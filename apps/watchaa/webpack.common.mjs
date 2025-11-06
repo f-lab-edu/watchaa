@@ -38,12 +38,7 @@ export default {
             },
           },
         ],
-        include: [
-          path.resolve(__dirname, 'src'),
-          path.resolve(__dirname, '../../packages'),
-          path.resolve(__dirname, 'node_modules/@tanstack/react-query'),
-          path.resolve(__dirname, 'node_modules/@tanstack/query-core'),
-        ],
+        exclude: /node_modules\/(?!(@tanstack\/(react-query|query-core))\/).*/,
       },
       /**
        * 정적 리소스 (이미지, 폰트 등) 처리
