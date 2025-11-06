@@ -11,10 +11,8 @@
     "pnpm": ">=10.20.0"
   },
   "scripts": {
-    "dev": "pnpm --filter @watchaa/web start",
+    "web": "pnpm --filter @watchaa/web",
     "build": "pnpm -r build",
-    "build:preview": "pnpm --filter @watchaa/web build:preview",
-    "analyze": "pnpm --filter @watchaa/web analyze",
     "typecheck": "pnpm -r typecheck",
     "lint": "pnpm -r lint",
     "lint:fix": "pnpm -r lint:fix",
