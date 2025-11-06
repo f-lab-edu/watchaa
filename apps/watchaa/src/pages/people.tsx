@@ -1,10 +1,11 @@
+import { useMemo } from 'react';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
+
 import AsyncBoundary from '@/components/async-boundary';
 import PosterCard from '@/components/poster-card';
 import { TMDB_API_POSTER_BASE_URL } from '@/constants';
 import useMovieCreditsQuery from '@/features/people/hooks/queries/use-movie-credits-query';
 import { MovieCreditsResponse } from '@/features/people/types';
-import { useMemo } from 'react';
-import { Link, useParams, useSearchParams } from 'react-router-dom';
 
 const extractCreditData = (data: MovieCreditsResponse, type: 'cast' | 'crew') =>
   data[type].map(({ id, title, posterPath }) => ({ id, title, posterPath }));

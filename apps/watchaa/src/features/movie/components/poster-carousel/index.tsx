@@ -1,10 +1,11 @@
+import { Carousel } from '@watchaa/carousel';
+import { memo } from 'react';
+import { Link } from 'react-router-dom';
+
 import PosterCard from '@/components/poster-card';
 import { TMDB_API_POSTER_BASE_URL } from '@/constants';
 import { useMoviesInfiniteQuery } from '@/features/movie/hooks/queries/use-movies-infinite-query';
 import { MovieFetchType } from '@/features/movie/types';
-import { Carousel } from '@watchaa/carousel';
-import { memo } from 'react';
-import { Link } from 'react-router-dom';
 
 type PosterCarouselProps = {
   type: MovieFetchType;

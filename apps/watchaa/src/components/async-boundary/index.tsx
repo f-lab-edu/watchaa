@@ -1,8 +1,8 @@
+import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 
 import { AsyncBoundaryProps } from '@/components/async-boundary/types';
-import { useQueryErrorResetBoundary } from '@tanstack/react-query';
-import { ErrorBoundary } from 'react-error-boundary';
 
 /**
  * @see https://www.npmjs.com/package/react-error-boundary

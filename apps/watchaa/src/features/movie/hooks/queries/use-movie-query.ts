@@ -1,7 +1,8 @@
+import { useSuspenseQuery } from '@tanstack/react-query';
+
 import { movieQueryKeys } from '@/features/movie/hooks/queries/query-keys';
 import { MovieDetailRequestParams, MovieDetailResponse } from '@/features/movie/types';
 import { api } from '@/utils/api';
-import { useSuspenseQuery } from '@tanstack/react-query';
 
 type MovieDetailFetcher = (params: MovieDetailRequestParams) => Promise<MovieDetailResponse>;
 

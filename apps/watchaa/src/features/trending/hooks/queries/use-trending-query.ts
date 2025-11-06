@@ -1,7 +1,8 @@
+import { useSuspenseQuery } from '@tanstack/react-query';
+
 import { trendingQueryKeys } from '@/features/trending/hooks/queries/query-keys';
 import { TrendingRequestParams, TrendingResult } from '@/features/trending/types';
 import { api } from '@/utils/api';
-import { useSuspenseQuery } from '@tanstack/react-query';
 
 type TrendingFetcher = (params: TrendingRequestParams) => Promise<Paging<TrendingResult>>;
 
