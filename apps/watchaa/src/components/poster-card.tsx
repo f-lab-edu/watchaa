@@ -1,5 +1,6 @@
-import { cn } from '@/utils/cn';
 import { ComponentProps, memo } from 'react';
+
+import { cn } from '@/utils/cn';
 
 type PosterCardProps = ComponentProps<'div'> & {
   title: string;

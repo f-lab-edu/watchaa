@@ -1,8 +1,10 @@
-import AsyncBoundary from '@/components/async-boundary';
-import Button from '@/components/button';
 import { FallbackProps } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
+
 import Header from './header';
+
+import AsyncBoundary from '@/components/async-boundary';
+import Button from '@/components/button';
 
 const RejectedFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   return (

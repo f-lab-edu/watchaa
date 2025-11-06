@@ -1,9 +1,10 @@
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+
 import Button from '@/components/button';
 import PersonSearchResults from '@/pages/search/components/search-results/person-search-results';
 import PopularSearchResults from '@/pages/search/components/search-results/popular-search-results';
 import PosterSearchResults from '@/pages/search/components/search-results/poster-search-results';
 import { cn } from '@/utils/cn';
-import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
 const TAB_MENU = [
   { name: '인기', domain: 'all' },

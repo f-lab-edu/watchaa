@@ -1,9 +1,10 @@
-import { TMDB_API_POSTER_BASE_URL } from '@/constants';
-import { useMoviesInfiniteQuery } from '@/features/movie/hooks/queries/use-movies-infinite-query';
-import { cn } from '@/utils/cn';
 import { Carousel, useCarouselState } from '@watchaa/carousel';
 import { memo, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+
+import { TMDB_API_POSTER_BASE_URL } from '@/constants';
+import { useMoviesInfiniteQuery } from '@/features/movie/hooks/queries/use-movies-infinite-query';
+import { cn } from '@/utils/cn';
 
 const MovieSlide = ({
   movie,

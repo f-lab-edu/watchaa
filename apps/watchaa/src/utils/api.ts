@@ -1,5 +1,6 @@
-import { convertKeysToCamelCase, convertKeysToSnakeCase } from '@/utils/string';
 import axios, { AxiosError } from 'axios';
+
+import { convertKeysToCamelCase, convertKeysToSnakeCase } from '@/utils/string';
 
 declare module 'axios' {
   interface AxiosRequestConfig {

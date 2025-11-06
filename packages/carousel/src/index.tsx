@@ -3,10 +3,10 @@ import ChevronPrevIcon from '@watchaa/icons/chevron-prev';
 import {
   Children,
   ComponentProps,
-  createContext,
-  isValidElement,
   ReactElement,
   ReactNode,
+  createContext,
+  isValidElement,
   useCallback,
   useContext,
   useEffect,
@@ -14,6 +14,7 @@ import {
   useRef,
   useState,
 } from 'react';
+
 import './carousel.css';
 import { cn } from './utils';
 

@@ -1,5 +1,6 @@
-import notFoundImage from '@/assets/images/404.webp';
 import { useNavigate } from 'react-router-dom';
+
+import notFoundImage from '@/assets/images/404.webp';
 
 const NotFound = () => {
   const navigate = useNavigate();

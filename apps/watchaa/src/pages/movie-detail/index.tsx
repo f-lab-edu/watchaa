@@ -1,8 +1,3 @@
-import AsyncBoundary from '@/components/async-boundary';
-import Button from '@/components/button';
-import Profile from '@/components/profile';
-import { FALLBACK_AVATAR_IMAGE_URL, TMDB_API_POSTER_BASE_URL } from '@/constants';
-import useMovieQuery from '@/features/movie/hooks/queries/use-movie-query';
 import ChatIcon from '@watchaa/icons/chat';
 import GiftIcon from '@watchaa/icons/gift';
 import MoreIcon from '@watchaa/icons/more';
@@ -12,6 +7,12 @@ import StarOutlinedIcon from '@watchaa/icons/star-outlined';
 import TvIcon from '@watchaa/icons/tv';
 import { memo, ReactNode } from 'react';
 import { Link, useParams } from 'react-router-dom';
+
+import AsyncBoundary from '@/components/async-boundary';
+import Button from '@/components/button';
+import Profile from '@/components/profile';
+import { FALLBACK_AVATAR_IMAGE_URL, TMDB_API_POSTER_BASE_URL } from '@/constants';
+import useMovieQuery from '@/features/movie/hooks/queries/use-movie-query';
 
 const MAX_CREDITS_DISPLAY_COUNT = 9;
 

@@ -1,10 +1,11 @@
-import AsyncBoundary from '@/components/async-boundary';
-import useGenresQuery from '@/features/genre/hooks/quries/use-genres-query';
-import { Genres } from '@/features/genre/types';
 import { Carousel } from '@watchaa/carousel';
 import { ComponentProps } from 'react';
 import { FallbackProps } from 'react-error-boundary';
 import { Link } from 'react-router-dom';
+
+import AsyncBoundary from '@/components/async-boundary';
+import useGenresQuery from '@/features/genre/hooks/quries/use-genres-query';
+import { Genres } from '@/features/genre/types';
 
 const GenreCarouselTitle = ({ children }: ComponentProps<'h2'>) => {
   return <h2 className="text-white font-bold text-xl px-10 mb-[5px]">{children}</h2>;

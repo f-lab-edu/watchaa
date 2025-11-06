@@ -1,9 +1,10 @@
 import pluginJs from '@eslint/js';
+import { defineConfig } from 'eslint/config';
+import importPlugin from 'eslint-plugin-import';
 import pluginN from 'eslint-plugin-n';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import pluginReact from 'eslint-plugin-react';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
-import { defineConfig } from 'eslint/config';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
@@ -43,6 +44,7 @@ export default defineConfig([
     ignores: ['node_modules', 'dist'],
     plugins: {
       n: pluginN,
+      import: importPlugin,
     },
     languageOptions: {
       globals: {
@@ -56,6 +58,28 @@ export default defineConfig([
       'n/prefer-node-protocol': 'error', // 모든 파일에서 node: 접두사 강제
       'prettier/prettier': 'off', // prettier printWidth 룰과 충돌해서 off
       curly: 'warn', // if (foo) foo++ 와 같은 구문 사용 시 warning. curly braces 필수.
+      'import/order': [
+        'error',
+        {
+          groups: [
+            'builtin', // Node.js built-in modules
+            'external', // npm packages
+            'internal', // workspace packages
+            ['parent', 'sibling'], // ../, ./
+            'index', // ./index
+            'object', // import x from 'x' 형태가 아닌 import {x} from 'x' 형태
+            'type', // import type
+            'unknown', // 기타
+          ],
+          'newlines-between': 'always',
+          alphabetize: {
+            order: 'asc',
+            caseInsensitive: true,
+          },
+        },
+      ],
+      // sort-imports는 import/order와 충돌하므로 비활성화
+      'sort-imports': 'off',
     },
   },
 ]);

@@ -1,7 +1,8 @@
+import { useSuspenseQuery } from '@tanstack/react-query';
+
 import { genreKeys } from '@/features/genre/hooks/quries/query-keys';
 import { GenresRequestParams, GenresResponse } from '@/features/genre/types';
 import { api } from '@/utils/api';
-import { useSuspenseQuery } from '@tanstack/react-query';
 
 type GenresFetcher = (params: GenresRequestParams) => Promise<GenresResponse>;
 

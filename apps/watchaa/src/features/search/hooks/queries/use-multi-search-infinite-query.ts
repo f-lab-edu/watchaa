@@ -1,7 +1,8 @@
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
+
 import { searchQueryKeys } from '@/features/search/hooks/queries/query-keys';
 import { MultiSearchResult, SearchRequestParams } from '@/features/search/types';
 import { api } from '@/utils/api';
-import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 
 type MultiSearchFetcher = (params: SearchRequestParams) => Promise<Paging<MultiSearchResult>>;
 

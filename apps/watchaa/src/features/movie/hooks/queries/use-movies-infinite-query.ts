@@ -1,8 +1,10 @@
-import { Movie, MovieFetchType, MoviesRequestParams } from '@/features/movie/types';
-import { api } from '@/utils/api';
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { snake } from 'radash';
+
 import { movieQueryKeys } from './query-keys';
+
+import { Movie, MovieFetchType, MoviesRequestParams } from '@/features/movie/types';
+import { api } from '@/utils/api';
 
 type MoviesFetcher = (type: MovieFetchType, params: MoviesRequestParams) => Promise<Paging<Movie>>;
 
