@@ -61,12 +61,12 @@
   height: 8px;
   transition: background-color 0.3s ease;
   cursor: pointer;
-  border-radius: 9999px;
-  background-color: var(--color-disabled-text);
+  border-radius: 9999px !important;
+  background-color: var(--color-disabled-text) !important;
 }
 
 .carousel-pagination-dot-active {
-  background-color: white;
+  background-color: white !important;
 }
 
 /* Carousel Progress Bar */
