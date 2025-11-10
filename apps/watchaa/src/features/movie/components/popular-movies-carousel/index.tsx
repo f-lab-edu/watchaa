@@ -1,4 +1,4 @@
-import { Carousel, useCarouselState } from '@watchaa/carousel';
+import { Carousel, useCarouselState } from '@dnym/carousel';
 import { memo, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 

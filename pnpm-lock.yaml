@@ -26,12 +26,12 @@ importers:
 
   apps/watchaa:
     dependencies:
+      '@dnym/carousel':
+        specifier: workspace:*
+        version: link:../../packages/carousel
       '@tanstack/react-query':
         specifier: ^5.90.3
         version: 5.90.6(react@19.2.0)
-      '@watchaa/carousel':
-        specifier: workspace:*
-        version: link:../../packages/carousel
       '@watchaa/icons':
         specifier: workspace:*
         version: link:../../packages/icons
