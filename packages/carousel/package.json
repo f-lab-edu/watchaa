@@ -23,12 +23,10 @@
   ],
   "scripts": {
     "build": "rollup -c",
-    "dev": "rollup -c -w",
     "clean": "rm -rf dist .rollup.cache",
     "typecheck": "tsc --noEmit",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
-    "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix",
-    "prepublishOnly": "pnpm run build"
+    "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix"
   },
   "keywords": [
     "react",
@@ -36,7 +34,7 @@
     "slider",
     "component"
   ],
-  "author": "Your Name",
+  "author": "Moon-Sangho",
   "license": "MIT",
   "repository": {
     "type": "git",
