@@ -1,5 +1,3 @@
-import ChevronNextIcon from '@watchaa/icons/chevron-next';
-import ChevronPrevIcon from '@watchaa/icons/chevron-prev';
 import {
   Children,
   ComponentProps,
@@ -554,7 +552,21 @@ const CarouselPrevButton = ({
       aria-label="Previous slide"
       {...props}
     >
-      {children || <ChevronPrevIcon className="carousel-button-icon" />}
+      {children || (
+        <svg
+          className="carousel-button-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 10 40"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path
+            fillRule="evenodd"
+            d="M9.48.09a1 1 0 0 1 .44 1.3L1.99 20l7.93 18.61c.2.5 0 1.07-.44 1.3-.45.23-.99.01-1.2-.48L0 20 8.28.57c.21-.5.75-.7 1.2-.48"
+            clipRule="evenodd"
+          />
+        </svg>
+      )}
     </button>
   );
 };
@@ -582,7 +594,21 @@ const CarouselNextButton = ({
       aria-label="Next slide"
       {...props}
     >
-      {children || <ChevronNextIcon className="carousel-button-icon" />}
+      {children || (
+        <svg
+          className="carousel-button-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 10 40"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path
+            fillRule="evenodd"
+            d="M.52.09a1 1 0 0 0-.44 1.3L8.02 20 .08 38.62c-.2.49 0 1.07.44 1.29.46.23.99.01 1.2-.48L10 20 1.72.57C1.5.07.98-.13.52.09"
+            clipRule="evenodd"
+          />
+        </svg>
+      )}
     </button>
   );
 };

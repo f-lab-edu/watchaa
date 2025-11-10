@@ -1,4 +1,4 @@
-import { Carousel } from '@watchaa/carousel';
+import { Carousel } from '@dnym/carousel';
 import { ComponentProps } from 'react';
 import { FallbackProps } from 'react-error-boundary';
 import { Link } from 'react-router-dom';

@@ -1,25 +1,63 @@
 {
-  "name": "@watchaa/carousel",
+  "name": "@dnym/carousel",
   "version": "1.0.0",
-  "private": true,
+  "description": "A customizable React carousel component",
+  "private": false,
   "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./src/index.tsx"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs"
+    },
+    "./carousel.css": {
+      "development": "./src/carousel.css",
+      "default": "./dist/carousel.css"
+    }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
+    "build": "rollup -c",
+    "clean": "rm -rf dist .rollup.cache",
     "typecheck": "tsc --noEmit",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix"
   },
+  "keywords": [
+    "react",
+    "carousel",
+    "slider",
+    "component"
+  ],
+  "author": "Moon-Sangho",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/f-lab-edu/watchaa.git",
+    "directory": "packages/carousel"
+  },
   "peerDependencies": {
     "react": "^19.1.1"
   },
-  "dependencies": {
-    "@watchaa/icons": "workspace:*"
-  },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-typescript": "^12.3.0",
     "@types/react": "^19.1.15",
     "@watchaa/eslint-config": "workspace:*",
-    "@watchaa/typescript-config": "workspace:*"
+    "@watchaa/typescript-config": "workspace:*",
+    "react": "^19.0.0",
+    "rollup": "^4.53.1",
+    "rollup-plugin-dts": "^6.2.3",
+    "rollup-plugin-esbuild": "^6.2.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "tslib": "^2.8.1",
+    "typescript": "^5.7.2"
   }
 }

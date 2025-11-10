@@ -1,4 +1,4 @@
-import { Carousel } from '@watchaa/carousel';
+import { Carousel } from '@dnym/carousel';
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
 

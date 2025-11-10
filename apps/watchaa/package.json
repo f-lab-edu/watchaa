@@ -14,7 +14,7 @@
     "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' '*.mjs' --fix"
   },
   "dependencies": {
-    "@watchaa/carousel": "workspace:*",
+    "@dnym/carousel": "workspace:*",
     "@watchaa/icons": "workspace:*",
     "@tanstack/react-query": "^5.90.3",
     "axios": "^1.12.2",
