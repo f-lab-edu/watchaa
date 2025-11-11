@@ -1,3 +1,3 @@
-import baseConfig from '@watchaa/eslint-config';
+import baseConfig from '@movii/eslint-config';
 
 export default [...baseConfig];

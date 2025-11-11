@@ -1,4 +1,4 @@
-# @dnym/carousel
+# @movii/carousel
 
 [English](./README.md) | 한국어
 
@@ -19,11 +19,11 @@
 ## 설치
 
 ```bash
-npm install @dnym/carousel
+npm install @movii/carousel
 # or
-yarn add @dnym/carousel
+yarn add @movii/carousel
 # or
-pnpm add @dnym/carousel
+pnpm add @movii/carousel
 ```
 
 ### VS Code 설정 (권장)
@@ -41,8 +41,8 @@ Tailwind CSS IntelliSense를 사용하여 최상의 개발 경험을 위해 `.vs
 ## 기본 사용법
 
 ```tsx
-import { Carousel } from '@dnym/carousel';
-import '@dnym/carousel/carousel.css';
+import { Carousel } from '@movii/carousel';
+import '@movii/carousel/carousel.css';
 
 function App() {
   return (
@@ -241,7 +241,7 @@ function App() {
 자식 컴포넌트에서 캐러셀 상태에 접근합니다.
 
 ```tsx
-import { useCarouselState } from '@dnym/carousel';
+import { useCarouselState } from '@movii/carousel';
 
 function CustomComponent() {
   const {
@@ -265,7 +265,7 @@ function CustomComponent() {
 자식 컴포넌트에서 캐러셀 액션에 접근합니다.
 
 ```tsx
-import { useCarouselActions } from '@dnym/carousel';
+import { useCarouselActions } from '@movii/carousel';
 
 function CustomControls() {
   const { goToSlide, goToPrev, goToNext } = useCarouselActions();
@@ -285,7 +285,7 @@ function CustomControls() {
 이 패키지는 TypeScript로 작성되었으며 타입 정의를 포함합니다.
 
 ```tsx
-import type { CarouselRootProps } from '@dnym/carousel';
+import type { CarouselRootProps } from '@movii/carousel';
 
 const props: CarouselRootProps = {
   mode: 'auto',
@@ -311,4 +311,4 @@ MIT © [Moon-Sangho](https://github.com/Moon-Sangho)
 
 ## 저장소
 
-[https://github.com/f-lab-edu/watchaa](https://github.com/f-lab-edu/watchaa/tree/main/packages/carousel)
+[https://github.com/f-lab-edu/movii](https://github.com/f-lab-edu/movii/tree/main/packages/carousel)

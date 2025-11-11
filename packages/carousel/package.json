@@ -1,5 +1,5 @@
 {
-  "name": "@dnym/carousel",
+  "name": "@movii/carousel",
   "version": "1.0.0",
   "description": "A customizable React carousel component",
   "private": false,
@@ -40,7 +40,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/f-lab-edu/watchaa.git",
+    "url": "https://github.com/f-lab-edu/movii.git",
     "directory": "packages/carousel"
   },
   "peerDependencies": {
@@ -55,8 +55,8 @@
     "@tailwindcss/postcss": "^4.1.16",
     "@types/react": "^19.1.15",
     "@vitejs/plugin-react": "^5.1.0",
-    "@watchaa/eslint-config": "workspace:*",
-    "@watchaa/typescript-config": "workspace:*",
+    "@movii/eslint-config": "workspace:*",
+    "@movii/typescript-config": "workspace:*",
     "eslint-plugin-storybook": "10.0.6",
     "postcss-preset-env": "^10.4.0",
     "react": "^19.0.0",

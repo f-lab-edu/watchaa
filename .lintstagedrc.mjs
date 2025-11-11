@@ -3,7 +3,7 @@ import { dirname, relative } from 'node:path';
 /**
  * 파일 경로에서 패키지 디렉토리 경로를 찾습니다.
  * @param {string} filePath - 파일의 절대 경로
- * @returns {string | null} 패키지 디렉토리 경로 (예: 'apps/watchaa') 또는 null
+ * @returns {string | null} 패키지 디렉토리 경로 (예: 'apps/movii') 또는 null
  */
 const findPackageDir = (filePath) => {
   const parts = dirname(filePath).split('/');

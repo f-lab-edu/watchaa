@@ -1,4 +1,4 @@
-import { Carousel, useCarouselState } from '@dnym/carousel';
+import { Carousel, useCarouselState } from '@movii/carousel';
 import { memo, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 
