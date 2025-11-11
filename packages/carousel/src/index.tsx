@@ -1,6 +1,7 @@
 import {
   Children,
   ComponentProps,
+  PropsWithChildren,
   ReactElement,
   ReactNode,
   createContext,
@@ -20,37 +21,42 @@ type CarouselMode = 'auto' | 'manual';
 
 type ConfigurableCarouselProps = {
   /**
-   * 자동 슬라이드 전환 모드 여부 (default: 'manual')
+   * Slide transition mode
+   * @default 'manual'
    */
   mode: CarouselMode;
   /**
-   * 무한 루프 여부 (default: false)
+   * Enable infinite loop (automatically set to true when mode is "auto")
+   * @default false
    */
   loop: boolean;
   /**
-   * 자동 슬라이드 전환 간격 (밀리초, default: 5000), auto mode에서만 유효한 값
+   * Auto slide interval in milliseconds (only effective in auto mode)
+   * @default 5000
    */
   autoInterval: number;
   /**
-   * 초기 슬라이드 인덱스 (default: 0)
+   * Initial slide index
+   * @default 0
    */
   initialIndex: number;
   /**
-   * 슬라이드 변경 시 호출되는 콜백 함수 (활성 슬라이드 인덱스 전달)
+   * Callback function called when slide changes (receives active slide index)
    */
   onSlideChange: (index: number | number[]) => void;
   /**
-   * 한 페이지에 보이는 슬라이드 개수 (default: 1)
-   * 이 값이 1보다 크면 ProgressBar와 Pagination 컴포넌트 사용 불가
+   * Number of slides visible per view (ProgressBar and Pagination unavailable when > 1)
+   * @default 1
    */
   slidesPerView: number;
   /**
-   * spaceBetween: 슬라이드 간 간격 (px)
+   * Space between slides in pixels (only effective when slidesPerView > 1)
+   * @default 0
    */
   spaceBetween: number;
 };
 
-type CarouselRootProps = ComponentProps<'div'> & Partial<ConfigurableCarouselProps>;
+type CarouselRootProps = PropsWithChildren<Partial<ConfigurableCarouselProps>>;
 
 type CarouselContentProps = ComponentProps<'div'> & {
   children: ReactNode;
@@ -126,9 +132,11 @@ const CarouselRoot = ({
   slidesPerView = 1,
   spaceBetween = 0,
   children,
-  className,
   ...props
 }: CarouselRootProps) => {
+  // auto mode일 때는 자동으로 loop를 true로 설정
+  const effectiveLoop = mode === 'auto' ? true : loop;
+
   const totalItemLength = useMemo(() => {
     let count = 0;
     Children.forEach(children, (child) => {
@@ -145,17 +153,17 @@ const CarouselRoot = ({
   const [currentSlideIndex, setCurrentSlideIndex] = useState(() => {
     if (slidesPerView > 1) {
       // slidesPerView > 1일 때는 loop 여부와 관계없이 initialIndex 사용
-      return loop ? initialIndex + slidesPerView : initialIndex;
+      return effectiveLoop ? initialIndex + slidesPerView : initialIndex;
     } else {
       // slidesPerView === 1일 때는 기존 로직
-      return loop ? initialIndex + 1 : initialIndex;
+      return effectiveLoop ? initialIndex + 1 : initialIndex;
     }
   });
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   // 활성 슬라이드 인덱스 계산 (UI 표시용)
   const activeSlideIndex = useMemo(() => {
-    if (!loop || totalItemLength <= 1) {
+    if (!effectiveLoop || totalItemLength <= 1) {
       return currentSlideIndex;
     }
 
@@ -165,7 +173,7 @@ const CarouselRoot = ({
     } else {
       return (currentSlideIndex - 1 + totalItemLength) % totalItemLength;
     }
-  }, [currentSlideIndex, loop, totalItemLength, slidesPerView]);
+  }, [currentSlideIndex, effectiveLoop, totalItemLength, slidesPerView]);
 
   // 현재 보이는 슬라이드들의 인덱스를 계산하는 함수
   const getVisibleSlideIndices = useCallback(
@@ -196,7 +204,7 @@ const CarouselRoot = ({
           return;
         }
 
-        const targetIndex = loop && slidesPerView === 1 ? target + 1 : target;
+        const targetIndex = effectiveLoop && slidesPerView === 1 ? target + 1 : target;
         setCurrentSlideIndex(targetIndex);
         onSlideChange?.(getVisibleSlideIndices(target));
         return;
@@ -223,7 +231,7 @@ const CarouselRoot = ({
 
       // 멀티 슬라이드: 기본적으로 slidesPerView 단위로 이동하지만, 남은 슬라이드 개수를 고려함
       // e.g, totalSlide=10, slidesPerView=3, 남은 슬라이드 1개에서 next -> 1개 슬라이드만큼만 이동
-      if (loop) {
+      if (effectiveLoop) {
         if (direction === 'next') {
           // 남은 슬라이드: 전체 - (현재 - 복제영역) - 한 페이지
           const remainingSlidesLength =
@@ -284,7 +292,7 @@ const CarouselRoot = ({
       activeSlideIndex,
       totalItemLength,
       onSlideChange,
-      loop,
+      effectiveLoop,
       currentSlideIndex,
       getVisibleSlideIndices,
     ],
@@ -296,7 +304,7 @@ const CarouselRoot = ({
 
   // 유저에게는 복제 영역이 보이지 않도록, 복제 영역에 도달하면 transition 없이 원래 index로 점프
   const handleTransitionEnd = useCallback(() => {
-    if (loop && totalItemLength > 1) {
+    if (effectiveLoop && totalItemLength > 1) {
       if (slidesPerView > 1) {
         if (currentSlideIndex >= totalItemLength + slidesPerView) {
           // 끝 복제 영역에 도달하면 처음으로 점프
@@ -314,7 +322,7 @@ const CarouselRoot = ({
       }
     }
     setIsTransitioning(false);
-  }, [loop, totalItemLength, currentSlideIndex, slidesPerView]);
+  }, [effectiveLoop, totalItemLength, currentSlideIndex, slidesPerView]);
 
   const actions: CarouselActions = useMemo(
     () => ({
@@ -332,7 +340,7 @@ const CarouselRoot = ({
       activeSlideIndex,
       totalItemLength,
       mode,
-      loop,
+      loop: effectiveLoop,
       autoInterval,
       isTransitioning,
       slidesPerView,
@@ -343,7 +351,7 @@ const CarouselRoot = ({
       activeSlideIndex,
       totalItemLength,
       mode,
-      loop,
+      effectiveLoop,
       autoInterval,
       isTransitioning,
       slidesPerView,
@@ -384,7 +392,7 @@ const CarouselRoot = ({
     totalItemLength,
     autoInterval,
     onSlideChange,
-    loop,
+    effectiveLoop,
     activeSlideIndex,
     getVisibleSlideIndices,
   ]);
@@ -392,7 +400,7 @@ const CarouselRoot = ({
   return (
     <CarouselStateContext.Provider value={state}>
       <CarouselActionsContext.Provider value={actions}>
-        <div {...props} className={cn('carousel-root', className)}>
+        <div {...props} className="carousel-root">
           {children}
         </div>
       </CarouselActionsContext.Provider>

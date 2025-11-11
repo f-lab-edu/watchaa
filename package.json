@@ -12,6 +12,7 @@
   },
   "scripts": {
     "web": "pnpm --filter @watchaa/web",
+    "carousel": "pnpm --filter @dnym/carousel",
     "build": "pnpm -r build",
     "typecheck": "pnpm -r typecheck",
     "lint": "pnpm -r lint",

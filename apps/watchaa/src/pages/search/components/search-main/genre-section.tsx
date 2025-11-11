@@ -15,7 +15,7 @@ const GenreCarousel = ({ genre }: { genre: Genres }) => {
   const { data } = useGenresQuery({ genre, language: 'ko' });
   return (
     <div className="px-10 pb-8 group">
-      <Carousel.Root slidesPerView={4} spaceBetween={12} loop className="relative">
+      <Carousel.Root slidesPerView={4} spaceBetween={12} loop>
         <Carousel.Content>
           {data?.genres.map(({ id, name }) => (
             <Link
