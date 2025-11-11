@@ -26,7 +26,9 @@
     "clean": "rm -rf dist .rollup.cache",
     "typecheck": "tsc --noEmit",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
-    "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix"
+    "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "keywords": [
     "react",
@@ -48,16 +50,25 @@
     "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-typescript": "^12.3.0",
+    "@storybook/addon-docs": "^10.0.6",
+    "@storybook/react-vite": "^10.0.6",
+    "@tailwindcss/postcss": "^4.1.16",
     "@types/react": "^19.1.15",
+    "@vitejs/plugin-react": "^5.1.0",
     "@watchaa/eslint-config": "workspace:*",
     "@watchaa/typescript-config": "workspace:*",
+    "eslint-plugin-storybook": "10.0.6",
+    "postcss-preset-env": "^10.4.0",
     "react": "^19.0.0",
     "rollup": "^4.53.1",
     "rollup-plugin-dts": "^6.2.3",
     "rollup-plugin-esbuild": "^6.2.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
+    "storybook": "^10.0.6",
+    "tailwindcss": "^4.1.16",
     "tslib": "^2.8.1",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "vite": "^5.4.21"
   }
 }

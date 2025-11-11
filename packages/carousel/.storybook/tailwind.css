@@ -1,0 +1,83 @@
+@import 'tailwindcss/theme';
+@import 'tailwindcss/utilities';
+
+/* .tailwind-scope 안에서만 Tailwind preflight(reset) 적용 */
+.tailwind-scope *,
+.tailwind-scope *::before,
+.tailwind-scope *::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: currentColor;
+}
+
+.tailwind-scope img,
+.tailwind-scope svg,
+.tailwind-scope video,
+.tailwind-scope canvas,
+.tailwind-scope audio,
+.tailwind-scope iframe,
+.tailwind-scope embed,
+.tailwind-scope object {
+  display: block;
+  vertical-align: middle;
+}
+
+.tailwind-scope img,
+.tailwind-scope video {
+  max-width: 100%;
+  height: auto;
+}
+
+.tailwind-scope button:not(.carousel-pagination-dot),
+.tailwind-scope [type='button']:not(.carousel-pagination-dot),
+.tailwind-scope [type='reset']:not(.carousel-pagination-dot),
+.tailwind-scope [type='submit']:not(.carousel-pagination-dot) {
+  -webkit-appearance: button;
+  background-color: transparent;
+  background-image: none;
+}
+
+.tailwind-scope button,
+.tailwind-scope input,
+.tailwind-scope optgroup,
+.tailwind-scope select,
+.tailwind-scope textarea {
+  font-family: inherit;
+  font-size: 100%;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+.tailwind-scope h1,
+.tailwind-scope h2,
+.tailwind-scope h3,
+.tailwind-scope h4,
+.tailwind-scope h5,
+.tailwind-scope h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.tailwind-scope a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.tailwind-scope ul,
+.tailwind-scope ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tailwind-scope p,
+.tailwind-scope blockquote,
+.tailwind-scope dl,
+.tailwind-scope dd,
+.tailwind-scope figure {
+  margin: 0;
+}
