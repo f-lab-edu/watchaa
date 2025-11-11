@@ -1,6 +1,6 @@
 {
-  "name": "@movii/carousel",
-  "version": "1.0.0",
+  "name": "movii-carousel",
+  "version": "1.0.2",
   "description": "A customizable React carousel component",
   "private": false,
   "type": "module",
@@ -13,10 +13,7 @@
       "import": "./dist/index.esm.js",
       "require": "./dist/index.cjs"
     },
-    "./carousel.css": {
-      "development": "./src/carousel.css",
-      "default": "./dist/carousel.css"
-    }
+    "./carousel.css": "./dist/carousel.css"
   },
   "files": [
     "dist"

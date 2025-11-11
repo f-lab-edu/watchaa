@@ -1,4 +1,4 @@
-# @movii/carousel
+# movii-carousel
 
 [한국어](./README.ko.md) | English
 
@@ -19,11 +19,11 @@ A customizable, lightweight React carousel component with support for single and
 ## Installation
 
 ```bash
-npm install @movii/carousel
+npm install movii-carousel
 # or
-yarn add @movii/carousel
+yarn add movii-carousel
 # or
-pnpm add @movii/carousel
+pnpm add movii-carousel
 ```
 
 ### VS Code Setup (Recommended)
@@ -41,8 +41,8 @@ This enables Tailwind CSS autocomplete for all class-related props (e.g., `class
 ## Basic Usage
 
 ```tsx
-import { Carousel } from '@movii/carousel';
-import '@movii/carousel/carousel.css';
+import { Carousel } from 'movii-carousel';
+import 'movii-carousel/carousel.css';
 
 function App() {
   return (
@@ -241,7 +241,7 @@ The carousel comes with minimal default styles. You can customize it using:
 Access carousel state from child components.
 
 ```tsx
-import { useCarouselState } from '@movii/carousel';
+import { useCarouselState } from 'movii-carousel';
 
 function CustomComponent() {
   const {
@@ -265,7 +265,7 @@ function CustomComponent() {
 Access carousel actions from child components.
 
 ```tsx
-import { useCarouselActions } from '@movii/carousel';
+import { useCarouselActions } from 'movii-carousel';
 
 function CustomControls() {
   const { goToSlide, goToPrev, goToNext } = useCarouselActions();
@@ -285,7 +285,7 @@ function CustomControls() {
 This package is written in TypeScript and includes type definitions.
 
 ```tsx
-import type { CarouselRootProps } from '@movii/carousel';
+import type { CarouselRootProps } from 'movii-carousel';
 
 const props: CarouselRootProps = {
   mode: 'auto',
