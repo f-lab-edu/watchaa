@@ -17,7 +17,7 @@
     "typecheck": "pnpm -r typecheck",
     "lint": "pnpm -r lint",
     "lint:fix": "pnpm -r lint:fix",
-    "format": "prettier --write .",
+    "format": "pnpm -r format",
     "prepare": "husky install"
   },
   "devDependencies": {

@@ -4,6 +4,7 @@
   "description": "A customizable React carousel component",
   "private": false,
   "type": "module",
+  "prettier": "@movii/prettier-config",
   "main": "./dist/index.cjs",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
@@ -24,6 +25,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix",
+    "format": "prettier --write .",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -53,6 +55,7 @@
     "@types/react": "^19.1.15",
     "@vitejs/plugin-react": "^5.1.0",
     "@movii/eslint-config": "workspace:*",
+    "@movii/prettier-config": "workspace:*",
     "@movii/typescript-config": "workspace:*",
     "eslint-plugin-storybook": "10.0.6",
     "postcss-preset-env": "^10.4.0",

@@ -1,0 +1,16 @@
+{
+  "name": "@movii/prettier-config",
+  "version": "1.0.0",
+  "description": "Shared Prettier configuration for Movii projects",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "prettier",
+    "config",
+    "movii"
+  ],
+  "author": "Moon-Sangho",
+  "license": "ISC"
+}

@@ -26,9 +26,6 @@ importers:
 
   apps/movii:
     dependencies:
-      '@movii/carousel':
-        specifier: workspace:*
-        version: link:../../packages/carousel
       '@movii/icons':
         specifier: workspace:*
         version: link:../../packages/icons
@@ -41,6 +38,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      movii-carousel:
+        specifier: workspace:*
+        version: link:../../packages/carousel
       radash:
         specifier: ^12.1.1
         version: 12.1.1
@@ -81,6 +81,9 @@ importers:
       '@movii/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
+      '@movii/prettier-config':
+        specifier: workspace:*
+        version: link:../../packages/prettier-config
       '@movii/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
@@ -186,6 +189,9 @@ importers:
       '@movii/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
+      '@movii/prettier-config':
+        specifier: workspace:*
+        version: link:../prettier-config
       '@movii/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
@@ -301,6 +307,8 @@ importers:
       '@types/react':
         specifier: ^19.1.15
         version: 19.2.2
+
+  packages/prettier-config: {}
 
   packages/typescript-config: {}
 
