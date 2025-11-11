@@ -1,13 +1,13 @@
-name: Deploy Watchaa to Production
+name: Deploy Movii to Production
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'apps/watchaa/**'
+      - 'apps/movii/**'
 
-      # watchaa가 의존하는 공유 패키지들
+      # movii가 의존하는 공유 패키지들
       - 'packages/**'
 
       # 루트 설정 파일들 (모든 앱에 영향)
@@ -22,7 +22,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     env:
-      DIST_PATH: apps/watchaa/dist
+      DIST_PATH: apps/movii/dist
     defaults:
       run:
         shell: bash

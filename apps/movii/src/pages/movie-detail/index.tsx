@@ -1,10 +1,10 @@
-import ChatIcon from '@watchaa/icons/chat';
-import GiftIcon from '@watchaa/icons/gift';
-import MoreIcon from '@watchaa/icons/more';
-import PlusIcon from '@watchaa/icons/plus';
-import StarIcon from '@watchaa/icons/star';
-import StarOutlinedIcon from '@watchaa/icons/star-outlined';
-import TvIcon from '@watchaa/icons/tv';
+import ChatIcon from '@movii/icons/chat';
+import GiftIcon from '@movii/icons/gift';
+import MoreIcon from '@movii/icons/more';
+import PlusIcon from '@movii/icons/plus';
+import StarIcon from '@movii/icons/star';
+import StarOutlinedIcon from '@movii/icons/star-outlined';
+import TvIcon from '@movii/icons/tv';
 import { memo, ReactNode } from 'react';
 import { Link, useParams } from 'react-router-dom';
 

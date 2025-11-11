@@ -1,6 +1,6 @@
-import DeleteIcon from '@watchaa/icons/delete';
-import { LogoIcon } from '@watchaa/icons/logo';
-import { SearchIcon } from '@watchaa/icons/search';
+import DeleteIcon from '@movii/icons/delete';
+import { LogoIcon } from '@movii/icons/logo';
+import { SearchIcon } from '@movii/icons/search';
 import { debounce } from 'radash';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';

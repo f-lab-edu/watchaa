@@ -1,6 +1,6 @@
-# @watchaa/eslint-config
+# @movii/eslint-config
 
-Shared ESLint configuration for Watchaa monorepo projects.
+Shared ESLint configuration for Movii monorepo projects.
 
 ## 사용 방법
 
@@ -11,7 +11,7 @@ Shared ESLint configuration for Watchaa monorepo projects.
 ```json
 {
   "devDependencies": {
-    "@watchaa/eslint-config": "workspace:*"
+    "@movii/eslint-config": "workspace:*"
   }
 }
 ```
@@ -21,7 +21,7 @@ Shared ESLint configuration for Watchaa monorepo projects.
 프로젝트 루트에 `eslint.config.mjs` 파일 생성:
 
 ```js
-import baseConfig from '@watchaa/eslint-config';
+import baseConfig from '@movii/eslint-config';
 import { defineConfig } from 'eslint/config';
 
 export default defineConfig([
@@ -39,14 +39,11 @@ pnpm add -D @tanstack/eslint-plugin-query
 ```
 
 ```js
-import baseConfig from '@watchaa/eslint-config';
+import baseConfig from '@movii/eslint-config';
 import pluginTanstackQuery from '@tanstack/eslint-plugin-query';
 import { defineConfig } from 'eslint/config';
 
-export default defineConfig([
-  ...pluginTanstackQuery.configs['flat/recommended'],
-  ...baseConfig,
-]);
+export default defineConfig([...pluginTanstackQuery.configs['flat/recommended'], ...baseConfig]);
 ```
 
 ## 포함된 규칙

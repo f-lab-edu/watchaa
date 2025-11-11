@@ -24,17 +24,17 @@ importers:
         specifier: ^5.9.2
         version: 5.9.3
 
-  apps/watchaa:
+  apps/movii:
     dependencies:
-      '@dnym/carousel':
+      '@movii/carousel':
         specifier: workspace:*
         version: link:../../packages/carousel
+      '@movii/icons':
+        specifier: workspace:*
+        version: link:../../packages/icons
       '@tanstack/react-query':
         specifier: ^5.90.3
         version: 5.90.6(react@19.2.0)
-      '@watchaa/icons':
-        specifier: workspace:*
-        version: link:../../packages/icons
       axios:
         specifier: ^1.12.2
         version: 1.13.1
@@ -78,6 +78,12 @@ importers:
       '@babel/preset-typescript':
         specifier: ^7.27.1
         version: 7.28.5(@babel/core@7.28.5)
+      '@movii/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config
+      '@movii/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
       '@pmmmwh/react-refresh-webpack-plugin':
         specifier: ^0.6.1
         version: 0.6.1(react-refresh@0.17.0)(webpack-dev-server@5.2.2)(webpack@5.102.1)
@@ -108,12 +114,6 @@ importers:
       '@types/webpack-bundle-analyzer':
         specifier: ^4.7.0
         version: 4.7.0(webpack-cli@6.0.1)
-      '@watchaa/eslint-config':
-        specifier: workspace:*
-        version: link:../../packages/eslint-config
-      '@watchaa/typescript-config':
-        specifier: workspace:*
-        version: link:../../packages/typescript-config
       babel-loader:
         specifier: ^10.0.0
         version: 10.0.0(@babel/core@7.28.5)(webpack@5.102.1)
@@ -183,6 +183,12 @@ importers:
 
   packages/carousel:
     devDependencies:
+      '@movii/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@movii/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
       '@rollup/plugin-commonjs':
         specifier: ^29.0.0
         version: 29.0.0(rollup@4.53.1)
@@ -207,12 +213,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^5.1.0
         version: 5.1.0(vite@5.4.21(@types/node@24.9.2)(lightningcss@1.30.2)(terser@5.44.0))
-      '@watchaa/eslint-config':
-        specifier: workspace:*
-        version: link:../eslint-config
-      '@watchaa/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
       eslint-plugin-storybook:
         specifier: 10.0.6
         version: 10.0.6(eslint@9.39.0(jiti@2.6.1))(storybook@10.0.6(@testing-library/dom@10.4.0)(prettier@3.6.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(vite@5.4.21(@types/node@24.9.2)(lightningcss@1.30.2)(terser@5.44.0)))(typescript@5.9.3)
@@ -292,15 +292,15 @@ importers:
         specifier: ^19.1.1
         version: 19.2.0
     devDependencies:
+      '@movii/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@movii/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
       '@types/react':
         specifier: ^19.1.15
         version: 19.2.2
-      '@watchaa/eslint-config':
-        specifier: workspace:*
-        version: link:../eslint-config
-      '@watchaa/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
 
   packages/typescript-config: {}
 

@@ -1,4 +1,4 @@
-import { Carousel } from '@dnym/carousel';
+import { Carousel } from '@movii/carousel';
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
 

@@ -1,5 +1,5 @@
 {
-  "name": "@watchaa/icons",
+  "name": "@movii/icons",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@types/react": "^19.1.15",
-    "@watchaa/eslint-config": "workspace:*",
-    "@watchaa/typescript-config": "workspace:*"
+    "@movii/eslint-config": "workspace:*",
+    "@movii/typescript-config": "workspace:*"
   }
 }

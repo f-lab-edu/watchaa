@@ -1,5 +1,5 @@
 {
-  "extends": "@watchaa/typescript-config",
+  "extends": "@movii/typescript-config",
   "compilerOptions": {
     "composite": true
   },

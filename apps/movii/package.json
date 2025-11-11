@@ -1,5 +1,5 @@
 {
-  "name": "@watchaa/web",
+  "name": "@movii/web",
   "version": "1.0.0",
   "private": true,
   "description": "watcha clone coding project",
@@ -14,8 +14,8 @@
     "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' '*.mjs' --fix"
   },
   "dependencies": {
-    "@dnym/carousel": "workspace:*",
-    "@watchaa/icons": "workspace:*",
+    "@movii/carousel": "workspace:*",
+    "@movii/icons": "workspace:*",
     "@tanstack/react-query": "^5.90.3",
     "axios": "^1.12.2",
     "clsx": "^2.1.1",
@@ -43,8 +43,8 @@
     "@types/react-dom": "^19.1.9",
     "@types/react-router-dom": "^5.3.3",
     "@types/webpack-bundle-analyzer": "^4.7.0",
-    "@watchaa/eslint-config": "workspace:*",
-    "@watchaa/typescript-config": "workspace:*",
+    "@movii/eslint-config": "workspace:*",
+    "@movii/typescript-config": "workspace:*",
     "babel-loader": "^10.0.0",
     "babel-plugin-react-compiler": "^1.0.0",
     "cross-env": "^10.0.0",

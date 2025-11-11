@@ -1,18 +1,18 @@
 {
-  "name": "watchaa-monorepo",
+  "name": "movii-monorepo",
   "version": "1.0.0",
   "author": "Moon-Sangho",
   "license": "ISC",
   "private": true,
-  "description": "A monorepo for the Watchaa project",
+  "description": "A monorepo for the Movii project",
   "packageManager": "pnpm@10.20.0",
   "engines": {
     "node": ">=22.0.0",
     "pnpm": ">=10.20.0"
   },
   "scripts": {
-    "web": "pnpm --filter @watchaa/web",
-    "carousel": "pnpm --filter @dnym/carousel",
+    "web": "pnpm --filter @movii/web",
+    "carousel": "pnpm --filter @movii/carousel",
     "build": "pnpm -r build",
     "typecheck": "pnpm -r typecheck",
     "lint": "pnpm -r lint",

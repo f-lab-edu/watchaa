@@ -1,6 +1,6 @@
-# @watchaa/typescript-config
+# @movii/typescript-config
 
-Shared TypeScript configuration for Watchaa monorepo projects.
+Shared TypeScript configuration for Movii monorepo projects.
 
 ## 사용 방법
 
@@ -11,7 +11,7 @@ Shared TypeScript configuration for Watchaa monorepo projects.
 ```json
 {
   "devDependencies": {
-    "@watchaa/typescript-config": "workspace:*",
+    "@movii/typescript-config": "workspace:*",
     "typescript": "^5.9.2"
   }
 }
@@ -23,7 +23,7 @@ Shared TypeScript configuration for Watchaa monorepo projects.
 
 ```json
 {
-  "extends": "@watchaa/typescript-config",
+  "extends": "@movii/typescript-config",
   "compilerOptions": {
     // 프로젝트별 추가 설정
   },
@@ -38,7 +38,7 @@ Shared TypeScript configuration for Watchaa monorepo projects.
 
 ```json
 {
-  "extends": "@watchaa/typescript-config",
+  "extends": "@movii/typescript-config",
   "compilerOptions": {
     "target": "es5",
     "baseUrl": ".",
