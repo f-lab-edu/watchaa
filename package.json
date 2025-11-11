@@ -12,7 +12,7 @@
   },
   "scripts": {
     "web": "pnpm --filter @movii/web",
-    "carousel": "pnpm --filter @movii/carousel",
+    "carousel": "pnpm --filter movii-carousel",
     "build": "pnpm -r build",
     "typecheck": "pnpm -r typecheck",
     "lint": "pnpm -r lint",
