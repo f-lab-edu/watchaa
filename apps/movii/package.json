@@ -4,6 +4,7 @@
   "private": true,
   "description": "watcha clone coding project",
   "type": "module",
+  "prettier": "@movii/prettier-config",
   "scripts": {
     "analyze": "cross-env ANALYZE=true pnpm run build",
     "dev": "cross-env NODE_ENV=development webpack serve --config webpack.dev.mjs",
@@ -11,10 +12,11 @@
     "build:preview": "pnpm run build && pnpm exec serve dist",
     "typecheck": "tsc --noEmit",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}' '*.mjs'",
-    "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' '*.mjs' --fix"
+    "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' '*.mjs' --fix",
+    "format": "prettier --write ."
   },
   "dependencies": {
-    "@movii/carousel": "workspace:*",
+    "movii-carousel": "workspace:*",
     "@movii/icons": "workspace:*",
     "@tanstack/react-query": "^5.90.3",
     "axios": "^1.12.2",
@@ -44,6 +46,7 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/webpack-bundle-analyzer": "^4.7.0",
     "@movii/eslint-config": "workspace:*",
+    "@movii/prettier-config": "workspace:*",
     "@movii/typescript-config": "workspace:*",
     "babel-loader": "^10.0.0",
     "babel-plugin-react-compiler": "^1.0.0",
