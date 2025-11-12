@@ -4,6 +4,30 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    '@types/react':
+      specifier: ^19.1.15
+      version: 19.2.2
+    '@types/react-dom':
+      specifier: ^19.1.9
+      version: 19.2.2
+    eslint:
+      specifier: ^9.36.0
+      version: 9.39.0
+    prettier:
+      specifier: ^3.6.2
+      version: 3.6.2
+    react:
+      specifier: ^19.1.1
+      version: 19.2.0
+    react-dom:
+      specifier: ^19.1.1
+      version: 19.2.0
+    typescript:
+      specifier: ^5.9.2
+      version: 5.9.3
+
 importers:
 
   .:
@@ -36,10 +60,10 @@ importers:
         specifier: ^12.1.1
         version: 12.1.1
       react:
-        specifier: ^19.1.1
+        specifier: 'catalog:'
         version: 19.2.0
       react-dom:
-        specifier: ^19.1.1
+        specifier: 'catalog:'
         version: 19.2.0(react@19.2.0)
       react-error-boundary:
         specifier: ^6.0.0
@@ -97,10 +121,10 @@ importers:
         specifier: ^7.7.0
         version: 7.7.0
       '@types/react':
-        specifier: ^19.1.15
+        specifier: 'catalog:'
         version: 19.2.2
       '@types/react-dom':
-        specifier: ^19.1.9
+        specifier: 'catalog:'
         version: 19.2.2(@types/react@19.2.2)
       '@types/react-router-dom':
         specifier: ^5.3.3
@@ -127,7 +151,7 @@ importers:
         specifier: ^8.1.1
         version: 8.1.1(webpack@5.102.1)
       eslint:
-        specifier: ^9.36.0
+        specifier: 'catalog:'
         version: 9.39.0(jiti@2.6.1)
       fork-ts-checker-webpack-plugin:
         specifier: ^9.1.0
@@ -151,7 +175,7 @@ importers:
         specifier: ^10.4.0
         version: 10.4.0(postcss@8.5.6)
       prettier:
-        specifier: ^3.6.2
+        specifier: 'catalog:'
         version: 3.6.2
       react-refresh:
         specifier: ^0.17.0
@@ -166,7 +190,7 @@ importers:
         specifier: ^5.3.14
         version: 5.3.14(webpack@5.102.1)
       typescript:
-        specifier: ^5.9.2
+        specifier: 'catalog:'
         version: 5.9.3
       webpack:
         specifier: ^5.101.3
@@ -214,13 +238,13 @@ importers:
         specifier: ^4.1.16
         version: 4.1.16
       '@types/react':
-        specifier: ^19.1.15
+        specifier: 'catalog:'
         version: 19.2.2
       '@vitejs/plugin-react':
         specifier: ^5.1.0
         version: 5.1.0(vite@5.4.21(@types/node@24.9.2)(lightningcss@1.30.2)(terser@5.44.0))
       eslint:
-        specifier: ^9.36.0
+        specifier: 'catalog:'
         version: 9.39.0(jiti@2.6.1)
       eslint-plugin-storybook:
         specifier: 10.0.6
@@ -229,10 +253,10 @@ importers:
         specifier: ^10.4.0
         version: 10.4.0(postcss@8.5.6)
       prettier:
-        specifier: ^3.6.2
+        specifier: 'catalog:'
         version: 3.6.2
       react:
-        specifier: ^19.0.0
+        specifier: 'catalog:'
         version: 19.2.0
       rollup:
         specifier: ^4.53.1
@@ -259,7 +283,7 @@ importers:
         specifier: ^2.8.1
         version: 2.8.1
       typescript:
-        specifier: ^5.7.2
+        specifier: 'catalog:'
         version: 5.9.3
       vite:
         specifier: ^5.4.21
@@ -271,7 +295,7 @@ importers:
         specifier: ^9.36.0
         version: 9.39.0
       eslint:
-        specifier: ^9.20.0
+        specifier: 'catalog:'
         version: 9.39.0(jiti@2.6.1)
       eslint-config-prettier:
         specifier: ^10.1.8
@@ -314,16 +338,16 @@ importers:
         specifier: workspace:*
         version: link:../typescript-config
       '@types/react':
-        specifier: ^19.1.15
+        specifier: 'catalog:'
         version: 19.2.2
       eslint:
-        specifier: ^9.36.0
+        specifier: 'catalog:'
         version: 9.39.0(jiti@2.6.1)
       prettier:
-        specifier: ^3.6.2
+        specifier: 'catalog:'
         version: 3.6.2
       typescript:
-        specifier: ^5.9.2
+        specifier: 'catalog:'
         version: 5.9.3
 
   packages/prettier-config: {}
