@@ -26,8 +26,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c",
-    "clean": "rm -rf dist .rollup.cache",
+    "build": "vite build",
+    "clean": "rm -rf dist",
     "typecheck": "tsc --noEmit",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix",
@@ -52,31 +52,23 @@
     "react": "^19.1.1"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^29.0.0",
-    "@rollup/plugin-node-resolve": "^16.0.3",
-    "@rollup/plugin-typescript": "^12.3.0",
+    "@movii/eslint-config": "workspace:*",
+    "@movii/prettier-config": "workspace:*",
+    "@movii/typescript-config": "workspace:*",
     "@storybook/addon-docs": "^10.0.6",
     "@storybook/react-vite": "^10.0.6",
     "@tailwindcss/postcss": "^4.1.16",
     "@types/react": "catalog:",
     "@vitejs/plugin-react": "^5.1.0",
-    "@movii/eslint-config": "workspace:*",
-    "@movii/prettier-config": "workspace:*",
-    "@movii/typescript-config": "workspace:*",
     "eslint": "catalog:",
     "eslint-plugin-storybook": "10.0.6",
-    "prettier": "catalog:",
     "postcss-preset-env": "^10.4.0",
+    "prettier": "catalog:",
     "react": "catalog:",
-    "rollup": "^4.53.1",
-    "rollup-plugin-dts": "^6.2.3",
-    "rollup-plugin-esbuild": "^6.2.1",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-postcss": "^4.0.2",
     "storybook": "^10.0.6",
     "tailwindcss": "^4.1.16",
-    "tslib": "^2.8.1",
     "typescript": "catalog:",
-    "vite": "^5.4.21"
+    "vite": "^5.4.21",
+    "vite-plugin-dts": "^4.5.4"
   }
 }
