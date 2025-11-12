@@ -7,9 +7,13 @@ import { dirname, relative } from 'node:path';
  */
 const findPackageDir = (filePath) => {
   const parts = dirname(filePath).split('/');
-  const workspaceIndex = parts.findIndex((part) => part === 'apps' || part === 'packages');
+  const workspaceIndex = parts.findIndex(
+    (part) => part === 'apps' || part === 'packages'
+  );
 
-  return workspaceIndex !== -1 ? parts.slice(0, workspaceIndex + 2).join('/') : null;
+  return workspaceIndex !== -1
+    ? parts.slice(0, workspaceIndex + 2).join('/')
+    : null;
 };
 
 /**
@@ -39,10 +43,14 @@ const createEslintCommands = (packageGroups) =>
 
 /**
  * Prettier 포맷팅 명령어를 생성합니다.
- * @param {string[]} filenames - 포맷팅할 파일 목록
- * @returns {string} Prettier 실행 명령어
+ * @param {Record<string, string[]>} packageGroups - 패키지별 파일 그룹
+ * @returns {string[]} Prettier 실행 명령어 배열
  */
-const createPrettierCommand = (filenames) => `prettier --write ${filenames.join(' ')}`;
+const createPrettierCommands = (packageGroups) =>
+  Object.entries(packageGroups).map(([packageDir, files]) => {
+    const relativeFiles = files.map((f) => relative(packageDir, f)).join(' ');
+    return `cd ${packageDir} && prettier --write ${relativeFiles}`;
+  });
 
 export default {
   '**/*.{ts,tsx}': (filenames) => {
@@ -52,8 +60,8 @@ export default {
     }));
     const packageGroups = groupByPackage(fileEntries);
     const eslintCommands = createEslintCommands(packageGroups);
-    const prettierCommand = createPrettierCommand(filenames);
+    const prettierCommands = createPrettierCommands(packageGroups);
 
-    return [...eslintCommands, prettierCommand];
+    return [...eslintCommands, ...prettierCommands];
   },
 };
