@@ -9,6 +9,10 @@ import common from './webpack.common.mjs';
 
 export default merge(common, {
   mode: 'production',
+  output: {
+    filename: '[name].[contenthash].js',
+    chunkFilename: '[name].[contenthash].chunk.js',
+  },
   /**
    * source-map 설정
    * prod: hidden-source-map - 별도의 소스맵 파일 생성, 에러 스택트레이스에 소스맵 URL 포함하지 않음(보안상 유리)
