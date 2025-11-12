@@ -5,16 +5,22 @@
   "private": false,
   "type": "module",
   "prettier": "@movii/prettier-config",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.esm.js",
-  "types": "./dist/index.d.ts",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.esm.js",
-      "require": "./dist/index.cjs"
-    },
-    "./carousel.css": "./dist/carousel.css"
+    ".": "./src/index.tsx",
+    "./carousel.css": "./src/carousel.css"
+  },
+  "publishConfig": {
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.esm.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.esm.js",
+        "require": "./dist/index.cjs"
+      },
+      "./carousel.css": "./dist/carousel.css"
+    }
   },
   "files": [
     "dist"
