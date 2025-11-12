@@ -49,10 +49,16 @@ export default {
       {
         test: /\.(png|svg|jpg|jpeg|gif|webp)$/i, // 이미지 파일 확장자
         type: 'asset/resource',
+        generator: {
+          filename: 'images/[name].[contenthash][ext]',
+        },
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i, // 폰트 파일 대상
         type: 'asset/resource', // 폰트는 이미지보다 훨씬 용량이 크고, 자주 바뀌지 않는 정적 자원. 브라우저가 캐싱하여 네트워크 비용을 줄일 수 있도록 항상 별도 파일로 제공
+        generator: {
+          filename: 'fonts/[name].[contenthash][ext]',
+        },
       },
     ],
   },
