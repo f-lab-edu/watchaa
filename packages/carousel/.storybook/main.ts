@@ -15,6 +15,17 @@ const config: StorybookConfig = {
       shouldRemoveUndefinedFromOptional: true,
     },
   },
+  viteFinal: async (config) => {
+    if (config.build) {
+      config.build.rollupOptions = config.build.rollupOptions || {};
+      config.build.rollupOptions.output = {
+        entryFileNames: 'assets/[name].[hash].js',
+        chunkFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[hash].[ext]',
+      };
+    }
+    return config;
+  },
 };
 
 export default config;
