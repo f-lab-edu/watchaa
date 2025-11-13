@@ -48,6 +48,10 @@ export default merge(common, {
     minimizer: [
       new CssMinimizerPlugin(),
       new TerserPlugin({
+        // https://webpack.js.org/plugins/terser-webpack-plugin/#swc
+        minify: TerserPlugin.swcMinify,
+        // `terserOptions` options will be passed to `swc` (`@swc/core`)
+        // Link to options - https://swc.rs/docs/config-js-minify
         terserOptions: {
           compress: true, // 공백, 주석 제거 등 코드 최소화
           mangle: true, // 변수명, 함수명 난독화
