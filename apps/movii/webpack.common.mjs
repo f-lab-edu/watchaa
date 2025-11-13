@@ -7,6 +7,9 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+/**
+ * @type {import('webpack').Configuration}
+ */
 export default {
   entry: './src/index.tsx',
   output: {
@@ -32,9 +35,9 @@ export default {
         test: /\.(ts|tsx)$/, // .ts와 .tsx 파일을 대상으로
         use: [
           {
-            loader: 'babel-loader',
+            loader: 'swc-loader', // swc-loader가 .swcrc를 기준으로 트랜스파일
             options: {
-              rootMode: 'upward', // 상위 디렉토리에서 babel.config.js 찾아 사용
+              configFile: path.resolve(__dirname, '.swcrc'),
             },
           },
         ],
