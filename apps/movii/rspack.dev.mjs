@@ -1,14 +1,18 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import rspack from '@rspack/core';
+import ReactRefreshPlugin from '@rspack/plugin-react-refresh';
 import { merge } from 'webpack-merge';
 
-import common from './webpack.common.mjs';
+import common from './rspack.common.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+/**
+ * @type {import('@rspack/cli').Configuration}
+ */
 export default merge(common, {
   mode: 'development',
   /**
@@ -37,6 +41,7 @@ export default merge(common, {
     ],
   },
   plugins: [
-    new ReactRefreshWebpackPlugin(), // 개발 환경에서만 React Refresh 플러그인 적용
+    new ReactRefreshPlugin(), // 개발 환경에서만 React Refresh 플러그인 적용
+    new rspack.HotModuleReplacementPlugin(),
   ],
 });

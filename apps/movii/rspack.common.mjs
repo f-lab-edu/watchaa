@@ -1,14 +1,14 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { rspack } from '@rspack/core';
 import Dotenv from 'dotenv-webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 /**
- * @type {import('webpack').Configuration}
+ * @type {import('@rspack/cli').Configuration}
  */
 export default {
   entry: './src/index.tsx',
@@ -19,7 +19,7 @@ export default {
   },
   plugins: [
     // HTML 파일을 템플릿으로 등록해두면, 웹팩이 알아서 필요한 JavaScript와 CSS 파일을 자동으로 삽입
-    new HtmlWebpackPlugin({
+    new rspack.HtmlRspackPlugin({
       template: './public/index.html', // 템플릿 파일 경로
       filename: 'index.html', // 생성될 HTML 파일 이름
       inject: 'body', // 스크립트를 body 태그 끝에 삽입
@@ -33,15 +33,31 @@ export default {
     rules: [
       {
         test: /\.(ts|tsx)$/, // .ts와 .tsx 파일을 대상으로
-        use: [
-          {
-            loader: 'swc-loader', // swc-loader가 .swcrc를 기준으로 트랜스파일
-            options: {
-              configFile: path.resolve(__dirname, '.swcrc'),
-            },
-          },
-        ],
         exclude: /node_modules\/(?!(@tanstack\/(react-query|query-core))\/).*/,
+        use: {
+          loader: 'builtin:swc-loader',
+          options: {
+            jsc: {
+              parser: {
+                syntax: 'typescript',
+                tsx: true,
+              },
+              transform: {
+                react: {
+                  runtime: 'automatic',
+                },
+              },
+              target: 'es2017',
+              loose: false,
+            },
+            module: {
+              type: 'es6',
+              noInterop: false,
+            },
+            sourceMaps: true,
+            minify: true,
+          },
+        },
       },
       /**
        * 정적 리소스 (이미지, 폰트 등) 처리
