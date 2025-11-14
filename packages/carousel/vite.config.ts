@@ -40,7 +40,7 @@ export default defineConfig({
         },
       },
     },
-    sourcemap: true,
+    sourcemap: false,
     cssCodeSplit: false, // CSS를 하나의 파일로 추출
   },
 });
