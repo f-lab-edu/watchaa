@@ -1,12 +1,13 @@
-import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
-import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import TerserPlugin from 'terser-webpack-plugin';
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import { RsdoctorRspackPlugin } from '@rsdoctor/rspack-plugin';
+import rspack from '@rspack/core';
+import { TsCheckerRspackPlugin } from 'ts-checker-rspack-plugin';
 import { merge } from 'webpack-merge';
 
-import common from './webpack.common.mjs';
+import common from './rspack.common.mjs';
 
+/**
+ * @type {import('@rspack/cli').Configuration}
+ */
 export default merge(common, {
   mode: 'production',
   output: {
@@ -23,10 +24,10 @@ export default merge(common, {
       {
         test: /\.css$/i,
         /**
-         * 프로덕션 모드: MiniCssExtractPlugin.loader 사용하여 CSS를 별도 파일로 추출
+         * 프로덕션 모드: CssExtractRspackPlugin.loader 사용하여 CSS를 별도 파일로 추출
          */
         use: [
-          MiniCssExtractPlugin.loader,
+          rspack.CssExtractRspackPlugin.loader,
           'css-loader',
           'postcss-loader', // PostCSS 로더 추가
         ],
@@ -34,25 +35,20 @@ export default merge(common, {
     ],
   },
   plugins: [
-    new ForkTsCheckerWebpackPlugin({
+    new TsCheckerRspackPlugin({
       async: false, // 타입 체크가 완료된 후에 빌드 완료. 타입 오류가 있는 경우 빌드가 실패됨.
     }),
     // 프로덕션 모드에서는 CSS를 별도 파일로 추출하여 브라우저가 캐싱할 수 있도록 함
-    new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
-    new BundleAnalyzerPlugin({
-      analyzerMode: process.env.ANALYZE === 'true' ? 'server' : 'disabled',
-    }),
+    new rspack.CssExtractRspackPlugin({ filename: '[name].[contenthash].css' }),
+    process.env.ANALYZE === 'true' && new RsdoctorRspackPlugin(),
   ],
   optimization: {
     minimize: true,
     minimizer: [
-      new CssMinimizerPlugin(),
-      new TerserPlugin({
-        // https://webpack.js.org/plugins/terser-webpack-plugin/#swc
-        minify: TerserPlugin.swcMinify,
-        // `terserOptions` options will be passed to `swc` (`@swc/core`)
-        // Link to options - https://swc.rs/docs/config-js-minify
-        terserOptions: {
+      new rspack.LightningCssMinimizerRspackPlugin(),
+      new rspack.SwcJsMinimizerRspackPlugin({
+        minimizerOptions: {
+          minify: true, // 코드 최소화 활성화
           compress: true, // 공백, 주석 제거 등 코드 최소화
           mangle: true, // 변수명, 함수명 난독화
         },
