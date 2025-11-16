@@ -5,14 +5,13 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
-    "lint": {
-      "outputs": []
+    "@movii/web#build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"],
+      "env": ["TMDB_API_ACCESS_TOKEN"]
     },
-    "lint:fix": {
-      "outputs": []
-    },
-    "typecheck": {
-      "outputs": []
-    }
+    "lint": { "outputs": [] },
+    "lint:fix": { "outputs": [] },
+    "typecheck": { "outputs": [] }
   }
 }
