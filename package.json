@@ -13,15 +13,16 @@
   "scripts": {
     "web": "pnpm --filter @movii/web",
     "carousel": "pnpm --filter movii-carousel",
-    "build": "pnpm -r build",
-    "typecheck": "pnpm -r typecheck",
-    "lint": "pnpm -r lint",
-    "lint:fix": "pnpm -r lint:fix",
-    "format": "pnpm -r format",
+    "build": "pnpm turbo run build",
+    "typecheck": "pnpm turbo run typecheck",
+    "lint": "pnpm turbo run lint",
+    "lint:fix": "pnpm turbo run lint:fix",
+    "format": "pnpm turbo run format",
     "prepare": "husky install"
   },
   "devDependencies": {
     "husky": "^9.0.0",
-    "lint-staged": "^16.2.3"
+    "lint-staged": "^16.2.3",
+    "turbo": "^2.6.1"
   }
 }

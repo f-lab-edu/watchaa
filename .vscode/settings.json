@@ -51,6 +51,7 @@
     "svgs",
     "swcrc",
     "TMDB",
+    "Turborepo",
     "watcha"
   ],
   "tailwindCSS.classAttributes": [".*[cC]lass.*"],
