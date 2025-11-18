@@ -33,13 +33,13 @@ const MovieSlide = ({
     setShouldAnimate(false);
   }, [isActive]);
 
-  const imageUrl = movie.backdropPath || movie.posterPath;
+  const imagePath = movie.backdropPath || movie.posterPath;
 
   return (
     <div key={movie.id} className="relative w-full h-full">
       <Link to={`/contents/${movie.id}`}>
         <img
-          src={`${TMDB_API_POSTER_BASE_URL}/${imageUrl}`}
+          src={`${TMDB_API_POSTER_BASE_URL}${imagePath}`}
           alt={`${movie.title} poster`}
           className="w-full h-full object-cover"
         />
