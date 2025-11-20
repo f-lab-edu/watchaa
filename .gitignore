@@ -4,3 +4,4 @@ dist
 *.tsbuildinfo
 storybook-static
 .turbo
+*.zip
