@@ -36,7 +36,10 @@ export default defineConfig([
       'react-hooks/rules-of-hooks': 'error', // Hooks의 규칙을 확인
       'react-hooks/exhaustive-deps': 'warn', // 의존성 배열을 확인
       'react/self-closing-comp': 'error', // 빈 컴포넌트를 self-closing 형태로 강제
-      'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }], // 불필요한 중괄호 제거
+      'react/jsx-curly-brace-presence': [
+        'error',
+        { props: 'never', children: 'never' },
+      ], // 불필요한 중괄호 제거
     },
   },
   {
@@ -80,6 +83,7 @@ export default defineConfig([
       ],
       // sort-imports는 import/order와 충돌하므로 비활성화
       'sort-imports': 'off',
+      'react/prop-types': 'off', // TypeScript를 사용하므로 prop-types 검사 비활성화
     },
   },
 ]);
